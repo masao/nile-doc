@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Fri Apr 19 11:14:07 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Fri Sep 27 21:16:05 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile関連の仕事メモ</h1>
@@ -232,15 +232,39 @@ nileのバックアップはufsdumpコマンドでとっています。
 <hr>
 <h2><a name="add_user">ユーザ登録</a></h2>
 <p><a href="makeuser.html">makeuserスクリプトについて</a></p>
-<pre>
-#su<br>
-#/usr/local/bin/makeuser アカウント名
-</pre>
+<pre>% sudo /usr/local/bin/makeuser <em>アカウント名</em></pre>
 <p>
 で、作成。アカウント名がセンターにない場合は、ユーザ名を入力するように
 促されるので、ローマ字で入力する(ex: Chinatsu Ito)。<br>
 後はパスワードを入力して終了。<br>
 </p>
+<p>
+共同研究者などの学外のユーザで、直接パスワードを渡せない場合は、
+仮パスワードを登録しておいて、
+<pre>% sudo passwd -x -1 <em>アカウント名</em></pre>
+として、初回ログイン時に強制的にパスワードを変更するよう促すことにする。<br>
+また、この場合には、ユーザに以下のようなメール（一例）を書いておく。
+<pre>
+From: admin@nile.ulis.ac.jp
+To: hogehoge@hogehoge.domain
+
+  <em>&lt;アカウント名&gt;</em> 様
+
+アカウントを作成しました。
+
+仮パスワードとして、 <em>&lt;仮パスワード&gt;</em> を設定してあります。
+
+初回ログイン時に強制的にパスワードを変更させるようにしましたので、
+仮パスワードを使って telnet/ssh 等で一旦ログインし、
+メッセージに従ってパスワードを変更してからご利用ください。
+
+パスワードについては以下を参照してください。
+  http://nile.ulis.ac.jp/nile/basic.html#password
+
+不明な点などありましたら、 admin@nile.ulis.ac.jp までお願いします。
+</pre>
+</p>
+
 <hr>
 <h2><a name="center">4月：センターからファイルのコピー</a></h2>
 <p>
