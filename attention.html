@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=x-euc-jp">
+<title>
+attention.html
+</title>
+</head>
+<body bgcolor ="#ffffcc">
+<h1>
+<center>使用上の注意</center>
+</h1>
+<ol>
+<A NAME="dtmail">
+<h3>
+<li>dtmail</A><br>
+</h3>
+	nileのメールツールであるDtmailを使用している利用者から、<br>
+	「Dtmailで書いたメールを送っても戻ってきてしまう。」という指摘がありました。<br>
+	原因と対策は、以下の通りです。<br>
+[原因]
+<ol>
+	<li> goat がメールのSPAM対策でulis.ac.jpドメイン以外からのメールの受信・転送を許さない設定にしているため。
+	<li> ただし、mailや、mhなどは送信可能。
+</ol>
+
+[対策]<br>
+	
+	<ul>
+	<li> Dtmailの「オプション」メニューから「拡張機能」を選択し、<br>
+                「メール送信元ホスト：」のところに、「nile.ulis.ac.jp」と書き込む。<br>
+	<br>
+	ただし、この設定にしてnileからメールを送ると、from行が、
+	<u>"ユーザ名@nile.ulis.ac.jp"</u>になります。<br>
+	相手がそのまま届いたメールを返信すると、返信先が
+	"ユーザ名@nile.ulis.ac.jp"となり、nileに送られるので、注意して下さい。<br>
+	これを回避する方法としては、相手に、宛先のnileの部分を削除してもらう、
+	forwardを設定するなどがあります。
+	</ul>
+<hr>
+	
+<A NAME="emergency">
+<h3>
+<li>何かあったときの連絡先</a><br>
+</h3>
+nile でトラブルなどがありましたら、
+<adress><a href="mailto:admin@nile.ulis.ac.jp">admin@nile.ulis.ac.jp</a>
+</adress>にメールを出すか、高久雅生(masao@ulis.ac.jp)</a>
+に声をかけて下さい。
+
+</ol>
+<hr>
+<a href="http://nile.ulis.ac.jp/nile/index.html">nile の使い方　目次へ</a><br>
+<a href="./basic.html">基本的な使い方</a>
+<a href="./soft.html">ソフトの紹介</a>
+</body>
+</html>

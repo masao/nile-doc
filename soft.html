@@ -1,0 +1,310 @@
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<title>
+soft list
+</title>
+</head>
+<body bgcolor ="#ffffcc">
+<center><h1> 利用できるソフトの紹介</h1></center><br>
+最終更新日：2001年08月22日 (水) 14時15分32秒 JST<br>
+<hr>
+<a href="./installer/softlist.shtml">インストール記録。</a>フリーソフトのインストール記録です。簡単な説明、注意事項が書いてあります。<br>
+<hr>
+<ol>
+	<li><a href="#matlab">MATLABの使い方</a>
+	<li><a href="#matlab_web">MATLAB Webserver</a>
+	<li><a href="#compilers">SUN 提供のコンパイラ</a>
+	<li><a href="#java">JAVA</a>
+	<li><a href="#acrobat">Acrobat Reader4.0</a>
+	<li><a href="#gnu">GNU関連のツール</a>
+	<li><a href="#f2c">f2c (Fortran to C,C++ Converter)</a>
+	<li><a href="#jlapack">jlapack </a>
+</ol>
+<hr>
+<ol>
+<!--
+<A NAME="tex">
+<li><h3>TeX の使い方</h3><br>
+nile にはjTex,pTeX がインストールされています。
+TeXを使う場合には、
+setenv ... をしてください。
+
+xdvi は使えるけど、
+dvi2ps は使えません。
+
+platex はdvips で印刷できます。
+-->
+
+<A NAME="matlab">
+<li><h3>MATLAB の使い方</h3><br>
+</A>
+MATLAB は　グラフィックス、画像処理ができる総合的な数値解析ソフトウェアです。４ライセンスあるので、４人まで同時に使用できます。<br>
+現在 ver.6.1 がインストールされています。(2001/08/22 現在）<br>
+	<ul>
+	<li>利用について<br>
+		<ul>
+		MATLAB を利用するためには以下のコマンドを実行してください。
+		<li>nile 以外の端末から利用する場合
+		<blockquote>
+			host% echo $DISPLAY  <br>
+      			your-display:0.0<br>
+			host% xhost +  <br>
+			host% telnet nile.ulis.ac.jp  <br>
+			
+			nile% setenv DISPLAY your-display:0.0<br>
+			nile% matlab  <br>
+		</blockquote>
+		<li>nileの端末から利用する場合  
+		<blockquote>
+	 		nile% matlab   
+		</blockquote>
+		<br>
+		</ul>
+	<li>マニュアルについて<br>
+		<ul>
+		MATLAB にはオンラインのドキュメントがついています。  <br>
+		ヘルプメニューの" MATLAB help "選択するか、またはMATLABを起動し<BR>
+		　　　　　>> helpdesk  <br>
+		で、 HTML 形式のマニュアル(英語版)が読めます。  <br>
+		<br>
+		HTML 形式の日本語版help があります。しかし、MATLABのソフト上でファイルを開いても<br>
+		文字化けしてしまうので、日本語版helpを読みたい場合は、<br>
+		nile の Netscape を起動し、 以下のファイルを指定してください。<br>
+		　　　　　file:/usr/local/matlab/jhelp/helpdesk.html <br>
+	
+		また、MATLAB の冊子体のマニュアルは２階の共同研究室に置いてあります。  <br>
+		</ul>
+		<br>
+	<li>MATLAB5を利用するためには<br>
+		<ul>
+		MATLAB5(5.3.1)が nile:/usr/local/matlab5 にあります。 <br>
+		利用する時には /usr/local/matlab5/bin/matlab を指定するか、<br>
+		または、~/.cshrc の path 行で /usr/local/bin より前のところに<br>
+		/usr/local/matlab5/bin を書き加えてください。
+		</ul>
+	</ul>
+<br>
+<A NAME="matlab_web">
+<li><h3>MALTAB Webserver </h3><br>
+</A>
+	<p>
+	Matlab Webserver を利用することで、Matlab のプログラムを
+	Webserverを介して実行したり、結果のグラフをブラウザ上に
+	表示することができます（→<a href="http://nile.ulis.ac.jp:8100">
+	デモがあります</a>）。<br>
+	プログラム、htmlファイルの書き方などは
+	<a href="http://www.mathworks.com/access/helpdesk/help/toolbox/webserver/webserver.shtml">
+	Mathworksのホームページにあるマニュアル</a>を見てください。
+	</p>
+
+	<ul>
+	<li><h4>jpegファイル作成ディレクトリのパーミッションの変更</h4>
+	Matlab webserverを利用してjpegファイルを作成する場合は、
+	そのファイルが作成されるディレクトリのパーミッションを777にする
+	必要があります。<br>
+
+	<br>
+	<li><h4>Matlab Webserver が提供しているデモプログラム
+	(webpeaks, webmagic, Softball Statistics)を<br>
+	個人のディレクトリで実行するためには。</h4>
+		<p>
+        Matlab Webサーバのポート番号: 27009 、*.html, *.m, 
+	実行ファイルの置き場所、jpegファイルの作成場所を<br>
+        /home/chinatsu/public_html/matlab
+        とします。
+
+		<ol>
+		<li> /usr/local/matlab6p1/toolbox/webserver/wsdemos にあるファイルを<br>
+                /home/chinatsu/public_html/matlab にコピーします。
+		<br>
+		<div style="border:thin solid">
+		% pwd<br>
+		/home/chinatsu/public_html/matlab<br>
+		% cp /usr/local/matlab6p1/toolbox/webserver/wsdemos/* .<br>
+		</div>
+		<br>
+        
+		<li> matweb がCGIプログラムになっています（バイナリなので中身はみれません）。<br>
+			nileの設定では cgiのPOSTメソッドを利用する場合、
+			呼び出されて実行されるプログラム名が *.cgi  でなければ<br>
+			いけないので matweb の名前を matweb.cgi に変更します。<br>
+		<br>
+		<div style="border:thin solid">
+		% mv matweb matweb.cgi<br>
+		</div>
+		<br>
+		<p>
+         MathWorks のロゴを表示させたい場合は
+         ./icons ディレクトリを作成し、MathWorks.Logo.gif, mathby.gif,<br>
+         peaks-jr.jpg を./icon にコピーします。次に、*.htmlの src="/icons/ロゴファイル名" を src="./icons/ロゴファイル名" に<br>
+		直してください。<br>
+		</p>
+
+		<li> matweb.conf.org を編集します。<br>
+		<br>
+		<div style="border:thin solid">
+		mlserver=&lt;matlabserver_host_name>,<br>
+		を<br>
+		mlserver = nile　　に、<br>
+		mldir=&lt;matlab>/toolbox/webserver/wsdemos<br>
+		を<br>
+		mldir = /home/chinatsu/public_html/matlab<br>
+		に書き換えます。<br>
+        
+		各アプリケーションのフィールドに<br>
+		mlport=27009<br>
+		を追加します。<br>
+		</div>
+		<br>
+
+		<li> .html, .m ファイルを編集します。<br>
+        Peaks plotの変更点です。<br>
+		<br>
+		<div style="border:thin solid">
+		% diff peaksplot.html.org peaksplot.html<br>
+		5c5<br>
+		< &lt;form action="/cgi-bin/matweb" method="POST" target="outputwin"><br>
+		---<br>
+		> &lt;form action="./matweb.cgi" method="POST" target="outputwindow"><br>
+		<br>
+		% diff webpeaks.m.org webpeaks.m<br>
+		55c55<br>
+		< s.GraphFileName = sprintf('%speaks.jpeg', mlid);<br>
+		---<br>
+		> s.GraphFileName = sprintf('./%speaks.jpeg', mlid);<br>
+		57c57<br>
+        < s.GraphFileName = sprintf('/icons/%speaks.jpeg', mlid);<br>
+		---<br>
+		> s.GraphFileName = sprintf('./%speaks.jpeg', mlid);<br>
+		</div>
+		<br>
+       	MATLAB Matrix display は webmagic1.htmlを修正してください。
+		<br>
+		<div style="border:thin solid">
+         % diff webmagic1_org.html webmagic1.html<br>
+         30c30<br>
+         &lt; &lt;form action="/cgi-bin/matweb" method="POST"><br>
+         ---<br>
+         > &lt;form action="./matweb" method="POST"><br>
+		</div><br>
+        Softball Statistics は index.html を修正してください。。
+		<br>
+		<div style="border:thin solid">
+        % diff index_org.html index.html<br>
+        51c51<br>
+        &lt;     &lt;li>&lt;a href="/cgi-bin/matweb?mlmfile=players">Softball<br>
+        ---<br>
+        >     &lt;li>&lt;a href="./matweb?mlmfile=players">Softball<br>
+		</div>
+		<br>
+		<li>webpeaksでjpegファイルが作成されるので、ディレクトリのパーミッションを777に変更します。
+
+		<br>
+		<div style="border:thin solid">
+		%chmod 777 /home/chinatsu/public_html/matlab
+		</div>
+
+		</ol>
+	</ul>
+<br>
+<A NAME="compilers">
+<li><h3>SUN 提供のコンパイラ</h3>
+	nile では Sun WorkShop Compilers 4.2 で提供されているFORTRAN(f77,f90), C++,C のコンパイラが利用できます。<br>
+	<ul>
+	<li>C でワイド文字を処理するには。<br>
+		Sun WorkShop Compilers 4.2 の Cコンパイラでワイド文字を処理するためには、<br>
+		オプションで -lw をつけてください。
+	</ul>
+
+<br>
+<li><a name="java"><h3>JAVA</h3></a>
+	nile には、
+	<ul>
+	<li>JDK 1.1.6：　/usr/java1.1
+	<li>Java2(1.2.2)：　/usr/local/jdk1.2.2
+	<li>Java2 SDK Version 1.3(1.3.1)：　/usr/local/j2se
+	</ul>
+	の3つのバージョンがインストールしてあります。デフォルトでは、1.3.1にパスが通っています。<br>
+	Version 1.3のドキュメントは以下の場所にあります。ご利用ください。
+	<ul>
+	<li><a href="./j2se_e/">Java2 SDK, Standard Edition, Version 1.3 英語ドキュメント</a><br>
+		http://nile.ulis.ac.jp/nile/j2se_e/ または、/usr/local/j2se/docs
+	<li><a href="./j2se_j/">Java2 SDK, Standard Edition, Version 1.3 日本語ドキュメント</a><br>
+		http://nile.ulis.ac.jp/nile/j2se_j/ または、/usr/local/j2se/docs/ja
+	</ul>
+<br>
+<A NAME="acrobat">
+<li><h3>Acrobat Reader4.0</h3>
+	pdf を読むためにAcrobat Readerが /usr/local/Acrobat4 にインストールされています。<br>
+	%acroread<br>
+	で実行できます。<br>
+<br>
+<A NAME="gnu">
+<li><h3>GNU関連のツール</h3><br>
+</A>
+nile にいくつかGNU関係のツールをインストールしました。<br>
+<pre>
+・libstdc++
+・bison
+・flex
+の3つです。
+
+電通大の渡辺研のコンパイラ生成系を実行する環境のためです。
+
+インストール記録は、~masao/Log/ 以下に保存してあります。
+インストール先は /usr/local 以下です。
+</pre>
+<A NAME="f2c">
+<li><h3>f2c</h3>
+	f2c は Fortran77 から C,C++へのコンバータです。<br>
+	<p>
+	<div style="border:thin solid">
+	 実行例）<br>
+	<p>
+    % f2c hello.f<br>
+    hello.f:<br>
+    MAIN:<br>
+    % cc hello.c -lf2c -lm<br>
+    % a.out<br>
+    Hello World!
+	</div>
+	<p>
+	f2c を実行すると *.c が作成されます。<br>
+	cc の時は、オプションとして -lf2c -lm が必要です。
+	その他 f2c については man を見てください。<br>
+	<p>
+	f2c のテクニカルレポート(1995年のもの）が nile:/usr/local/doc/f2c.ps
+	にあります。<br>
+	<br>
+<A NAME="jlapack">
+<li><h3>JLAPACK</h3>
+	<p>
+	JLAPACK はLapack をJavaに移植したものです。
+	nile:/usr/local/jlapack-0.3a にインストールしてあります。
+	jlapack-0.3aを利用するためには、ログイン毎に
+	<p>
+	<div style="border:thin solid">
+     % setenv CLASSPATH .:/usr/local/jlapack-0.3a/classes.zip
+	</div>
+	<p>
+	を実行するか、または、 ~/.cshrc などのシェルの設定ファイルに
+	<p>
+	<div style="border:thin solid">
+	setenv CLASSPATH .:/usr/local/jlapack-0.3a/classes.zip
+	</div>
+	<p>
+	の一行を加え、
+	<div style="border:thin solid">
+	% soruce 設定ファイル名
+	</div>
+	<p>
+	を実行してください。
+	</p>
+</ol>
+<hr>
+<a href="./">nile の使い方目次へ</a><br>
+<a href="./basic.html">基本的な使い方</a>
+<a href="./attention.html">使用上の注意</a>
+</body>
+</html>

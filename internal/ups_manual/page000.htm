@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - ソフトウエア概要</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<P>
+<A name="TAG0"></A> <A HREF="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+</P>
+<HR>
+<TABLE BORDER="5" WIDTH="450" CELLPADDING="10">
+  <TR>
+    <TD><B><FONT SIZE="6">ソフトウエア概要</FONT></B></TD></TR>
+</TABLE>
+<P>本ソフトは、ワークステーションを使用した無停電電源装置（以下、UPS）用監視プログラムです。
+商用電源異常時のシステムの保護と電源状態の監視、ワークステーションの自動運転機能を提供します。</P>
+<DL>
+  <DT><B><FONT SIZE="5">主な特長</FONT></B>
+  <DD>
+  <DL>
+    <DT><FONT SIZE="4"><B>オートシャットダウン機能</B></FONT>
+    <DD>停電時にワークステーションを自動的にシャットダウンできます。シャットダウンは、一定時間以上の停電またはバッテリ電圧の低下によって行います。シャットダウン後にUPSを停止させることも可能です。<BR><BR>
+    <DT><B><FONT SIZE="4">スケジュール機能</FONT></B>
+    <DD>UPSおよびワークステーションのスケジュール運転ができます。スケジュールは月間、週間または単一で設定でき、UPSの起動と停止、ワークステーションのシャットダウンができます。<BR><BR>
+    <DT><B><FONT SIZE="4">ステータス・ディスプレイ機能</FONT></B>
+    <DD>電源状態を常に監視できます。入力電圧、出力電圧、バッテリ電圧、周波数、負荷率、などがX-Window上に表示されます。<BR><BR>
+    <DT><B><FONT SIZE="4">ヒストリ管理機能</FONT></B>
+    <DD>停電などのイベント発生時、および一定時間ごとの時刻、電圧、周波数、負荷率、などのデータはログファイルに記録されます。<BR><BR>
+    <DT><B><FONT SIZE="4">ユーザコマンド実行機能</FONT></B>
+    <DD>停電発生時やオートシャットダウン処理前など、特定のタイミングでユーザが作成したシェルプログラムを実行できます。<BR><BR>
+    <DT><B><FONT SIZE="4">UPSの一括管理機能（注１、注２）</FONT></B>
+    <DD>ネットワーク上の全てのUPSが、スケジュール情報とともにアイコン表示されます。アイコンをクリックすれば、UPSに関する詳細表示を見ることができます。<BR><BR>
+    <DT><B><FONT SIZE="4">ネットワーク機能（注１）</FONT></B>
+    <DD>ネットワーク上のUPSに対して、遠隔で監視、スケジュール設定、各種動作パラメータの設定、強制停止と再ブートが行えます。<BR>
+    <FONT color="RED"><B>ＮＴ、ＵＮＩＸ間通信では、使用できる機能に制限があります。</B></FONT><BR><BR>
+    <DT><B><FONT SIZE="4">SNMPトラップと電子メール機能</FONT></B>
+    <DD>電源障害を、SNMPトラップや電子メールで遠隔の監視端末に通知することができます。<BR><BR>
+    <DT><B><FONT SIZE="4">Webブラウザによる監視と簡単設定</FONT></B>
+    <DD>標準搭載の簡易Webサーバを走らせれば、InternetExplorerやNetscapeを使って、あらゆるOSからUPS状態の監視、動作パラメータの設定が簡単に行えます。
+  </DL>
+</DL>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+      <TD bgcolor="#FFFF00"><B>（注１）一括管理機能、ネットワーク機能を利用するには、UPSでバックアップされたワークステーション毎に、
+      本ソフトがインストールされている必要があります。</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+      <TD bgcolor="#FFFF00"><B>（注２）一括管理機能を利用するには、inetデーモンが動作している必要があります。</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<HR>
+<P>
+<A HREF="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,244 @@
+2001/05/25
+/project3 のディスクスライス、ラベル、ファイルシステム作成ログ
+by　いとうちなつ
+
+1. ディスクスライス、ラベル作成
+
+root@nile[2]% df -k
+ファイルシステム      kbytes 使用済み 使用可能 capacity  マウント先
+/proc                      0       0       0     0%    /proc
+/dev/dsk/c0t0d0s0    1984903   54891 1870465     3%    /
+/dev/dsk/c0t0d0s6    1984903 1022734  902622    54%    /usr
+fd                         0       0       0     0%    /dev/fd
+/dev/dsk/c0t1d0s3     962983  409330  495875    46%    /var
+/dev/dsk/c0t10d0s7   17413250 15150239 2088879    88%    /home
+/dev/dsk/c0t2d0s5    4336582 1408500 2884717    33%    /opt
+/dev/dsk/c0t11d0s7   17413250 9509890 7729228    56%    /project
+/dev/dsk/c0t3d0s7    8705501 4872975 3745471    57%    /project2
+/dev/dsk/c0t2d0s6    4336582 2147938 2145279    51%    /usr/local
+swap                 3337960    9680 3328280     1%    /tmp
+
+root@nile[3]% format
+Searching for disks...done
+
+
+AVAILABLE DISK SELECTIONS:
+       0. c0t0d0 <SUN4.2G cyl 3880 alt 2 hd 16 sec 135>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@0,0
+       1. c0t1d0 <SUN4.2G cyl 3880 alt 2 hd 16 sec 135>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@1,0
+       2. c0t2d0 <SUN9.0G cyl 4924 alt 2 hd 27 sec 133>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@2,0
+       3. c0t3d0 <SUN9.0G cyl 4924 alt 2 hd 27 sec 133>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@3,0
+       4. c0t10d0 <SUN18G cyl 7506 alt 2 hd 19 sec 248>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@a,0
+       5. c0t11d0 <SUN18G cyl 7506 alt 2 hd 19 sec 248>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@b,0
+       6. c0t12d0 <SUN36G cyl 24620 alt 2 hd 27 sec 107>
+          /sbus@3,0/SUNW,fas@3,8800000/sd@c,0
+Specify disk (enter its number): 6
+selecting c0t12d0
+[disk formatted]
+
+
+FORMAT MENU:
+        disk       - select a disk
+        type       - select (define) a disk type
+        partition  - select (define) a partition table
+        current    - describe the current disk
+        format     - format and analyze the disk
+        repair     - repair a defective sector
+        label      - write label to the disk
+        analyze    - surface analysis
+        defect     - defect list management
+        backup     - search for backup labels
+        verify     - read and display labels
+        save       - save new disk/partition definitions
+        inquiry    - show vendor, product and revision
+        volname    - set 8-character volume name
+        !<cmd>     - execute <cmd>, then return
+        quit
+format> partition
+
+
+PARTITION MENU:
+        0      - change `0' partition
+        1      - change `1' partition
+        2      - change `2' partition
+        3      - change `3' partition
+        4      - change `4' partition
+        5      - change `5' partition
+        6      - change `6' partition
+        7      - change `7' partition
+        select - select a predefined table
+        modify - modify a predefined partition table
+        name   - name the current table
+        print  - display the current table
+        label  - write partition map and label to the disk
+        !<cmd> - execute <cmd>, then return
+        quit
+partition> print
+Current partition table (original):
+Total disk cylinders available: 24620 + 2 (reserved cylinders)
+
+Part      Tag    Flag     Cylinders         Size            Blocks
+  0       root    wm       0 -    90      128.37MB    (91/0/0)      262899
+  1       swap    wu      91 -   181      128.37MB    (91/0/0)      262899
+  2     backup    wu       0 - 24619       33.92GB    (24620/0/0) 71127180
+  3 unassigned    wm       0                0         (0/0/0)            0
+  4 unassigned    wm       0                0         (0/0/0)            0
+  5 unassigned    wm       0                0         (0/0/0)            0
+  6        usr    wm     182 - 24619       33.67GB    (24438/0/0) 70601382
+  7 unassigned    wm       0                0         (0/0/0)            0
+
+partition> modify
+Select partitioning base:
+	0. Current partition table (original)
+	1. All Free Hog
+Choose base (enter number) [0]? 1
+
+Part      Tag    Flag     Cylinders         Size            Blocks
+  0       root    wm       0                0         (0/0/0)            0
+  1       swap    wu       0                0         (0/0/0)            0
+  2     backup    wu       0 - 24619       33.92GB    (24620/0/0) 71127180
+  3 unassigned    wm       0                0         (0/0/0)            0
+  4 unassigned    wm       0                0         (0/0/0)            0
+  5 unassigned    wm       0                0         (0/0/0)            0
+  6        usr    wm       0                0         (0/0/0)            0
+  7 unassigned    wm       0                0         (0/0/0)            0
+
+Do you wish to continue creating a new partition
+table based on above table[yes]? y
+Free Hog partition[6]? 7
+Enter size of partition '0' [0b, 0c, 0.00mb, 0.00gb]: 
+Enter size of partition '1' [0b, 0c, 0.00mb, 0.00gb]: 
+Enter size of partition '3' [0b, 0c, 0.00mb, 0.00gb]: 
+Enter size of partition '4' [0b, 0c, 0.00mb, 0.00gb]: 
+Enter size of partition '5' [0b, 0c, 0.00mb, 0.00gb]: 
+Enter size of partition '6' [0b, 0c, 0.00mb, 0.00gb]: 
+
+Part      Tag    Flag     Cylinders         Size            Blocks
+  0       root    wm       0                0         (0/0/0)            0
+  1       swap    wu       0                0         (0/0/0)            0
+  2     backup    wu       0 - 24619       33.92GB    (24620/0/0) 71127180
+  3 unassigned    wm       0                0         (0/0/0)            0
+  4 unassigned    wm       0                0         (0/0/0)            0
+  5 unassigned    wm       0                0         (0/0/0)            0
+  6        usr    wm       0                0         (0/0/0)            0
+  7 unassigned    wm       0 - 24619       33.92GB    (24620/0/0) 71127180
+
+Okay to make this the current partition table[yes]? y
+Enter table name (remember quotes): "project3"
+
+Ready to label disk, continue? y
+
+partition> q
+
+FORMAT MENU:
+        disk       - select a disk
+        type       - select (define) a disk type
+        partition  - select (define) a partition table
+        current    - describe the current disk
+        format     - format and analyze the disk
+        repair     - repair a defective sector
+        label      - write label to the disk
+        analyze    - surface analysis
+        defect     - defect list management
+        backup     - search for backup labels
+        verify     - read and display labels
+        save       - save new disk/partition definitions
+        inquiry    - show vendor, product and revision
+        volname    - set 8-character volume name
+        !<cmd>     - execute <cmd>, then return
+        quit
+format> verify
+
+Primary label contents:
+
+Volume name = <        >
+ascii name  = <SUN36G cyl 24620 alt 2 hd 27 sec 107>
+pcyl        = 24622
+ncyl        = 24620
+acyl        =    2
+nhead       =   27
+nsect       =  107
+Part      Tag    Flag     Cylinders         Size            Blocks
+  0       root    wm       0                0         (0/0/0)            0
+  1       swap    wu       0                0         (0/0/0)            0
+  2     backup    wu       0 - 24619       33.92GB    (24620/0/0) 71127180
+  3 unassigned    wm       0                0         (0/0/0)            0
+  4 unassigned    wm       0                0         (0/0/0)            0
+  5 unassigned    wm       0                0         (0/0/0)            0
+  6        usr    wm       0                0         (0/0/0)            0
+  7 unassigned    wm       0 - 24619       33.92GB    (24620/0/0) 71127180
+
+format> q
+root@nile[4]% df -k
+ファイルシステム      kbytes 使用済み 使用可能 capacity  マウント先
+/proc                      0       0       0     0%    /proc
+/dev/dsk/c0t0d0s0    1984903   54891 1870465     3%    /
+/dev/dsk/c0t0d0s6    1984903 1022734  902622    54%    /usr
+fd                         0       0       0     0%    /dev/fd
+/dev/dsk/c0t1d0s3     962983  409351  495854    46%    /var
+/dev/dsk/c0t10d0s7   17413250 15150244 2088874    88%    /home
+/dev/dsk/c0t2d0s5    4336582 1408500 2884717    33%    /opt
+/dev/dsk/c0t11d0s7   17413250 9509890 7729228    56%    /project
+/dev/dsk/c0t3d0s7    8705501 4872975 3745471    57%    /project2
+/dev/dsk/c0t2d0s6    4336582 2147939 2145278    51%    /usr/local
+swap                 3334560    9680 3324880     1%    /tmp
+root@nile[6]% cd /
+root@nile[7]% ls
+Mail/           etc/            mnt/            project/        var/
+TT_DB/          export/         net/            project2/       vol/
+bin@            home/           nsr/            sbin/           xfn/
+cdrom/          kernel/         opt/            tiff.sw.tools/
+dev/            lib@            platform/       tmp/
+devices/        lost+found/     proc/           usr/
+
+2. ファイルシステムの作成
+root@nile[9]% newfs /dev/rdsk/c0t12d0s
+newfs: /dev/rdsk/c0t12d0s: No such file or directory
+root@nile[10]% newfs /dev/rdsk/c0t12d0s7
+newfs: construct a new file system /dev/rdsk/c0t12d0s7: (y/n)? y
+/dev/rdsk/c0t12d0s7:	全セクタ数: 71127180  (シリンダ数: 24620、トラック数: 27、セクタ数: 107)
+	34730.1MB、770 シリンダグループ (32 c/g, 45.14MB/g, 5632 i/g)
+スーパーブロックのバックアップの位置 (fsck -F ufs -o b=# のため) :
+ 32, 92592, 185152, 277712, 370272, 462832, 555392, 647952, 740512, 833072,
+ 925632, 1018192, 1110752, 1203312, 1295872, 1388432, 1480992, 1573552,
+			:
+			:
+ 70078080, 70170640, 70263200, 70355760, 70448320, 70540880, 70633440,
+ 70726000, 70818560, 70911120, 71000096, 71092656,
+
+3. マウント
+root@nile[11]% mkdir /project3
+root@nile[12]% mount /dev/dsk/c0t12d0s7 /project3
+root@nile[18]% df -k
+ファイルシステム      kbytes 使用済み 使用可能 capacity  マウント先
+/proc                      0       0       0     0%    /proc
+/dev/dsk/c0t0d0s0    1984903   54892 1870464     3%    /
+/dev/dsk/c0t0d0s6    1984903 1022734  902622    54%    /usr
+fd                         0       0       0     0%    /dev/fd
+/dev/dsk/c0t1d0s3     962983  409376  495829    46%    /var
+/dev/dsk/c0t10d0s7   17413250 15150272 2088846    88%    /home
+/dev/dsk/c0t2d0s5    4336582 1408500 2884717    33%    /opt
+/dev/dsk/c0t11d0s7   17413250 9509890 7729228    56%    /project
+/dev/dsk/c0t3d0s7    8705501 4872975 3745471    57%    /project2
+/dev/dsk/c0t2d0s6    4336582 2147938 2145279    51%    /usr/local
+swap                 3327904    9720 3318184     1%    /tmp
+/dev/dsk/c0t12d0s7   35009161       9 34659061     1%    /project3
+root@nile[59]% cd project3
+root@nile[60]% ls
+lost+found/
+
+
+ 終了。
+
+参考資料
+ オンラインマニュアル
+	「Solarisのシステム管理(第1巻） ディスクの管理 
+						第23章 SPARC: ディスク追加の手順 」
+
+ 「Solarisシステム管理入門 2nd Edition 3.4 ディスクの管理(p.121- )」
+

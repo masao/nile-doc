@@ -1,0 +1,91 @@
+2001年11月24日（土）- 25日（日） 
+	nile のvfstab がおかしくなった騒動の記録  いとうちなつ
+
+22:58 	
+		パッチ(2001/11/20 Ver.)をあてリブート
+		chinatsu でログイン
+		/, /var, /usr, /dev/fd のみマウントされる
+		/proc, /usr/local, /tmp, /home, /project? マウントされず。
+		
+		# shutdown -y -g0 -i 0 実行
+		ok > init s 
+		動作している気配なし。画面フリーズ。
+
+		鍵を回して起動
+		「Kernel の書き換えをするか？」というメッセージが出たので "NO"にしておく。
+		再び聞かれたので"NO"とする。
+	
+		インタフェースCDE、ユーザroot、option file safe mode でログイン。
+		症状変わらず。
+		パッチが新しくなったものは、patchrm で前のバージョンに戻す。
+		/proc が読めないのがまずいと分かるが、解決策は分からず。
+
+	    # shutdown -y -g0 -i 0 実行
+		# boot
+
+1:00ぐらい(11月25日)
+		「カーネル...」	がまた出る。
+		よく分からないので、たかく君に泣きついてみる。
+		/etc/vfstab, /etc/mnttab もおかしいらしい。
+		dream:~/nile_011124/* にあり
+
+		root でログイン
+		#umount /home
+		#mount /home
+		でマウントできることが分かった。
+
+		/project? は 
+		#mount /project?
+		だけでOKだった。
+
+		＃ # mount /proc はやらなかったけど、できたんだろうか。
+
+		とりあえず、バックアップをとる。
+
+		/home:DDS4
+		/, /var, /usr, /usr/local, /opt:DDS3
+		/project: DDS3
+		/project2,3 → senjimon
+		/project/* → senjimon
+
+
+		バックアップ終了後、
+		init Sにするのも怪しい、
+		次にbootするかも怪しい、
+		でも、今はネットワークにつながっていてマルチユーザモード。
+			↓
+		ということでネットワークを引っこ抜いてこの日は帰ることとする。
+7:20 ぐらい	
+
+2001年11月25日（日）
+		/etc/vfstab  のエントリがおかしいせいでオートマウントができない。
+		(raus, apollonとあきらかに異なる）
+
+		エントリがおかしい vfstab /etc/vfstab.011125 とした。
+
+		2001年6月20日のvfstab とraus のvfstab を参考に直す。
+		2001年6月20日のvfstab をvfstab.19990923とした。
+
+		1. boot時のマウントを決めるエントリが no になっているので
+		/home, /opt, /project, /project2, /project3, /tmp, /usr/local を yes にする。
+		2. 無事起動
+
+		#shutdown するも 
+		showmount nile : RPC 登録されていないプログラムです。
+		とメッセージがでて、shutdown できない。
+
+		/usr/sbin/shutdown -y -g0 -i0 メッセージでない
+		/usr/sbin/shutdown -y -g0 -i 0 メッセージでない
+		/usr/sbin/shutdown -y -g 0 -i 0 メッセージでる
+		/usr/sbin/shutdown -y -g 0 -i0 メッセージでる
+
+		/usr/sbin/shutdown -h now ならshutdown 可。
+
+		#mount /dev/rdsk/c0t12d0s7 /project3
+		/etc/vfstab に/dev/rdsk/c0t12d0s7 /project3　のエントリ追加。
+	
+		 /usr/ucb/shutdown -h now　
+
+		全てのディスクがマウントされていて、無事動いていることを確認。
+
+		パッチをあてる。

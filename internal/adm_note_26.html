@@ -1,0 +1,183 @@
+nile 覚え書き
+<pre>
+nile 自身について(1999/10/12)
+	Solaris7 ( SunOS 5.7 )
+	Ultra-Enterprise3000
+	Host Id 	8081d1e8
+	domain 		ulis.ac.jp
+	search		ulis.ac.jp ipc.ulis.ac.jp ipc94.ulis.ac.jp ac.jp multi.ulis.ac.jp .
+	nameserver      133.51.168.11
+	nameserver      133.51.168.12
+
+	nile ローカルの .cshrc .lrogin のありか
+		/usr/local/skel/.cshrc
+		/usr/local/skel/.login
+		必要なパスが出てきたら、順次この .cshrc に追加。
+
+	関連ホスト
+		dream	133.51.168.11
+		seine	133.51.24.111
+		voyager	133.51.24.112
+		cosmo	133.51.24.112
+		asama	133.51.224.1
+		daisen	133.51.48.27
+		eboshi	133.51.48.28
+</pre>
+<hr>
+<pre>
+98/03/05
+UPS の設定を変更
+		/usr/ups/xinit
+		一度電源が切れたら手動でないとON にならないようにした。
+<hr>
+98/06/07
+CGI の利用について
+--------------------------------------------------------------
+	hitomi@ulis.ac.jp wrote
+	今までの、処置をまとめます。
+	やったことは、すべて、/etc/http/httpd.conf の中身の変更と追加です。
+	
+	最初の処置
+	
+	1. cgi_enable を、"no" から "yes" に変更。
+	
+	2. map "/cgi-bin/" "/var/http/www/cgi-bin/" CGI の行を追加。
+	
+	これだけでは、CGIを実行できませんでした。
+	
+	今日行なった処置
+	
+	1. 最初の処置の2.の部分をmap "/cgi-bin/*.cgi" "/var/http/www/cgi-bin/" CGI
+   	に変更。
+	
+	2. cgi_dns_enableを"no"から"yes"に変更。
+	
+	3. cgi_suffix_enableを"no"から"yes"に変更。
+
+	これを行なったあと、httpdを起動し直し、実際にCGIプログラムを
+	動かしてみました。実行したCGIプリグラムは、/var/http/demo/cgi-bin/
+	の下にあったデモプログラムです。
+それらを/home/hitomi/public_html/cgi-bin/にコピーし、名前に.cgiをつ
+	けて、Webで実行してみました。
+	うまく実行されました。.cgiをつけないとCGIプログラムとして認識されない
+	ようにもなっています。
+--------------------------------------------------------------
+
+<hr>
+
+98/07/02
+	中田ゼミ用のグループとして nakalab を作成。
+
+<hr>
+98/10/01
+	nile の  /usr/local 不足解消のため、 /usr/local を/opt/local に
+	移動させ、/usr/local から /opt/local にシンボリックリンクを張る。
+	(方法）
+	# cd /usr/local; tar cf - . | ( cd /opt/local; tar xf - )
+	  /usr/local → /opt/local へのシンボリックリンク。
+<hr>
+99/03/24
+dream のX端末からnile にlogin し、日本語表示ができるように設定。
+
+	%mv /usr/openwin/lib/X11/fontserver.cfg fontserver.cfg.org
+	%cp fontserver.cfg.org fontserver.cfg
+	%vi fontserver.cfg
+
+	"catalogue=" 行に、
+		,/usr/openwin/lib/locale/ja/X11/fonts/75dpi
+		,/usr/openwin/lib/locale/ja/X11/fonts/F3bitmaps
+		,/usr/openwin/lib/locale/ja/X11/fonts/TTbitmaps
+	を追加。
+フォントサーバ再起動。
+
+ブート時に、フォントサーバが自動的に起動するように設定。
+	%fsadmin -e  
+		#init.d により自動的に起動。
+		-d は自動的に起動しないように設定。
+	%fsadmin だけの時は、現在の状態を表示。
+
+フォントサーバが動いているかを確認。
+	%fsinfo -s nile:7100
+	フォントサーバ名:使用しているポート番号(nile は7100、一般的には7000)
+・設定を最初変更した時に、nile ではフォントサーバが動かなかった。
+seine で試したところ動く。 原因は、環境変数 LANG が ja でなかったこと。
+環境変数を ja に直したらフォントサーバは動いた。
+	
+・この作業の元となった長谷部先生のメールはのコピーはバインダにあり。
+
+<hr>
+
+99/07/27
+クラッカー騒ぎがあったため nile の対外接続を閉じ、センターから指示のあった、
+以下のことを行なう。
+	・root のパスワード変更。
+	・ユーザのアカウントを root 権限で凍結。 パスワードを変更する。
+	・ /home/username/.rhosts の中身を確認。
+
+
+	今回行なったこと、学んだこと。
+	・すぐに root のパスワードを変更する。
+	・ユーザのアカウントを root 権限で凍結。パスワード変更。
+	  root がすべて付け直して、ユーザに知らせるのが良い。
+	
+	・既存の .rhosts は名前を一度変更するなどして使用できないようにする。
+	  .rhosts があると、パスワードを使用しなくても他のホストにログイン
+	できるため、悪用されやすい。
+	中身の確認をする時は、怪しいホスト名がないかをチェック。
+	変更する際、 .rhosts_old など、よくつける名前は避ける。
+	 # daisen 系列は、 .rhosts_990728 としてた。
+	本人に、変な書き込みがないかをチェックしてもらってから、
+	利用を再開してもらう。
+
+
+	・実行ファイルはコンパイルし直してもらう。もしかしたら、何かと
+	すり替わっている可能性あり。
+	# a.out などは特に怪しい。
+	# daisen は実行パーミッションを落としていたらしい。
+	  ソースがないものはあきらめてもらう方向で考える。
+
+	・侵入がグレーの場合は、 OS の再インストールを考える。
+<hr>
+
+99/09/03
+	（問題点）
+	中井先生のパスワードを本人及びroot でも変更できない。
+	中井先生のログインシェルは tcsh であり、この tcsh を OS が
+	認めていないシェルだったため、今回の問題が起きたようだ。
+	（対策）
+	shells というデータベースを /etc に作成し、 tcsh も登録する。
+	---------- /etc/shells --------------------------------------
+	#
+	# shells,v1 1999年09月03日 (月) 20時06分04秒 JST
+	# editor Hitomi Saito (use asama's shells file)
+	#
+	# List of acceptable shells for chsh/passwd -s
+	# Ftpd will not allow users to connect who do not have one of these shells
+	#
+
+	/usr/bin/sh
+	/usr/bin/csh
+	/usr/bin/ksh
+	/usr/bin/jsh
+	/bin/sh 
+	/bin/csh 
+	/bin/ksh 
+	/bin/jsh 
+	/sbin/sh 
+	/sbin/jsh
+	/usr/local/bin/tcsh
+	---------- /etc/shells --------------------------------------
+	関連項目 ftpd,shells
+<hr>
+<hr>
+99/09/21
+	voyager NIS からの切り離し完了。
+	
+<hr>
+99/09/22
+	バージョンアップに備え、
+	/home,/project のバックアップをとる。
+<hr>
+99/09/23
+	solaris2.6 から solaris7 へのバージョンアップ
+

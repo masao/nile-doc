@@ -1,0 +1,779 @@
+script ¥³¥Þ¥ó¥É¤¬ 2001Ç¯04·î27Æü (¶â) 13»þ15Ê¬33ÉÃ ¤Çµ¯Æ°¤µ¤ì¤Þ¤·¤¿¡£
+chinatsu@nile[1]% config.jsh
+--- Mini News Reader ¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥Ä¡¼¥ë ---
+¤³¤ì¤«¤é´ö¤Ä¤«¤Î¼ÁÌä¤ËÅú¤¨¤Æ²¼¤µ¤¤¡£
+Îã¤¨¤Ð¡¢'([y]/n)' ¤Ç½ª¤ë¼ÁÌä¤ÏÃ±¤Ë¥ê¥¿¡¼¥ó¤òÃ¡¤±¤Ð¥Ç¥Õ¥©¥ë¥È¤È¤·¤Æ 'y' ¤È¤Ê¤ê¤Þ¤¹¡£
+
+²þ¹Ô¥³¡¼¥É¤Î°·¤¤¤òÄ´¤Ù¤Æ¤¤¤Þ¤¹...
+CR(RETURN)¥­¡¼¤ò²¡¤»¤ÐÂ³¤­¤Ë¿Ê¤ß¤Þ¤¹¡£¤³¤³¤Ë¥«¡¼¥½¥ë¤¬¸«¤¨¤ì¤Ð-->
+¸æ»ÈÍÑ¤Î¥·¥¹¥Æ¥à¤Î¥¢¡¼¥­¥Æ¥¯¥Á¥ã¤Ï²¿¤Ç¤¹¤«?
+ÈÖ¹æ¤ÇÁª¤ó¤Ç²¼¤µ¤¤¡£
+
+1.SUN 4.X for SUN SUN-OS 4.X(Solaris 1.X)
+              Solbourne OS-MP 4.X, Panasonic P-Series PanaOS/S 1.X
+              Toshiba AS-Series OS/AS V4.X
+2.SUN 3.X for SUN SUN-OS 3.X, Toshiba AS-Series OS/AS V3.X
+3.DEC     for DECstation.(Ultrix 4.X)
+4.NeXT    for NeXT series.(NeXT STEP 2.X)
+5.NEWS    for NEWS series.(NEWS-OS 4.X)
+6.BSD     for 386BSD, NetBSD, FreeBSD on PC-AT/PC-9801.
+7.Linux   for Linux
+8.LUNA    for LUNA series.(UNIOS-B 1.X/2.X/3.X/MACH 2.X),BSD 4.3
+9.RS6000  for IBM RS6000(AIX 3.X)
+10.HP     for HP-UX 8.X/9.X
+11.ALPHA  for DEC ALPHA-AXP
+12.SGI    for SGI IRIS Crimson,Indigo2,Indy IRIX 4.X/5.X
+13.SVR4   for other System-V Release4.
+              NEC EWS4800(EWS UX/V Rel4.X), UP4800(UP-UX/V)
+              OKIstation, SUN SUN-OS 5.X(Solaris 2.X)...
+Q.quit
+
+¥¢¡¼¥­¥Æ¥¯¥Á¥ãÈÖ¹æ:13
+Is your system Solaris 2.X (or later)? (y/[n]):y
+
+IPv6¤ËÂÐ±þ¤·¤Þ¤¹¤«? (y/[n]):
+
+¼Â¹Ô¥Õ¥¡¥¤¥ë¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¼Â¹Ô¥Õ¥¡¥¤¥ë¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/usr/local/bin):
+
+
+¥é¥¤¥Ö¥é¥ê¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥é¥¤¥Ö¥é¥ê¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/usr/local/lib):
+
+
+¥Þ¥Ë¥å¥¢¥ë¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥Þ¥Ë¥å¥¢¥ë¥¤¥ó¥¹¥È¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/usr/local/man):
+
+
+ºî¶È¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+ºî¶È¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/var/tmp):
+
+
+NNTP ¤Ï¥Ë¥å¡¼¥¹¤ò»²¾È¤¹¤ë¤Î¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+NNTP ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(NNTP)? ([y]/n):
+
+NSPL ¤Ï¥Ë¥å¡¼¥¹¤ò»²¾È¤¹¤ë¤Î¤Ë¥Ë¥å¡¼¥¹¥¹¥×¡¼¥ë¤ò»²¾È¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+NSPL ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(NSPL)? ([y]/n):
+
+SMTP ¤Ï¥á¡¼¥ë¤òÁ÷¿®¤¹¤ë¤Î¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+SMTP ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(SMTP)? (y/[n]):
+
+MTAP ¤Ï¥á¡¼¥ë¤òÁ÷¿®¤¹¤ë¤Î¤Ë MTA(sendmail) ¤ò¥Ñ¥¤¥×µ¯Æ°¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+MTAP ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(MTAP)? ([y]/n):
+
+POP3 ¤Ï¥á¡¼¥ë¤ò¼õ¿®¤¹¤ë¤Î¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+POP3 ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(POP3)? (y/[n]):
+
+MSPL ¤Ï¥á¡¼¥ë¤ò¼õ¿®¤¹¤ë¤Î¤Ë¥á¡¼¥ë¥¹¥×¡¼¥ë¤ò»²¾È¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Þ¤¹¡£
+MSPL ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«(MSPL)? ([y]/n):
+
+¥Ë¥å¡¼¥¹¥¹¥×¡¼¥ë¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥Ë¥å¡¼¥¹¥¹¥×¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/usr/spool/news):
+
+"/usr/spool/news" ¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¡£
+¤³¤Î¥¨¥é¡¼¤òÌµ»ë¤·¤Þ¤¹¤«? ([y]/n):
+
+¥Ë¥å¡¼¥¹¥é¥¤¥Ö¥é¥ê¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥Ë¥å¡¼¥¹¥é¥¤¥Ö¥é¥ê¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/usr/lib/news):
+
+"/usr/lib/news" ¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¡£
+¤³¤Î¥¨¥é¡¼¤òÌµ»ë¤·¤Þ¤¹¤«? ([y]/n):
+
+¥á¡¼¥ë¥¹¥×¡¼¥ë¥Ç¥£¥ì¥¯¥È¥êÌ¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥á¡¼¥ë¥¹¥×¡¼¥ë¥Ç¥£¥ì¥¯¥È¥ê(¥Ç¥Õ¥©¥ë¥È:/var/mail):
+
+
+¥Ë¥å¡¼¥¹¤òÅê¹Æ¤¹¤ëµ¡Ç½(NEWSPOST)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+¥Ë¥å¡¼¥¹¤òÅê¹Æ¤¹¤ë¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¤â¤·¡¢¥Ë¥å¡¼¥¹¥µ¡¼¥Ð¾å¤Ç»ÈÍÑ¤·¤Ê¤¤¤Ê¤éÌµ»ë¤·¤Æ¥ê¥¿¡¼¥ó¤ò²¡¤·¤Æ²¼¤µ¤¤¡£
+¥Ë¥å¡¼¥¹Åê¹Æ¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:/usr/lib/news/inews -h):
+
+·Ù¹ð:"/usr/lib/news/inews" ¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¡£
+¤³¤Î¥¨¥é¡¼¤òÌµ»ë¤·¤Þ¤¹¤«? ([y]/n):
+
+¥á¡¼¥ë¤òÁ÷¿®¤¹¤ëµ¡Ç½(MAILSEND)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+¥á¡¼¥ë¤òÁ÷¿®¤¹¤ë¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥á¡¼¥ëÁ÷¿®¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:/usr/lib/sendmail -t -om -oi):
+
+
+¥Ç¡¼¥¿¥Ù¡¼¥¹¤Ë¤è¤ëÆüËÜ¸ìÊÑ´¹µ¡Ç½(JNAMES)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+¥Ï¥Ã¥·¥å¥¢¥ë¥´¥ê¥º¥à JNHASH ¥â¥¸¥å¡¼¥ë¤Ï¹âÂ®¤Ç¤¹¤¬¡¢ÄÌ¾ï¥â¥¸¥å¡¼¥ë¤è¤ê
+ÂçÎÌ¤Î¥á¥â¥ê¤ò¾ÃÈñ¤·¤Þ¤¹¡£
+¥Ï¥Ã¥·¥å¥¢¥ë¥´¥ê¥º¥à¥â¥¸¥å¡¼¥ë(JNHASH)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+·Ù¹ð:JNAMES ¥Ç¡¼¥¿¥Ù¡¼¥¹ "/usr/local/lib/jnames" ¤¬¸«¤Ä¤«¤ê¤Þ¤»¤ó¡£
+
+MH ¥â¡¼¥É(MH)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+ÆâÂ¢ MMH (MH ¤Î¥µ¥Ö¥»¥Ã¥È)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+UCB-mail ¥â¡¼¥É(UCBMAIL)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+RMAIL ¥â¡¼¥É(RMAIL)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+BOARD (ÅÅ»Ò·Ç¼¨ÈÄ)¥â¡¼¥É(BOARD)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):
+
+¤â¤· MIME ¤ò¥µ¥Ý¡¼¥È¤¹¤ì¤Ð¼ã´³Â®ÅÙ¤¬Äã²¼¤·¤Þ¤¹¡£
+ÆüËÜ¸ì¥Ø¥Ã¥À,¥Þ¥ë¥Á¥Ñ¡¼¥ÈÁªÂò,¥Þ¥ë¥Á¥á¥Ç¥£¥¢µ­»ö(MIME)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+MPEG ¥×¥ì¥¤¥ä¡¼¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+MPEG ¥×¥ì¥¤¥ä¡¼¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:mpeg_play):
+
+
+JPEG ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+JPEG ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:xv):
+display
+
+GIF ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+GIF ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:xv):
+display
+
+¥ª¡¼¥Ç¥£¥ª¥×¥ì¥¤¥ä¡¼¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥ª¡¼¥Ç¥£¥ª¥×¥ì¥¤¥ä¡¼¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:audioplay):
+
+
+Post Script ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+Post Script ¥Ó¥å¡¼¥¢¡¼¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:ghostview):
+
+
+
+ÆâÂ¢¥Ú¡¼¥¸¥ã¡¼(PAGER)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+ÆâÂ¢¥Ú¡¼¥¸¥ã¡¼¤òÁÈ¤ß¹þ¤ó¤À¾ì¹ç¤Ï -p ¥ª¥×¥·¥ç¥ó¤â¤·¤¯¤Ï
+ÀßÄê¥Õ¥¡¥¤¥ë¤Ç»ØÄê¤·¤¿»þ¤Î¤ß³°Éô¥Ú¡¼¥¸¥ã¡¼¤¬»ÈÍÑ¤µ¤ì¤Þ¤¹¡£
+³°Éô¥Ú¡¼¥¸¥ã¡¼¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥Ú¡¼¥¸¥ã¡¼¥×¥í¥°¥é¥à¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:/usr/local/bin/less):
+
+
+File carbon copy (FCC)µ¡Ç½¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+¿·Ãå¥á¡¼¥ë¤Î¥Á¥§¥Ã¥¯¤ËÍ¹ÊØ(YOUBIN)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):
+
+¤â¤· termcap ¤Þ¤¿¤Ï terminfo ¤ò¥µ¥Ý¡¼¥È¤¹¤ì¤Ð¼ã´³Â®ÅÙ¤¬Äã²¼¤·¤Þ¤¹¡£
+termcap (TERMCAP)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):
+terminfo (TERMINFO)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):y
+terminfo ¥é¥¤¥Ö¥é¥ê¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£(¥Ç¥Õ¥©¥ë¥È:-ltermlib):
+
+
+¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+-DADD_DATE          Date: ¥Õ¥£¡¼¥ë¥É¤òÁ÷¿®Á°¤ËÄÉ²Ã¤·¤Þ¤¹¡£
+-DADD_HOSTNAME      ¥Û¥¹¥ÈÌ¾¤ò¥É¥á¥¤¥óÌ¾¤ËÄÉ²Ã¤·¤Þ¤¹¡£
+-DADD_HOSTPATH      ¥Û¥¹¥ÈÌ¾¤ò¥Ñ¥¹¥Õ¥£¡¼¥ë¥É¤ËÄÉ²Ã¤·¤Þ¤¹¡£
+-DADD_MESSAGE_ID    Message-ID ¤ò mnews ¤¬ÄÉ²Ã¤·¤Þ¤¹¡£
+-DBOARD_COUNT       .count ¥Õ¥¡¥¤¥ë¤ò»ÈÍÑ¤·¤Æ¹âÂ®²½¤·¤Þ¤¹¡£
+-DBUILTIN_MMH       MH ¤ÎÂå¤ï¤ê¤Ë ÆâÂ¢ MMH ¤ò»ÈÍÑ¤·¤Þ¤¹¡£
+-DCOLOR             ¥«¥é¡¼²èÌÌÉ½¼¨¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DCOMPLETION        ¥Õ¥¡¥¤¥ë¤È¥Õ¥©¥ë¥ÀÌ¾Êä´°¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DCTRL_L            ^L ¤Ë¤è¤ê²þ¥Ú¡¼¥¸¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DDELETE_FIELD      news/mailÁ÷¿®»þ¤ËÌ¤»ÈÍÑ¥Õ¥£¡¼¥ë¥É¤òºï½ü¤·¤Þ¤¹¡£
+-DDISPLAY_CTRL      Ìµ¸ú¤Ê¥³¥ó¥È¥í¡¼¥ë¥³¡¼¥É¤ò '^'+Ê¸»ú¤È¤·¤Æ²Ä»ë²½¤·¤Þ¤¹¡£
+-DEUC_SPOOL         ¥Ë¥å¡¼¥¹/¥á¡¼¥ë¥¹¥×¡¼¥ë¤Ë EUC ¥³¡¼¥É¤ò»ÈÍÑ¤·¤Þ¤¹¡£
+-DIGNORE_EDITOR     ¥¨¥Ç¥£¥¿½ªÎ»¥³¡¼¥É¤òÌµ»ë¤·¤Þ¤¹¡£
+-DINET6             RFC2553 ¥·¥¹¥Æ¥à¤Î IPv6 ¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DLARGE             ³ÈÄ¥¥³¥Þ¥ó¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DLOCAL_POST        ¾ï»þ inews ¤ò»ÈÍÑ¤·¤ÆÅê¹Æ¤·¤Þ¤¹¡£
+-DMOUSE             kterm/xterm ¤Ë¤ª¤¤¤Æ¥Þ¥¦¥¹Áàºî¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DNNTP_AUTH         INN ¤ÎÇ§¾Úµ¡Ç½¤ËÂÐ±þ¤·¤Þ¤¹¡£
+-DRECOVER_SUBJECT   ESC Íî¤Á¤·¤¿ Subject ¤òÉü³è¤·¤Þ¤¹¡£
+-DREF_SORT          ¥ê¥Õ¥¡¥ì¥ó¥¹¥½¡¼¥È¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DRESOLVE           ¥ì¥¾¥ë¥Ð¤ò»ÈÍÑ¤·¤Þ¤¹¡£
+-DSELECT_EDITOR     µ­»ö¤ò½ñ¤¯»þ¤Ë¥¨¥Ç¥£¥¿¤òÁªÂò¤·¤Þ¤¹¡£
+-DSEND_CONFIRM      ¥Ë¥å¡¼¥¹Åê¹Æ/¥á¡¼¥ëÁ÷¿®»þ¤Ë³ÎÇ§¤òµá¤á¤Þ¤¹¡£
+-DSJIS_SRC          mnews ¤Î¥½¡¼¥¹¥³¡¼¥É¤Ë SHIFT-JIS ¤ò»ÈÍÑ¤·¤Þ¤¹¡£
+-DSMALL             µ¡Ç½¤òÀ©¸Â¤·¤Æ¥³¥ó¥Ñ¥¯¥È¤Ë¤·¤Þ¤¹¡£
+-DSUPPORT_X0201     JIS-X0201 ¤«¤ÊÊ¸»ú¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¡£
+-DTRI               TRI Ãµº÷ÌÚ¥¢¥ë¥´¥ê¥º¥à¤ò»ÈÍÑ¤·¤Æ¹âÂ®²½¤·¤Þ¤¹¡£
+-DUSE_FCNTL_LOCK    fcntl ¤ò¥á¡¼¥ë¥¹¥×¡¼¥ë¥í¥Ã¥¯¤Ë»ÈÍÑ¤·¤Þ¤¹¡£
+-DUSE_FLOCK         flock ¤ò¥á¡¼¥ë¥¹¥×¡¼¥ë¥í¥Ã¥¯¤Ë»ÈÍÑ¤·¤Þ¤¹¡£
+-DUSE_LOCK_FILE     .lock ¤ò¥á¡¼¥ë¥¹¥×¡¼¥ë¥í¥Ã¥¯¤Ë»ÈÍÑ¤·¤Þ¤¹¡£
+-DUSE_LONG_FNAME    DOS/X68K ¤Ë¤ª¤¤¤Æ¥í¥ó¥°¥Õ¥¡¥¤¥ë¥Í¡¼¥à¤ò»ÈÍÑ¤·¤Þ¤¹¡£
+-DUSE_NLINK         MH/BOARD ¥â¡¼¥É¤Ç¥ê¥ó¥¯¿ô¤ò»ÈÍÑ¤·¤Æ¹âÂ®²½¤·¤Þ¤¹¡£
+-DUSE_NNTP_DATE     NNTP DATE ¥³¥Þ¥ó¥É¤ò¥Ë¥å¡¼¥¹¥µ¡¼¥Ð¥Á¥§¥Ã¥¯¤Ë»ÈÍÑ¤·¤Þ¤¹¡£
+-DWIN32_CONSOLE     Win32 ¥³¥ó¥½¡¼¥ë¤òÃ¼ËöÀ©¸æ¤Ë»ÈÍÑ¤·¤Þ¤¹¡£
+-DWITHOUT_FOLDER_CREATE  MH folder ¥³¥Þ¥ó¥É¤¬ -create ¤ò»ý¤Á¤Þ¤»¤ó¡£
+-DXOVER             NNTP ¤Î XOVER ¤ò»ÈÍÑ¤·¤Æ¹âÂ®²½¤·¤Þ¤¹¡£
+¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:-DCTRL_L -DCOMPLETION -DREF_SORT -DLARGE -DDISPLAY_CTRL -DBUILTIN_MMH):
+-DCTRL_L -DCOMPLETION -DREF_SORT -DLARGE -DDISPLAY_CTRL -DBUILTIN_MMH -DCOLOR
+
+¥É¥á¥¤¥ó(MX)Ì¾¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£(Îã:msr.mei.co.jp)
+¥É¥á¥¤¥óÌ¾:
+ulis.ac.jp
+
+¥Ç¥Õ¥©¥ë¥È¤ÎÉ½¼¨¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:4):
+
+¥Ç¥Õ¥©¥ë¥È¤ÎÈ½ÊÌÉÔÇ½»þ¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£(½ÅÍ×¤Ç¤Ï¤Ê¤¤¤Ç¤¹)
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:4):
+
+¥Ç¥Õ¥©¥ë¥È¤Î¥»¡¼¥Ö¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:1):
+
+¥Ç¥Õ¥©¥ë¥È¤Î¥¨¥Ç¥£¥Ã¥È¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:4):
+
+¤â¤·ÆüËÜ¸ì¥µ¥Ö¥¸¥§¥¯¥È¤òµöÍÆ¤·¤Æ¤¤¤Ê¤¤¥µ¥¤¥È¤Ê¤é"ÌµÊÑ´¹"¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+¥Ç¥Õ¥©¥ë¥È¤Î¥µ¥Ö¥¸¥§¥¯¥ÈÆþÎÏ¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:1):
+
+¥Ç¥Õ¥©¥ë¥È¤Î FCC ¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:1):
+
+¥Ç¥Õ¥©¥ë¥È¤Î¥Ñ¥¤¥×¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:1):
+
+¥Ç¥Õ¥©¥ë¥È¤Î°õºþ¥³¡¼¥É¤òÁª¤ó¤Ç²¼¤µ¤¤¡£
+1:ÌµÊÑ´¹
+2:JIS ¥³¡¼¥É
+3:SJIS ¥³¡¼¥É
+4:EUC ¥³¡¼¥É
+Kanji code ? (¥Ç¥Õ¥©¥ë¥È:1):
+
+¥Ç¥Õ¥©¥ë¥È¤Î°õºþ¥³¥Þ¥ó¥É¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+°õºþ¥³¥Þ¥ó¥É¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:lpr):
+lp
+
+NNTP ¥â¡¼¥É¤Ï¥Ë¥å¡¼¥¹¥¢¥¯¥»¥¹»þ¤Ë¥Ë¥å¡¼¥¹¥¹¥×¡¼¥ë¤ò»²¾È¤¹¤ëÂå¤ï¤ê¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Æ¤¤¤Þ¤¹¡£
+¤â¤·¤¢¤Ê¤¿¤Î¥Þ¥·¥ó¤¬¥Ë¥å¡¼¥¹¥µ¡¼¥Ð¤Ç¤Ê¤¤¤Ê¤é 'Y' ¤ÈÅú¤¨¤Æ²¼¤µ¤¤¡£
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢NNTP ¥â¡¼¥É(NNTP_MODE)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? ([y]/n):
+
+SMTP ¥â¡¼¥É¤Ï¥á¡¼¥ëÁ÷¿®»þ¤Ë MTA ¤ò¥Ñ¥¤¥×µ¯Æ°¤¹¤ëÂå¤ï¤ê¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Æ¤¤¤Þ¤¹¡£
+¤â¤·¤¢¤Ê¤¿¤Î¥Þ¥·¥ó¤¬ MTA(sendmail) ¤ò»ý¤Ã¤Æ¤¤¤Ê¤¤¤Ê¤é 'Y' ¤ÈÅú¤¨¤Æ²¼¤µ¤¤¡£
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢SMTP ¥â¡¼¥É(SMTP_MODE)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):
+
+POP3 ¥â¡¼¥É¤Ï¥á¡¼¥ë¼õ¿®»þ¤Ë¥á¡¼¥ë¥¹¥×¡¼¥ë¤ò»²¾È¤¹¤ëÂå¤ï¤ê¤Ë TCP/IP ÄÌ¿®¤ò»ÈÍÑ¤¹¤ë¤³¤È¤ò°ÕÌ£¤·¤Æ¤¤¤Þ¤¹¡£
+¤â¤·¤¢¤Ê¤¿¤Î¥Þ¥·¥ó¤¬¥á¡¼¥ë¥¹¥×¡¼¥ë¤ò»ý¤Ã¤Æ¤¤¤Ê¤¤¤Ê¤é 'Y' ¤ÈÅú¤¨¤Æ²¼¤µ¤¤¡£
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢POP3 ¥â¡¼¥É(POP3_MODE)¤ò»ÈÍÑ¤·¤Þ¤¹¤«? (y/[n]):
+
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢ÆüËÜ¸ì¥á¥Ã¥»¡¼¥¸(JAPANESE_MODE)¥â¡¼¥É¤Ë¤·¤Þ¤¹¤«? ([y]/n):
+
+¤â¤· X-Nsubject ¥Õ¥£¡¼¥ë¥ÉÂÐ±þ¤Ë¤¹¤ì¤ÐÆüËÜ¸ì¥µ¥Ö¥¸¥§¥¯¥È¤¬¥Ë¥å¡¼¥¹/¥á¡¼¥ë¥·¥¹¥Æ¥à¤ÎÊÑ¹¹¤Ê¤·¤ÇÁ÷¼õ¿®¤Ç¤­¤Þ¤¹¡£
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢X-Nsubject ¥Õ¥£¡¼¥ë¥É(X_NSUBJ_MODE)ÂÐ±þ¤Ë¤·¤Þ¤¹¤«? (y/[n]):
+
+NSPL ¥â¡¼¥É¤Ç¤Ï mnews ¤Ï inews ¤ò»ÈÍÑ¤·¤Æµ­»ö¤ÎÅê¹Æ¤ò¹Ô¤Ê¤¤¤Þ¤¹¡£
+¤â¤· inews ¤¬¼«Æ°Åª¤Ë signature ¤òÄÉ²Ã¤¹¤ë¤Ê¤é mnews Â¦¤Ç signature ¤ò¤Ä¤±¤Æ¤Ï¤¤¤±¤Þ¤»¤ó¡£
+¥Ë¥å¡¼¥¹Åê¹Æ¥×¥í¥°¥é¥à(inews)¤Ï¡¢¼«Æ°Åª¤Ë signature ¤òÄÉ²Ã(INEWS_SIG_MODE)¤·¤Þ¤¹¤«? ([y]/n):
+
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢ÆüÉÕ¤òÆüËÜ»þ´Ö¤ÇÉ½¼¨¤·¤Þ¤¹¤«? ([y]/n):
+
+DNAS ¥â¡¼¥É¤Ç¤Ï mnews ¤ÏÌµ¸ú¤Ê¥Ë¥å¡¼¥¹¥°¥ë¡¼¥×¤ò¼«Æ°ºï½ü¤·¤Þ¤»¤ó¡£
+¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï¡¢DNAS ¥â¡¼¥É¤ò¥µ¥Ý¡¼¥È¤·¤Þ¤¹¤«? (y/[n]):
+
+¥³¥ó¥Ñ¥¤¥é¥×¥í¥°¥é¥à¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥³¥ó¥Ñ¥¤¥é(¥Ç¥Õ¥©¥ë¥È:/bin/cc):
+/opt/SUNWspro/bin/cc
+
+¥³¥ó¥Ñ¥¤¥é¤Î(ºÇÅ¬²½)¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:-O -DDONT_HAVE_FTIME -DUSE_TZNAME -DUSE_TERMIOS -DNEED_FFLUSH -DNEED_LNEXT):
+
+
+¥Ç¥Õ¥©¥ë¥È¤Ç»ÈÍÑ¤¹¤ë¥¨¥Ç¥£¥¿¤È¥ª¥×¥·¥ç¥ó¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤¡£
+¥¨¥Ç¥£¥¿¤È¥ª¥×¥·¥ç¥ó(¥Ç¥Õ¥©¥ë¥È:/usr/local/bin/emacs -nw):
+
+
+¥¿¡¼¥²¥Ã¥È¥¢¡¼¥­¥Æ¥¯¥Á¥ã         = SVR4
+¥¿¡¼¥²¥Ã¥È¥Í¥Ã¥È¥ï¡¼¥¯¥ª¥×¥·¥ç¥ó =  -DNNTP -DNSPL -DMTAP -DMSPL
+¥¿¡¼¥²¥Ã¥È¹½À®¥ª¥×¥·¥ç¥ó         = -DNEWSPOST -DMAILSEND -DJNAMES -DMH -DUCBMAIL -DRMAIL -DMIME -DPAGER -DFCC -DTERMINFO
+¥¿¡¼¥²¥Ã¥ÈÀßÄê¥ª¥×¥·¥ç¥ó         = -DCTRL_L -DCOMPLETION -DREF_SORT -DLARGE -DDISPLAY_CTRL -DBUILTIN_MMH -DCOLOR
+¹âÂ®¥â¥¸¥å¡¼¥ë¥ª¥×¥·¥ç¥ó         =  -DJNHASH
+¥É¥á¥¤¥óÌ¾                       = "ulis.ac.jp"
+°Ê¾å¤Ç¤¢¤Ã¤Æ¤¤¤Þ¤¹¤«? ([y]/n):
+
+¥³¥ó¥Õ¥£¥°¥ì¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ë¤òºîÀ®¤·¤Æ¤¤¤Þ¤¹¡£
+"Makefile.src" ¤ò»È¤¤¤Þ¤¹¡£
+"temp.c", line 28: invalid input token: 1.22PL5
+cc: acomp failed for temp.c
+ÀßÄê¤Ï½ªÎ»¤·¤Þ¤·¤¿¡£"Makefile" ¤È "site_dep.h" ¤ò³Î¤«¤á¤Æ²¼¤µ¤¤¡£
+³Î¤«¤á½ª¤Ã¤¿¤é¼Â¹Ô¥Õ¥¡¥¤¥ë¤òºîÀ®¤¹¤ë¤¿¤á¤Ë "make" ¤È¥¿¥¤¥×¤·¤Æ²¼¤µ¤¤¡£
+chinatsu@nile[2]% less M^[akefile[?5h[?5l
+[42;1H[K# 1 "temp.c"
+ 
+# 5
+
+# 11
+
+SHELL           = /bin/sh
+ARCH            = SVR4
+WHEN            = date
+WHO             = whoami
+WHERE           = hostname
+CC              = /opt/SUNWspro/bin/cc
+LIBS            = -lsocket -lnsl -ltermlib
+RANLIB          = true
+INSTALL         = 
+CC_FLAG         = -O -DDONT_HAVE_FTIME -DUSE_TZNAME -DUSE_TERMIOS -DNEED_FFLUSH -DNEED_LNEXT
+BIN_DIR         = /usr/local/bin
+LIB_DIR         = /usr/local/lib
+MAN_DIR         = /usr/local/man
+STRIP           = strip
+ # STRIP                = echo
+
+VERSION         =  1.22PL5
+NET_OPT         =  -DNNTP -DNSPL -DMTAP -DMSPL
+CONS_OPT        = -DNEWSPOST -DMAILSEND -DJNAMES -DMH -DUCBMAIL -DRMAIL -DMIME -DPAGER -DFCC -DTERMINFO
+CONF_OPT        = -DCTRL_L -DCOMPLETION -DREF_SORT -DLARGE -DDISPLAY_CTRL -DBUILTIN_MMH -DCOLOR
+MOD_OPT         =  -DJNHASH
+SRC_DIR         = ../src
+COMPAT_DIR      = ../compat
+TCP_DIR         = ../tcplib
+NNTP_DIR        = ../nntplib
+SMTP_DIR        = ../smtplib
+POP3_DIR        = ../pop3lib
+KANJI_DIR       = ../kanjilib
+TERM_DIR        = ../termlib
+MIME_DIR        = ../mimelib
+DOC_DIR         = ../doc
+ETC_DIR         = ../etc
+BUILD_DIR       = ../build
+ARC_DIR         = mnews-${VERSION}
+INC_FLAG        = -I. -I${COMPAT_DIR} -I${TCP_DIR}              -I${NNTP_DIR} -I${SMTP_DIR} -I${POP3_DIR}  
+[42;1H[K[2;7mMakefile[22;27m[42;1H[42;1H[K                -I${KANJI_DIR} -I${MIME_DIR} -I${TERM_DIR} -I${SRC_DIR}
+# 49
+CPP_FLAG1       = ${INC_FLAG} -DMNEWS -DJIS_INPUT ${CONF_OPT} -D${ARCH}
+CPP_FLAG2       = ${CONS_OPT} ${CPP_FLAG1}
+C_FLAG1         = ${CPP_FLAG1} ${CC_FLAG}
+C_FLAG2         = ${CPP_FLAG2} ${CC_FLAG}
+RM              = rm
+RM_FLAG         = -f
+EXE             = mnews
+
+# 58
+NEWSPOST_OBJ    = newspost.o
+# 61
+MAILSEND_OBJ    = mailsend.o
+# 65
+JNAMES_OBJ      = jnhash.o
+# 71
+MH_OBJ          = mh.o
+# 74
+UCBMAIL_OBJ     = ucbmail.o
+# 77
+RMAIL_OBJ       = rmail.o
+# 83
+PAGER_OBJ       = pager.o
+# 86
+FCC_OBJ         = fcc.o
+# 89
+MIME_OBJ        = mimepart.o mimelib.o
+# 94
+BASE_OBJ        = mnews.o group.o article.o mark.o compat.o             tcplib.o nntplib.o smtplib.o pop3li
+b.o kanjilib.o termlib.o
+# 96
+OPT_OBJ         = ${NEWSPOST_OBJ} ${MAILSEND_OBJ} ${JNAMES_OBJ}                 ${MH_OBJ} ${UCBMAIL_OBJ} ${
+RMAIL_OBJ} ${BOARD_OBJ}                 ${PAGER_OBJ} ${FCC_OBJ} ${MIME_OBJ}             ${YOUBIN_OBJ}
+# 100
+OBJ             = ${BASE_OBJ} ${OPT_OBJ}
+C_OBJ           = config.o
+COMPAT_INC      = ${COMPAT_DIR}/compat.h
+COMPAT_SRC      = ${COMPAT_DIR}/compat.c
+TCP_INC         = ${TCP_DIR}/field.h            ${TCP_DIR}/tcplib.h             ${TCP_DIR}/inetbios.h
+# 107
+[42;1H[K:[42;1H[42;1H[KTCP_SRC         = ${TCP_DIR}/tcplib.c           ${TCP_DIR}/inetbios.c
+# 109
+NNTP_INC        = ${NNTP_DIR}/nntplib.h
+NNTP_SRC        = ${NNTP_DIR}/nntplib.c
+SMTP_INC        = ${SMTP_DIR}/smtplib.h
+SMTP_SRC        = ${SMTP_DIR}/smtplib.c
+POP3_INC        = ${POP3_DIR}/pop3lib.h
+POP3_SRC        = ${POP3_DIR}/pop3lib.c
+KANJI_INC       = ${KANJI_DIR}/kanjilib.h
+ 
+KANJI_SRC       = ${KANJI_DIR}/kanjilib.c
+ 
+TERM_INC        = ${TERM_DIR}/termlib.h
+TERM_SRC        = ${TERM_DIR}/termlib.c                 ${TERM_DIR}/termdos.c
+# 122
+MIME_INC        = ${MIME_DIR}/mimelib.h
+MIME_SRC        = ${MIME_DIR}/mimelib.c
+SRC             = ${COMPAT_SRC}                 ${TCP_SRC}              ${NNTP_SRC}             ${SMTP_SRC}
+                ${POP3_SRC}             ${KANJI_SRC}            ${TERM_SRC}             ${MIME_SRC}        
+        ${SRC_DIR}/mnews.c              ${SRC_DIR}/group.c              ${SRC_DIR}/article.c            ${S
+RC_DIR}/mark.c          ${SRC_DIR}/mh.c                 ${SRC_DIR}/ucbmail.c            ${SRC_DIR}/rmail.c 
+                ${SRC_DIR}/board.c              ${SRC_DIR}/newspost.c           ${SRC_DIR}/mailsend.c      
+        ${SRC_DIR}/pager.c              ${SRC_DIR}/fcc.c                ${SRC_DIR}/mimepart.c           ${S
+RC_DIR}/jnames.c                ${SRC_DIR}/jnhash.c             ${SRC_DIR}/youbin.c
+# 148
+INC             = ${COMPAT_INC}                 ${TCP_INC}              ${NNTP_INC}             ${SMTP_INC}
+                ${POP3_INC}             ${KANJI_INC}            ${TERM_INC}             ${MIME_INC}        
+        ${SRC_DIR}/mnews.h              ${SRC_DIR}/group.h              ${SRC_DIR}/article.h            ${S
+RC_DIR}/mark.h          ${SRC_DIR}/mh.h                 ${SRC_DIR}/ucbmail.h            ${SRC_DIR}/rmail.h 
+                ${SRC_DIR}/board.h              ${SRC_DIR}/newspost.h           ${SRC_DIR}/mailsend.h      
+        ${SRC_DIR}/pager.h              ${SRC_DIR}/fcc.h                ${SRC_DIR}/mimepart.h           ${B
+UILD_DIR}/site_Be.h             ${BUILD_DIR}/site_DOS.h                 ${BUILD_DIR}/site_WIN.h            
+        ${BUILD_DIR}/site_X68.h
+# 173
+C_SRC           = ${SRC_DIR}/config.c
+C_INC           = ${SRC_DIR}/config.h
+SITE            = ${BUILD_DIR}/site_dep.h
+DOC1            = ${DOC_DIR}/mnews.doc          ${DOC_DIR}/mnews.1              ${DOC_DIR}/read1ST.doc     
+        ${DOC_DIR}/readme.doc           ${DOC_DIR}/update.doc           ${DOC_DIR}/FAQ.doc              ${D
+OC_DIR}/IPv6.doc                ${DOC_DIR}/IPv6_en.doc          ${DOC_DIR}/board.doc            ${DOC_DIR}/
+present.doc             ${DOC_DIR}/gnspool.doc          ${DOC_DIR}/year2000.doc                 ${DOC_DIR}/
+[42;1H[K:[42;1H[42;1H[Kyoubin.doc
+# 189
+DOC2            = ${DOC_DIR}/prerel.doc
+ETC             = ${ETC_DIR}/board.sh           ${ETC_DIR}/board.csh            ${ETC_DIR}/combine.sh      
+        ${ETC_DIR}/_mnews.smp           ${ETC_DIR}/"nemacs-3.3.2.patch"                 ${ETC_DIR}/"mule-2.
+3@19.28.patch"          ${ETC_DIR}/kterm-color.termcap          ${ETC_DIR}/kterm-color.terminfo            
+        ${ETC_DIR}/jnames.smp           ${ETC_DIR}/jnames.fj            ${ETC_DIR}/jnames.jp            ${E
+TC_DIR}/jnames.tnn
+# 202
+INFO            = inst_inf.h
+MAKE1           = convert.bat config.sh config.jsh Makefile.obj
+MAKE2           = Makefile.src Makefile.MSC Makefile.GCC Makefile.X68           Makefile.TCC Makefile.B16 M
+akefile.B32 Makefile.OS2                Makefile.VS6 Makefile.Be
+# 207
+SRC_DIST        = mnews_src.tar
+OBJ_DIST        = mnews_${ARCH}_obj.tar
+EXE_DIST        = mnews_${ARCH}_exe.tar
+
+all: ${EXE}
+
+obj: ${OBJ}
+
+${EXE}: ${BASE_OBJ} ${OPT_OBJ} ${C_OBJ}
+        ${CC} ${CC_FLAG} -o $@ ${BASE_OBJ} ${OPT_OBJ} ${C_OBJ} ${LIBS}
+        ${STRIP} $@
+        chmod 755 $@
+        chmod 644 ${DOC1} ${DOC2}
+
+.c.o: ${INC}
+        ${CC} ${C_FLAG2} -c $*.c
+
+${C_OBJ}: ${C_SRC} ${C_INC} ${SITE} ${INFO}
+        ${CC} ${C_FLAG2} ${NET_OPT} -c ${C_SRC}
+
+${INFO}: ${C_SRC} ${C_INC} ${SITE} ${SRC} ${INC}
+        -${RM} ${RM_FLAG} ${INFO}
+        @echo "Making "'"'${INFO}'"'
+        touch ${INFO}
+        @echo "/*"                                         >> ${INFO}
+        @echo " * Mini News Reader Install Information"    >> ${INFO}
+        @echo " */"                                        >> ${INFO}
+[42;1H[K:[42;1H[42;1H[K        @echo ""                                           >> ${INFO}
+        @echo "#define  NET_OPT "'"'${NET_OPT}'"'          >> ${INFO}
+        @echo "#define  CONS_OPT        "'"'${CONS_OPT}'"' >> ${INFO}
+        @echo "#define  CONF_OPT        "'"'${CONF_OPT}'"' >> ${INFO}
+        @echo "#define  ARCH_OPT        "'"'${ARCH}'"'     >> ${INFO}
+        @echo "#define  INSTALL_HOST    "'"'`${WHERE}`'"'  >> ${INFO}
+        @echo "#define  INSTALL_USER    "'"'`${WHO}`'"'    >> ${INFO}
+        @echo "#define  INSTALL_DATE    "'"'`${WHEN}`'"'   >> ${INFO}
+
+${SITE}:
+        @echo "You must run config.sh or config.jsh first."
+
+compat.o: ${COMPAT_INC} ${COMPAT_DIR}/compat.c
+        ${CC} ${C_FLAG2} -c ${COMPAT_DIR}/compat.c
+
+tcplib.o: ${COMPAT_INC} ${TCP_INC} ${TCP_DIR}/tcplib.c
+        ${CC} ${C_FLAG1} ${NET_OPT} -c ${TCP_DIR}/tcplib.c
+
+nntplib.o: ${COMPAT_INC} ${TCP_INC} ${NNTP_INC} ${NNTP_DIR}/nntplib.c
+        ${CC} ${C_FLAG1} ${NET_OPT} -c ${NNTP_DIR}/nntplib.c
+
+smtplib.o: ${COMPAT_INC} ${TCP_INC} ${SMTP_INC} ${SMTP_DIR}/smtplib.c
+        ${CC} ${C_FLAG1} ${NET_OPT} -c ${SMTP_DIR}/smtplib.c
+
+pop3lib.o: ${COMPAT_INC} ${TCP_INC} ${POP3_INC} ${POP3_DIR}/pop3lib.c
+        ${CC} ${C_FLAG1} ${NET_OPT} -c ${POP3_DIR}/pop3lib.c
+
+ 
+# 265
+
+kanjilib.o: ${COMPAT_INC} ${KANJI_INC} ${KANJI_DIR}/kanjilib.c
+        ${CC} ${C_FLAG1} -DDELETE_X0212 -c ${KANJI_DIR}/kanjilib.c
+
+ 
+# 273
+
+termlib.o: ${COMPAT_INC} ${TERM_INC} ${TERM_DIR}/termlib.c
+        ${CC} ${C_FLAG2} -c ${TERM_DIR}/termlib.c
+
+mimelib.o: ${COMPAT_INC} ${MIME_INC} ${MIME_DIR}/mimelib.c
+        ${CC} ${C_FLAG2} -c ${MIME_DIR}/mimelib.c
+[42;1H[K:[42;1H[42;1H[K
+jnames.o: ${SRC_DIR}/jnames.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/jnames.c
+
+jnhash.o: ${COMPAT_INC} ${KANJI_INC} ${SRC_DIR}/jnhash.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/jnhash.c
+
+youbin.o: ${INC} ${SRC_DIR}/youbin.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/youbin.c
+
+mnews.o: ${INC} ${SRC_DIR}/mnews.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/mnews.c
+
+group.o: ${INC} ${SRC_DIR}/group.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/group.c
+
+article.o: ${INC} ${SRC_DIR}/article.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/article.c
+
+mark.o: ${INC} ${SRC_DIR}/mark.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/mark.c
+
+mh.o: ${INC} ${SRC_DIR}/mh.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/mh.c
+
+ucbmail.o: ${INC} ${SRC_DIR}/ucbmail.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/ucbmail.c
+
+rmail.o: ${INC} ${SRC_DIR}/rmail.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/rmail.c
+
+board.o: ${INC} ${SRC_DIR}/board.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/board.c
+
+newspost.o: ${INC} ${SRC_DIR}/newspost.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/newspost.c
+
+mailsend.o: ${INC} ${SRC_DIR}/mailsend.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/mailsend.c
+
+pager.o: ${INC} ${SRC_DIR}/pager.c
+[42;1H[K:[42;1H[42;1H[K        ${CC} ${C_FLAG2} -c ${SRC_DIR}/pager.c
+
+fcc.o: ${INC} ${SRC_DIR}/fcc.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/fcc.c
+
+mimepart.o: ${INC} ${SRC_DIR}/mimepart.c
+        ${CC} ${C_FLAG2} -c ${SRC_DIR}/mimepart.c
+
+install: all
+        cp ${EXE} ${BIN_DIR}
+        chmod 755 ${BIN_DIR}/${EXE}
+        @if [ -f default-domain ] ; then                cp default-domain ${LIB_DIR} ;          chmod 644 $
+{LIB_DIR}/default-domain ;      fi
+# 335
+        @if [ -f "/sbin/i860" ] ; then          "/sbin/i860" ;          if [ $? -eq 0 ]; then              
+        echo "Change group & permission." ;                     chgrp mail ${BIN_DIR}/${EXE} ;             
+        chmod g+s ${BIN_DIR}/${EXE} ;           fi ;    fi
+# 343
+        @if [ -d ${MAN_DIR}/japanese/man1 ] ; then              cp ${DOC_DIR}/mnews.1 ${MAN_DIR}/japanese/m
+an1 ;           chmod 644 ${MAN_DIR}/japanese/man1/mnews.1 ;    fi
+# 347
+        @if [ -d ${MAN_DIR}/man1 ] ; then               cp ${DOC_DIR}/mnews.1 ${MAN_DIR}/man1 ;            
+        chmod 644 ${MAN_DIR}/man1/mnews.1 ;     fi
+# 351
+
+help:
+        @echo "--- Mini News Reader Makefile [Source Version] ---"
+        @echo "make          --- make executable file"
+        @echo "make install  --- install executable & manual file"
+        @echo "make clean    --- remove backup & object file"
+        @echo "make dist-clean - clean-up to distributed state"
+        @echo "make remove   --- remove object file"
+        @echo "make help     --- print help message"
+        @echo "make src_dist --- archive source & document file"
+        @echo "make obj_dist --- archive object & document file"
+        @echo "make bin_dist --- archive executable & document file"
+
+dist-clean: clean
+        -${RM} ${RM_FLAG} Y_or_n y_or_N K_code whoami.sh default-domain site_dep.h Makefile
+
+clean:
+[42;1H[K:[42;1H[42;1H[K        -${RM} ${RM_FLAG} ${EXE} ${OBJ} ${C_OBJ} ${INFO} *~ \#* *\#
+
+remove:
+        -${RM} ${RM_FLAG} ${EXE} ${OBJ} ${C_OBJ} ${INFO}
+
+src_dist:
+        (cd ../.. ; tar cvfh ${SRC_DIST}                ${ARC_DIR}/build/Makefile.*             ${ARC_DIR}/
+build/site_*.h          ${ARC_DIR}/build/config.sh              ${ARC_DIR}/build/config.jsh             ${A
+RC_DIR}/build/convert.bat               ${ARC_DIR}/compat ${ARC_DIR}/doc ${ARC_DIR}/etc                 ${A
+RC_DIR}/kanjilib ${ARC_DIR}/mimelib ${ARC_DIR}/termlib          ${ARC_DIR}/nntplib ${ARC_DIR}/smtplib ${ARC
+_DIR}/pop3lib           ${ARC_DIR}/tcplib ${ARC_DIR}/src ;      gzip -f ${SRC_DIST} )
+# 385
+
+obj_dist: ${OBJ}
+        (cd ../.. ; tar cvfh ${OBJ_DIST}                ${ARC_DIR}/build/Makefile.obj           ${ARC_DIR}/
+build/site_*.h          ${ARC_DIR}/build/config.sh              ${ARC_DIR}/build/config.jsh             ${A
+RC_DIR}/build/mnews.o           ${ARC_DIR}/build/group.o                ${ARC_DIR}/build/article.o         
+        ${ARC_DIR}/build/mark.o                 ${ARC_DIR}/build/compat.o               ${ARC_DIR}/build/tc
+plib.o          ${ARC_DIR}/build/nntplib.o              ${ARC_DIR}/build/smtplib.o              ${ARC_DIR}/
+build/pop3lib.o                 ${ARC_DIR}/build/kanjilib.o             ${ARC_DIR}/build/termlib.o         
+        ${ARC_DIR}/build/newspost.o             ${ARC_DIR}/build/mailsend.o             ${ARC_DIR}/build/jn
+ames.o          ${ARC_DIR}/build/jnhash.o               ${ARC_DIR}/build/mh.o           ${ARC_DIR}/build/uc
+bmail.o                 ${ARC_DIR}/build/rmail.o                ${ARC_DIR}/build/board.o                ${A
+RC_DIR}/build/pager.o           ${ARC_DIR}/build/fcc.o          ${ARC_DIR}/build/mimelib.o              ${A
+RC_DIR}/compat/compat.h                 ${ARC_DIR}/doc ${ARC_DIR}/etc           ${ARC_DIR}/termlib/termlib.
+h               ${ARC_DIR}/src/config.[ch] ;    gzip -f ${OBJ_DIST} )
+# 419
+
+bin_dist: ${EXE}
+        (cd ../.. ; tar cvfh ${EXE_DIST}                ${ARC_DIR}/doc ${ARC_DIR}/etc           ${ARC_DIR}/
+build/${EXE} ;  gzip -f ${EXE_DIST} )
+# 425
+
+touch:
+        touch ${SRC} ${INC} ${C_SRC} ${C_INC} ${ETC}            ${DOC1} ${DOC2} ${MAKE1} ${MAKE2}
+#ident "acomp: WorkShop Compilers 4.2 30 Oct 1996 C 4.2"
+[42;1H[K[2;7m(END)[22;27m[42;1H[42;1H[K[42;1H[K[2;7m(END)[22;27m[42;1H[Kchinatsu@nile[3]% ls
+K_code*          Makefile.VS6     config.sh*       mark.o           pager.o          tcplib.o
+Makefile         Makefile.X68     convert.bat      mh.o             pop3lib.o        termlib.o
+Makefile.B16     Makefile.obj     default-domain   mimelib.o        rmail.o          ucbmail.o
+Makefile.B32     Makefile.src     fcc.o            mimepart.o       site_Be.h        whoami.sh*
+Makefile.Be      Y_or_n*          group.o          mnews*           site_DOS.h       y_or_N*
+Makefile.GCC     article.o        inst_inf.h       mnews.o          site_WIN.h
+Makefile.MSC     compat.o         jnhash.o         mnews122.log     site_X68.h
+Makefile.OS2     config.jsh*      kanjilib.o       newspost.o       site_dep.h
+Makefile.TCC     config.o         mailsend.o       nntplib.o        smtplib.o
+chinatsu@nile[4]% less sitedep.    _dep.h
+[42;1H[K/*
+ *
+ *  System      : Mini News Reader
+ *  Sub system  : Site depend define
+ *  File        : site_dep.h
+ *  Version     : 1.22
+ *
+ *  NOTE:
+ *   This file made by config.sh program.
+ *   If you want to change this file, please execute
+ *   config.sh program again.
+ *
+ */
+
+/*
+ * If you define DOMAIN_NAME, DOMAIN_NAME used in
+ * executable file, and DOMAIN_FILE does not need.
+ */
+/*
+#define DOMAIN_NAME     "ulis.ac.jp"
+*/
+#define DEFAULT_INIT_FILE       "/usr/local/lib/mnews_setup"
+#define DOMAIN_FILE             "/usr/local/lib/default-domain"
+#define NNTP_SERVER_FILE        "/usr/local/lib/default-server"
+#define SMTP_SERVER_FILE        "/usr/local/lib/default-smtpsv"
+#define POP3_SERVER_FILE        "/usr/local/lib/default-pop3sv"
+#define YOUBIN_SERVER_FILE      "/usr/local/lib/default-mailsv"
+#define ORGAN_FILE              "/usr/lib/news/organization"
+
+#define EXT_PAGER       "/usr/local/bin/less"
+#define PRINT_CODE      EUC_CODE
+#define DEFAULT_CODE    EUC_CODE
+#define SAVE_CODE       ASCII_CODE
+#define EDIT_CODE       EUC_CODE
+#define INPUT_CODE      ASCII_CODE
+#define FCC_CODE        ASCII_CODE
+#define PIPE_CODE       ASCII_CODE
+#define LPR_CODE        ASCII_CODE
+#define EDITOR_COMMAND  "/usr/local/bin/emacs -nw"
+#define SEND_COMMAND    "/usr/lib/sendmail -t -om -oi"
+#define POST_COMMAND    "/usr/lib/news/inews -h"
+[42;1H[K[2;7msite_dep.h[22;27m[42;1H[42;1H[K#define LPR_COMMAND     "lp"
+#define MH_COMMAND_PATH ""
+#define JNAMES_DB       "/usr/local/lib/jnames"
+#define NEWS_SPOOL      "/usr/spool/news"
+#define NEWS_LIB        "/usr/lib/news"
+#define MAIL_SPOOL      "/var/mail"
+#define BOARD_SPOOL     "/var/board"
+#define TMP_DIR         "/var/tmp"
+
+/*
+ * MIME multimedia extension
+ */
+
+#define MPEG_COMMAND    "mpeg_play"
+#define JPEG_COMMAND    "display"
+#define GIF_COMMAND     "display"
+#define AUDIO_COMMAND   "audioplay"
+#define PS_COMMAND      "ghostview"
+
+#define NNTP_MODE       1
+#define SMTP_MODE       0
+#define POP3_MODE       0
+#define RPOP_MODE       0
+#define JAPANESE        1
+#define X_NSUBJ_MODE    0
+#define INEWS_SIG_MODE  1
+#define JST_MODE        1
+#define DNAS_MODE       0
+[42;1H[K[2;7m(END)[22;27m[42;1H[HM#define ORGAN_FILE              "/usr/lib/news/organization"
+[42;1H[K:[42;1H[HM#define YOUBIN_SERVER_FILE      "/usr/local/lib/default-mailsv"
+[42;1H[K:[42;1H[HM#define POP3_SERVER_FILE        "/usr/local/lib/default-pop3sv"
+[42;1H[K:[42;1H[HM#define SMTP_SERVER_FILE        "/usr/local/lib/default-smtpsv"
+[42;1H[K:[42;1H[HM#define NNTP_SERVER_FILE        "/usr/local/lib/default-server"
+[42;1H[K:[42;1H[HM#define DOMAIN_FILE             "/usr/local/lib/default-domain"
+[42;1H[K:[42;1H[HM#define DEFAULT_INIT_FILE       "/usr/local/lib/mnews_setup"
+[42;1H[K:[42;1H[HM*/
+[42;1H[K:[42;1H[HM#define DOMAIN_NAME     "ulis.ac.jp"
+[42;1H[K:[42;1H[HM/*
+[42;1H[K:[42;1H[HM */
+[42;1H[K:[42;1H[HM * executable file, and DOMAIN_FILE does not need.
+[42;1H[K:[42;1H[HM * If you define DOMAIN_NAME, DOMAIN_NAME used in
+[42;1H[K:[42;1H[HM/*
+[42;1H[K:[42;1H[HM
+[42;1H[K:[42;1H[HM */
+[42;1H[K:[42;1H[HM *
+[42;1H[K:[42;1H[HM *   config.sh program again.
+[42;1H[K:[42;1H[HM *   If you want to change this file, please execute
+[42;1H[K:[42;1H[HM *   This file made by config.sh program.
+[42;1H[K:[42;1H[HM *  NOTE:
+[42;1H[K:[42;1H[HM *
+[42;1H[K:[42;1H[HM *  Version     : 1.22
+[42;1H[K:[42;1H[HM *  File        : site_dep.h
+[42;1H[K:[42;1H[HM *  Sub system  : Site depend define
+[42;1H[K:[42;1H[42;1H[K#define NEWS_SPOOL      "/usr/spool/news"
+#define NEWS_LIB        "/usr/lib/news"
+#define MAIL_SPOOL      "/var/mail"
+#define BOARD_SPOOL     "/var/board"
+#define TMP_DIR         "/var/tmp"
+
+/*
+ * MIME multimedia extension
+ */
+
+#define MPEG_COMMAND    "mpeg_play"
+#define JPEG_COMMAND    "display"
+#define GIF_COMMAND     "display"
+#define AUDIO_COMMAND   "audioplay"
+#define PS_COMMAND      "ghostview"
+
+#define NNTP_MODE       1
+#define SMTP_MODE       0
+#define POP3_MODE       0
+#define RPOP_MODE       0
+#define JAPANESE        1
+#define X_NSUBJ_MODE    0
+#define INEWS_SIG_MODE  1
+#define JST_MODE        1
+#define DNAS_MODE       0
+[42;1H[K[2;7m(END)[22;27m[42;1H[42;1H[K[42;1H[K[2;7m(END)[22;27m[42;1H[Kchinatsu@nile[5]% sudo make install
+Password:
+rm -f inst_inf.h
+Making "inst_inf.h"
+touch inst_inf.h
+/opt/SUNWspro/bin/cc -DNEWSPOST -DMAILSEND -DJNAMES -DMH -DUCBMAIL -DRMAIL -DMIME -DPAGER -DFCC -DTERMINFO -I. -I../compat -I../tcplib 		-I../nntplib -I../smtplib -I../pop3lib 		-I../kanjilib -I../mimelib -I../termlib -I../src -DMNEWS -DJIS_INPUT -DCTRL_L -DCOMPLETION -DREF_SORT -DLARGE -DDISPLAY_CTRL -DBUILTIN_MMH -DCOLOR -DSVR4 -O -DDONT_HAVE_FTIME -DUSE_TZNAME -DUSE_TERMIOS -DNEED_FFLUSH -DNEED_LNEXT -DNNTP -DNSPL -DMTAP -DMSPL -c ../src/config.c
+/opt/SUNWspro/bin/cc -O -DDONT_HAVE_FTIME -DUSE_TZNAME -DUSE_TERMIOS -DNEED_FFLUSH -DNEED_LNEXT -o mnews mnews.o group.o article.o mark.o compat.o 		tcplib.o nntplib.o smtplib.o pop3lib.o kanjilib.o termlib.o newspost.o mailsend.o jnhash.o 		mh.o ucbmail.o rmail.o  		pager.o fcc.o mimepart.o mimelib.o 		 config.o -lsocket -lnsl -ltermlib
+strip mnews
+chmod 755 mnews
+chmod 644 ../doc/mnews.doc 		../doc/mnews.1 		../doc/read1ST.doc 		../doc/readme.doc 		../doc/update.doc 		../doc/FAQ.doc 		../doc/IPv6.doc 		../doc/IPv6_en.doc 		../doc/board.doc 		../doc/present.doc 		../doc/gnspool.doc 		../doc/year2000.doc 		../doc/youbin.doc ../doc/prerel.doc
+cp mnews /usr/local/bin
+chmod 755 /usr/local/bin/mnews
+chinatsu@nile[6]% ^D
+script ¥³¥Þ¥ó¥É¤¬ 2001Ç¯04·î27Æü (¶â) 13»þ29Ê¬08ÉÃ ¤Ç½ªÎ»¤·¤Þ¤·¤¿¡£ 

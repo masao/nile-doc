@@ -1,0 +1,99 @@
+<html>
+<head>
+<title>
+[nile] admin_command
+</title>
+</head>
+<body bgcolor = white>
+コマンド一覧。<br>
+伊東のメモ用です。
+<ul>
+<li>uname -a<br>
+	現在のシステム名の表示。
+	-a システムから現在、入手できる基本情報を出力。
+<li>hostname<br>
+	現在のホストシステムの名前を表示。
+<li>domainname<br>
+	現在のドメインネームの表示。
+	ulis や nuch が出力される。
+<li>more /etc/netmasks<br>
+	netmask が書いてある。
+
+
+<li>fsadmin<br>
+	        %fsadmin -e  
+                #init.d により自動的に起動。
+                -d は自動的に起動しないように設定。
+	        %fsadmin だけの時は、現在の状態を表示。
+
+<li>netstat -a<br>	全てのソケットとルーティングエントリーの状態を表示。
+<li>nslookup<br>
+	IPadress とホスト名がわかる。
+<li>patchadd<br> patchadd patch名 でpatch が追加される。
+		patchadd -p 現在適用されているパッチをリスト表示する。
+<li>patchrm<br>	patchrm patch名 で システムからパッチを削除して、パッチ適用前のファイルを復元するらしい。
+<li>shutdown<br> /usr/sbin/shutdown -y -i 0 を多く使ってます。<br>
+	詳しくはman を。
+<li>バックアップとリストア<br>
+	DDS3 のテープは　圧縮なしで12G、圧縮ありで24G のデータが入ります。<br>
+	DDS4 のテープは　圧縮なしで 20G、圧縮ありで 40G のデータが入ります。<br>
+	<ul>
+	<li>ufsdump
+		<ul>
+		<li>圧縮なしの例<br>
+		/usr/sbin/ufsdump 0ucf /dev/rmt/0mn /home 
+	
+		<li>圧縮ありの例<br>
+		/usr/sbin/ufsdump 0ucf /dev/rmt/0cn /home
+
+		<li>ufsdump のオプション<br>
+			<ul>
+			<li>0：バックアップレベル0。完全バックアップ。
+			<li>u：ダンプレコード(/etc/dumpdates) のアップデート。	
+			<li>c：カートリッジテープにバックアップ作成。
+			<li>f：
+	
+			<li>dev/rmt/0：テープデバイス名
+			<li>m：中密度
+			<li>c：圧縮
+			<li>n：バックアップ完了後、巻き戻ししない
+			</ul>
+		<li>ufsdump S filesystem
+		filesysytem のバックアップのサイズをバイト単位で見積もる。
+		</ul>
+
+	<li>ufsrestore
+		<ul>
+		<li>テープの中身を確認したい時<br>
+			#ufsrestore tvf /dev/rmt/0 | more 
+		<li> 対話モード<br>
+			#ufsrestore i
+		<li>１つのテープで / →  /usr →  /var  の順にバックアップを取っており 
+			/var をリストアしたい時。 
+			オプション s n
+				n番目のバックアップファイルまでスキップする。
+			#ufsrestore ifs /dev/rmt/0 3
+	
+	<li>mt<br>
+	テープデバイスを操作するために、mtというコマンドが用意されている。
+		<ul>
+		<li> テープの巻き戻し<br>
+			mt -f /dev/rmt/0 rewind
+		<li>1台目のテープデバイスで、1ファイル先に進む。 <br>
+      		mt -f /dev/rmt/0n fsf 1 
+		<li>テープドライブの状態を表示する。 <br>
+      		mt -f /dev/rmt/0n status 
+		</ul>
+
+	</ul>
+</ul>
+NIS関連
+<ul>
+<li> ypcat
+<li>/usr/ccs/bin/make
+</ul>
+IP アドレスを変更した時
+/etc/hosts　を書き換える<br>
+ /etc/defaultrouter 	 があるならばそこも書き換える<br>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=x-euc-jp">
+<title>
+nile_admin_memo
+</title>
+</head>
+<body>
+<b>最終更新日　</b>2002年02月14日 (木) 22時44分19秒 JST
+<hr>
+<H2>
+nile関連の仕事メモ<br>
+</H2>
+nileで定期的にやっている仕事のメモです。
+<ul>
+	<li><a href="#power_posi">電源のキースイッチの説明</a>
+	<li><a href="#turn_on">電源の入れ方</a>
+	<li><a href="#turn_off">電源の切り方</a>
+	<li><a href="#turn_on2">停電後の再起動方法</a>
+	<li><a href="#boot">boot時にやらなくてはいけないこと</a>
+	<li><a href="#matlab_boot">Matlab, MatlabWebserver の起動方法</a>
+	<li><a href="#backup">バックアップ</a>
+	<li><a href="#restore">バックアップからのリストア</a>
+	<li><a href="#patch">パッチをあてる ＆ 技術情報 </a>
+	<li><a href="#add_user">ユーザ登録</a>
+	<li><a href="#center">センターからファイルのコピー</a>
+</ul>
+
+<a name="power_posi">
+<hr>
+<h3>電源のキースイッチの説明</h3>
+	<img src="./image/power_posi.gif" alt="nile power position">
+
+<a name="turn_on">
+<hr>
+<h3>電源の入れ方</h3>
+	<ul>
+	nileの前面のふたを開け、鍵を入れてlock の位置まで回します。
+	<p>
+	<img src="./image/turn_on.gif" alt="nile power on">
+	</p>
+	nile のboot が始まります。
+	</ul>
+
+<a name="turn_off">
+<hr>
+<h3>電源の切り方</h3>
+	<ul>
+	<br>
+	<div style="border:thin solid">
+	%su<br>
+	#/usr/ucb/shutdown -h now<br>
+	：<br>
+	：<br>
+	>
+	</div>
+	<br>
+	と白い画面で">"プロンプトになったら鍵を入れてStandbyの位置まで回します。<br>
+	<p>
+	<img src="./image/turn_off.gif" alt="nile power out">
+	</p>
+	#/usr/sbin/shutdown -y -g0 -i0<br>
+	とすると待ち時間なしでシャットダウンします。
+	</ul>
+
+<a name="turn_on2">
+<hr>
+<h3> 停電後の再起動方法</h3>
+	停電でUPSからの電力が供給されなくなり、nileが停止した場合、
+	以下の手順で再起動してください。
+	<ol>
+	<li> <font color="red">nileの前面のふたを開け、鍵を入れてStandbyの位置にします。</font><br>
+	<li> UPS の ONスイッチを入れなおします。
+	<p>
+	<img src="./image/ups_start.gif" alt="nile ups switch on">
+	</p>
+	<li> nile の鍵をlock の位置にします。
+	</ol>
+<br>
+
+<a name="boot">
+<hr>
+<h3>boot時にやらなくてはいけないこと</h3>
+	<ol>
+	<li>Matlab Webserver の起動<br>
+	<p>
+	boot時に自動で起動するはずが、立ち上がってません。(2001.12.13)
+	手動で立ち上げてください。方法は↓のとおり。
+	Matlab, MatlabWebserver 用のapache は起動しているはずです。
+
+	</ol>
+
+<a name="matlab_boot">
+<hr>
+<h3>Matlab, MatlabWebserver の起動方法</h3>
+	<ul>
+	<li>Matlab の起動
+	<p>
+	Matlab のライセンスマネージャを自動起動するように設定していますが、
+	起動に失敗している時は手動で立ち上げてください。<br>
+	<br>
+	<div style="border:thin solid">
+	#sh /etc/init.d/lmgrd start
+	</div>
+	<br>
+	起動すると以下のようなプロセスが動いてればOK です。<br>
+	<br>
+	<div style="border:thin solid">
+  matlab 23179     1  0 00:50:48 pts/5    0:00 csh -c umask 022; /var/tmp/lm_TMW12.ld -z  -c /var/tmp/lm_TMW12.dat | sh - c 'wh<br>
+  matlab 23181 23179  0 00:50:48 pts/5    0:00 /var/tmp/lm_TMW12.ld -z -c /var/tmp/lm_TMW12.dat <br>
+  matlab 23182 23179  0 00:50:48 pts/5    0:00 sh -c while read line; do echo "$line" >> /var/tmp/lm_TMW12.log; done <br>
+  matlab 23183 23181  0 00:50:49 ?        0:00 MLM -T nile 6.1 4 -c /var/tmp/lm_TMW12.dat <br>
+	</div>
+	<br>
+
+	<li>Matlab Webserver の起動
+	<ol>
+	<li>
+	<p>
+	Matlab Webserber はMatlab のライセンスマネージャが起動していることを
+	確認してから立ち上げてください。
+	</p>
+	<div style="border:thin solid">
+	# /etc/init.d/webserver start
+	</div>
+	<br>
+
+	起動すると以下のようなプロセスが動いてればOK です。<br>
+
+	<br>
+	<div style="border:thin solid">
+	matlab 23263     1  0 00:52:21 pts/5    0:00 /usr/local/matlab6p1/webserver/bin/sol2/matlabserver -s -m 3 -p 27009 -l /var/t<br>
+  	matlab 23269 23263  0 00:52:21 pts/5    0:00 /bin/csh -f -c matlab -nodisplay -nosplash<br>
+  	matlab 23270 23269  0 00:52:21 pts/5    0:05 /usr/local/matlab6p1/bin/sol2/matlab -nodisplay -nosplash<br>
+	</div>
+	<br>
+	<p>
+	現在(2001.12.13)、Matlab Webserver のプロセスを3つ走らせるようにしているので、
+	上の例の プロセスID 23269,23270 のプロセスと同じ物が3つあるはずです。
+	</p>
+	他の、起動確認方法としては、
+	<br>
+	<div style="border:thin solid">
+	# /usr/local/matlab/webserver/webstat
+	</div>
+	<br>
+	があります。このときに、
+	<br>
+    <div style="border:thin solid">
+	<br> 
+    MATLAB Web Server is up . . .	<br> 
+    SERVER = 	<br> 
+ 	<br> 
+    process table entries . . . 	<br> 
+	------------------------------------------------------------------	<br> 
+               UID   PID  PPID  C    STIME TTY      TIME CMD	<br> 
+	(server):   matlab 23263     1  0 00:52:21 pts/5    0:00 /usr/local/matlab6p1/webserver/bin/sol2/matlabserver -s -m 3 -p 27009 -l /var/t <br>
+ 	(shell):   matlab 23269 23263  0 00:52:21 pts/5    0:00 /bin/csh -f -c matlab -nodisplay -nosplash<br>
+　　　　　　　　　　　(省略)
+
+	</div>
+	となってれば起動しています。
+	</p>
+	<li>Matlab Webserver 用apache の起動<br>
+	Matlab Webserver 用にWebサーバ(/usr/local/apache_matlab)を立ち上げています。もし、それが起動していなかったら、以下のコマンドを実行してください。
+	<br> 
+    <div style="border:thin solid">
+	# /usr/local/apache_matlab/bin/apachectl start
+	</div>
+	<br>
+	</ol>
+	</ul>
+
+<a name="backup">
+<hr>
+<h3>バックアップ</h3>
+	<ul>
+		<p> DDS3 のテープは　圧縮なしで12G、圧縮ありで24G のデータが入ります。<br>
+        DDS4 のテープは　圧縮なしで 20G、圧縮ありで 40G のデータが入ります。<br>
+
+		<p>バックアップ用のshがパーティションごとに作成してあります。
+			<ul>
+			<li>/home → /usr/local/adm/dump_home<br>
+			<li>/project → /usr/local/adm/dump_project<br>
+			<li>/project2 → /usr/local/adm/dump_project2<br>
+			<li>/, /usr, /usr/local, /opt, /var → /usr/local/adm/dump_full<br>
+			</ul>
+		<p>
+		シェルでバックアップを行った場合、ログはrootにメールで送られてきます。
+		ログの中に "/tmp/dump???.arc"  とありますが、このファイルにはダンプ後の
+		テープのデータ一覧が書かれています。中身がある＝ダンプ成功の目安として
+		いれてあります。
+
+		<p>
+		<b> /home, /project</b><br>
+		/home は毎週日曜日、/project は毎月1日、15日に
+		クーロンでバックアップをとっています。<br>
+
+		<p> <b>/, /usr, /usr/local, /opt, /etc, /project2</b><br>
+		 気が付いたときにとっています。<br>
+	
+		<p>
+		<b>/project2のバックアップ</b><br>
+		基本はufsdump でとってますが、tar cvf 版を作成しておくと、
+		何かあったときに、他のOSのマシンでも読み出せるので便利。
+	
+		<p>
+		<b>バックアップ用メディア( DDS3, DDS4)とクリーニングテープ</b><br>
+		空のメディアは gakkou, nikkou の本体が置いてあるあたりに箱に入ってます。
+		数が少なくなったら宇陀先生に言ってください。
+		<p>一度 nile で使用したものは、nile本体のところにあります。
+	</ul>
+
+<a name="restore">
+<hr>
+<h3> バックアップテープからのリストア</h3>
+	<ul>
+	nileのバックアップはufsdumpコマンドでとっています。
+	テープからファイルを復元する場合は、ufsrestoreで復元してください。
+	<br>
+	<li>ufsrestore
+           <ul>
+           <li>テープの中身を確認したい時<br>
+           	#ufsrestore tvf /dev/rmt/0 | more 
+           <li> 対話モード<br>
+           	#ufsrestore i
+           <li>１つのテープで / →  /usr →  /var  の順にバックアップを取っており 
+			/var をリストアしたい時。 <br>
+			オプション s n: n番目のバックアップファイルまでスキップする。<br>
+			#ufsrestore ifs /dev/rmt/0 3
+           </ul>
+	詳しくは Solaris2.6 Solarisのシステム管理(第一巻)のp609の第35章ファイルと
+	ファイルシステムの復元の手法の部分を参照してください。
+	</ul>
+
+<a name="patch">
+<hr>
+<h3>パッチをあてる ＆ 技術情報 </h3>
+	<ul>
+	<li><b>Recommended Patch Cluster</b><br>
+		Solaris 7 Recommended Patch Cluster（推奨＆セキュリティパッチクラスタ）が<br>
+		月2回でています。現在は/varに余裕があるので毎回当てています。<br>
+		<a href="http://sunsolve.sun.co.jp/pub-cgi/show.pl?target=patches/patch-access">
+		Sun solve online Patches</a><br>
+		少なくとも、セキュリティパッチはあてておきましょう。<br>
+	<br>
+	<li><b>技術情報</b>（よく見るページ）
+		<ul>
+		<li><a href="http://sunsolve.sun.co.jp/pub-cgi/search.pl?origin=browse&mode=browseresults&coll=salert">Sun Solve online  Support Documents 内 Alert情報</a>
+		<li><a href="http://www.securityfocus.com/">SecurityForcus</a>
+		</ul>
+	</ul>
+
+<a name="add_user">
+<hr>
+<h3>ユーザ登録</h3>
+	<ul>
+	<a href="makeuser.html">makeuserスクリプトについて</a><br>
+	<br>
+	<div style="border:thin solid">
+	#su<br>
+	#/usr/local/bin/makeuser アカウント名
+	</div>
+	<br>
+	で、作成。アカウント名がセンターにない場合は、ユーザ名を入力するように
+	促されるので、ローマ字で入力する(ex: Chinatsu Ito)。<br>
+	後はパスワードを入力して終了。<br>
+	</ul>
+
+<a name="center">
+<hr>
+<h3>4月：センターからファイルのコピー</h3>
+	<ul>
+		<p>
+		ユーザ登録にセンターのpasswdファイルの情報を使っているので、
+		4月、5月ぐらい（センターの新規登録がおちついたころ）にファイルをもらってくる。<br>
+		センターの/etc/passwd を nile:/etc/passwd.centerにコピーし、
+		それ以前のpasswd.center は別名をつける。<br>
+		パーミッションは444<br>
+		
+		<p>
+		自分で作業しておいて、うろ覚えなのですが、2001年4月の場合<br>
+		# mv passwd.center -> passwd.center.200104<br>
+		としてあります。<br>
+		今までのを見るに、"passwd.center.新しいバージョンをもらってきた年月"に mv したようです。
+		</p>
+	</ul>
+
+<hr>
+<h3>過去のメモ</h3>
+
+<b>cap は現在運用していません 2001.04</b><br>
+CAPのこと
+<br>
+CAPは、Appletalkでファイルを共有するためのアプリケーションですが、
+nileが起動される時に自動的に立ち上がらないので、以下の手、順で
+立ち上げてください。
+<br>
+<OL>
+<LI> rootになる。
+<LI> 以下のコマンドを実行する。
+</OL>  
+<pre>
+	nile# /usr/local/cap/aarpd "hme0" "ULIS-kenkyu-net-EthertalkP2"
+	nile# /usr/local/cap/atis
+	abInit: [ddp:   0.255, 18] starting
+	22:27:46 06/28/98  Reply num max for lkup reply is 5 (based on 104)
+	>>ここで、15秒ほど待つ。
+	nile# /usr/local/cap/snitch -S -f "nile"
+	nile# /usr/local/cap/aufs -U 10 -V /usr/local/lib/cap/afpvols -n 'atnile'
+	Apple Unix File Server (atnile:AFPServer@*) starting
+	nile# exit 
+</pre>
+<p>
+<b>NISは現在停止してますが、残してあります。</b><br>
+NISのこと
+<br>
+NISのサーバーは、自動的に起動されますが、そのままでは通常の働きをしないので、
+以下のような手順で立ち上げ直してください。
+<OL>
+<LI> rootになる。
+<LI> 以下のコマンドを実行する。(nile#は、プロンプト)
+</OL>
+<br>
+<pre>
+nile# /usr/lib/netsvc/yp/ypstop
+nile# /usr/lib/netsvc/yp/ypserv 
+nile# /usr/lib/netsvc/yp/ypbind -ypsetme
+nile# /usr/lib/netsvc/yp/ypxfrd
+nile# /usr/lib/netsvc/yp/rpc.yppasswdd -m
+nile# /usr/lib/netsvc/yp/rpc.ypupdated 
+
+<pre>
+これで、NISが正常に動作します。
+<hr>
+<!-- seine はお亡くなりになったのでコメントアウト
+	<h2>
+	●seine関連。
+	</h2>
+	seineで気になることは、NISと、dtloginです。
+	<hr>
+	NISについて
+	<br>
+	seineのNISもそのままではうまくスレーブサーバとして動作しないので、
+	以下の手順で起動し直してください。
+	<OL>
+	<LI> seineのrootになる。
+	<LI> 以下のコマンドを実行する。
+	</OL>
+	<pre>
+	seine# /usr/lib/netsvc/yp/ypstop
+	seine# /usr/lib/netsvc/yp/ypbind
+	seine# /usr/lib/netsvc/yp/ypstop
+	seine# /usr/lib/netsvc/yp/ypserv
+	seine# /usr/lib/netsvc/yp/ypbind -ypsetme
+	
+	</pre> 
+	<hr>
+	dtloginについて
+	<br>
+	<pre>
+	seine のチューザ画面がおかしくなり、host ネームの入力ができなく
+	なる時があります。
+	(対処法)
+	dtloginデーモンを立ち上げなおす。
+	
+	(具体的な方法)
+	1 rloginで、seineにloginし、rootになる。
+	2 /etc/init.dに移動。
+	3 seine# dtlogin stop   << dtloginデーモンの停止
+  	seine# dtlogin start  << dtloginデーモンの起動
+	
+	30秒くらいで、seineのコンソール画面が、変化します。
+	これは、直接的な解決法ではないですが、現在できる範囲の
+	解決法です。
+	</pre>
+-->
+<a href="./admin.html"> 管理者ページへ </a><br>
+</body>
+</html>

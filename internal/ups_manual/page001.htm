@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - 動作確認</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<A name="TAG0"></A> <A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="q_instal.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page002.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">2.動作確認</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+インストールが終了したら、以下の手順で本ソフトが正常に 動作しているかを確認します。
+</P>
+<TABLE border="0" cellpadding="10">
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD valign="top">
+    <H2><A name="SEC1"><FONT size="4"><B>デーモンのチェック</B></FONT></A></H2>
+<BR>
+デーモン（監視プログラム）が正常に動作しているか確認します。</TD></TR>
+  <TR>
+    <TD align="right" valign="top" nowap><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD valign="top">
+    <OL>
+      <LI>rebootコマンドやshutdownコマンドを使用して再ブートします。再ブートする際には、必要なアプリケーションは全て停止させてから行ってください。
+      <LI>次のコマンドを入力して、/usr/ups/bin/upsdが一つだけ走っていることを確認します。<BR>
+<B># ps -ax| grep ups&lt;Return&gt; またはps -ef| grep ups&lt;Return&gt;</B>
+      <LI>次のコマンドを入力します。<BR>
+<B># /usr/ups/bin/upslog -ver&lt;Return&gt;</B>
+    </OL>
+    <P>
+デーモンが正常に動作している場合は、10秒程度待っていると 次のようなメッセージが表示されます。 
+表示される内容はUPSによって変わります．
+    </P>
+    <TABLE border="2" cellpadding="5" bgcolor="#CCFFFF">
+      <TR>
+        <TD>
+<PRE> UPS装置タイプ(TYPE OF UPS)              :BIROS-mini FNX
+ UPSモデル名(UPS MODEL)                  :BM1000FNX 100
+ UPSバージョン(UPS VERSION)              :1.17
+ COMバージョン(COM VERSION)              :1.17
+ ソフトウェアバージョン(SOFTWARE VERSION) :3.03
+ ベンダー名(VENDOR NAME)                 :GS-EE CO.,LTD.   
+ シリアル番号(SERIAL NUMBER)             :S00000-0010C
+
+      </PRE>
+</TD></TR>
+    </TABLE>
+
+<BR>
+10秒以上待っても何も表示されない場合は、デーモンが正常に動作していません。 
+原因として次のことが考えられます。
+    <TABLE>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>シリアルコミュニケーションが正常に行われていない</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>・ コミュニケーションケーブル（RS-232C）が設定のポートに接続されているか確認してください。<BR>
+・ ケーブルの接続がゆるんでいないか確認してください。<BR>
+</TD></TR>
+      <TR>
+        <TD></TD>
+        <TD></TD></TR>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>ネットワークが正しく設定されていない(ネットワーク機能を使用しない場合は、この確認は必要ありません)</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>以下のコマンドを入力します。<BR>
+<B># ifconfig <U>DeviceName</U>&lt;Return&gt;</B><BR>
+<BR>
+DeviceNameは、ご使用のOSやハードウェア環境によって変わります。 （例：Sunで10baseTの場合は、le0）<BR>
+<BR>
+次のような表示が出ない場合は、ネットワークを正しく設定し直してください。</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><FONT color="#FF0000"><B>IPアドレスとネットマスクの値は表記とは異なることがあります。</B></FONT></TD>
+    <TD><B>le0:flags=63 &lt;<FONT color="#FF0000"><U>UP</U></FONT>,BROADCAST,NOTRAILERS,RUNNING&gt;<BR>
+inet 192.43.189.9 netmask ffffff00 broadcast 192.43.189.255</B></TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD>
+    <TABLE>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>NIS(+)を使用している(ネットワーク機能を使用しない場合は、この確認は必要ありません)</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>以下のコマンドを入力します。<BR>
+<B># ypcat services&lt;Return&gt;<BR>
+# niscat services&lt;Return&gt;</B><BR>
+<BR>
+上記いずれかのコマンドでservicesファイルの一覧が表示されたら、そのシステムでは
+NIS(+)を使用しています。その場合は、NISの再設定が必要になります。 付録の<A href="appendix.htm#SEC12">「NISの設定方法」</A>を参照してください。</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="kiken.jpg" align="middle" height="49" width="50"><FONT size="6"><B>危険</B></FONT></TD>
+    <TD bgcolor="#FFFF00"><FONT size="5"><B>UPSから煙が出る、変な匂いがするなどの異常が生じたら、ただちにUPSの取扱説明書 
+の指示にしたがって処置してください。</B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"><FONT size="6"><IMG src="tyui.jpg" align="middle" height="49" width="50"><B>注意</B></FONT></TD>
+    <TD><FONT size="5"><B>電源プラグを抜き差しする時は、電源プラグを持って行ってください。</B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"><FONT size="6"><IMG src="tyui.jpg" align="middle" height="49" width="50"><B>注意</B></FONT></TD>
+    <TD><FONT size="5"><B>UPSの電源スイッチを切る時は、前もってワークステーションを停止させてから行ってください。</B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"><FONT size="6"><IMG src="tyui.jpg" align="middle" height="49" width="50"><B>注意</B></FONT></TD>
+    <TD><FONT size="5"><B>UPSの警報ブザーが鳴る、故障ランプが点滅するなどの異常が生じたら、UPSの取扱説明書の 
+指示にしたがって処置してください。</B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top">　</TD>
+    <TD>
+    <HR>
+<BR>
+    <H2><A name="SEC2"><FONT size="6"><B>xups</B></FONT><FONT size="4">のチェック(ネットワーク機能を使用しない場合及び、CUI環境のみでご使用の場合は、この確認は必要ありません)</FONT></A></H2>
+<BR>
+      xups（警報表示プログラム）が正常に動作しているかを確認します。(ネットワーク機能を使用しない場合及び、CUI環境のみでご使用の場合は、この確認は必要ありません)</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD>
+    <OL>
+      <LI>ログインして、X-Windowを起動します。
+      <LI>次のコマンドを入力して、/usr/ups/bin/xupsが走っていることを確認します。<BR>
+<B># ps -ax| grep ups&lt;Return&gt;またはps -ef| grep ups&lt;Return&gt;</B>
+    </OL>
+    <P>
+走っていない場合は、次の３つのケースが考えられます。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><FONT color="#FF0000"><B>起動スクリプトはOSによって名前が異なります。</B></FONT></TD>
+    <TD>
+    <TABLE>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>X-Windowの起動スクリプトが正しくコピーされていない</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>本ソフトでは、インストール時に起動スクリプトの末尾にxupsの起動コマンドを追加して、 
+ログイン時に自動的にxupsが起動されるようにしています。ただし、ユーザがプライベート 
+な起動スクリプトを作成している場合は、xupsが起動されないことがあります。<BR>
+この場合は、viなどのエディタを使用してプライベートな起動スクリプトの中に
+xupsの起動コマンド（/usr/ups/bin/xupsinit）を追加してください。</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD>
+    <TABLE>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>CDE環境の設定が正しく行われていない</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>CDE環境での起動スクリプトは/usr/dt/config/Xstartupです。 この起動スクリプトの中にxupsの起動コマンド（/usr/ups/bin/xupsinit） 
+があることを確認してください。</TD></TR>
+    </TABLE>
+
+<BR>
+    <TABLE>
+      <TR>
+        <TD><B>● </B></TD>
+        <TD><B>ファイルのパーミッションが不適当</B></TD></TR>
+      <TR>
+        <TD></TD>
+        <TD>
+        <DL>
+          <DT>次のコマンドでupstabのパーミッションを調べてください。
+          <DD><B># ls -l /usr/ups/lib/upstab &lt;Return&gt;</B>
+          <DT>次のように“r”が設定されていればOKです。
+          <DD>-rw-r--<FONT color="#FF0000"><U>r</U></FONT>-- 1 root......./usr/ups/lib/upstab<BR>
+          <DT>次のコマンドでxupsとxupsinitのパーミッションを調べてください。
+          <DD><B># ls -l /usr/ups/bin/xups* &lt;Return&gt;</B>
+          <DT>次のように“x”が設定されていればOKです。
+          <DD>-rwxr-xr-x 1 root......./usr/ups/bin/xups
+          <DD>-rwxr-xr-x 1 root......./usr/ups/bin/xupsinit
+        </DL>
+<BR>
+パーミッションが間違っている場合は、chmodコマンドで正しく設定し直してください。</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD>
+    <HR>
+<BR>
+    <H2><A name="SEC3"><FONT size="4"><B>停電動作のチェック</B></FONT></A></H2>
+<BR>
+停電、復電を行ってプログラムが正常に動作しているかを確認します。</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"><BR>
+<IMG src="img013.gif" height="579" width="152"></TD>
+    <TD valign="top">
+    <OL>
+      <LI>UPSの電源コンセントを抜いて停電状態をつくります。 ワークステーションの画面にオレンジ色の文字で次のメッセージが交互に表示されることを 
+確認します。<BR>
+      <P>
+<FONT color="#FFAA00"><B>「電源異常が発生しました」 (Power trouble!)<BR>
+        「すみやかに対処してください」 (Solve the
+        problem quickly)</B></FONT></P>
+      <P>
+<B>ネットワーク機能を使用しない場合又は、CUI環境のみでご使用の場合は、このオレンジ色の表示はありません。
+        コンソール上の英文のメッセージで確認してください。</B><BR>
+<BR>
+同時にバーグラフが表示され、バーグラフ右のシャットダウン処理までの時間（停電確認時間） 
+が減少していくことを確認します。
+      </P>
+      <P>
+※ホスト名は最大で16文字までしか表示されません。<BR>
+        <IMG src="img012.gif" width="490" height="120" border="0"></P>
+      <LI>UPSのコンセントをさして、復電状態にします。
+      <LI>緑色の文字で次のメッセージが表示されることを確認します。<BR>
+この表示は30秒後に自動的に消えます。<BR>
+      <P>
+<FONT color="#00FF00"><B>「復電しました」 (Recovered...)</B></FONT><BR><BR>
+        <IMG src="img0016.gif" width="490" height="70" border="0"></P>
+      <LI>もう一度UPSのコンセントを抜き、バーグラフ右のシャットダウン処理までの時間が&quot;30&quot;
+になるまでそのままの状態を保ちます。
+      <LI>30になると、赤色の文字で次のメッセージが交互に表示されることを確認します。
+      <P>
+<FONT color="#FF0000"><B>「システムダウン」 (<FONT color="#FF0000">Shutdown now!</FONT>)<BR>
+        「電源回復の見込みはありません」 (<FONT color="#FF0000">Failed to recover</FONT>)</B></FONT></P>
+      <LI>メッセージの表示後、約30秒（シャットダウン遅延時間）が経過するとシャットダウン処理が 
+行われ、ワークステーションがシャットダウンすることを確認します。
+      <LI>UPSのコンセントをさして、復電します。 UPSが自動でワークステーションに電源供給を一度停止し、数十秒後、電源供給を開始したことを 
+確認します。このとき電源供給で自動起動するワークステーションはブートアップします。
+    </OL>
+</TD></TR>
+    <TR>
+      <TD></TD>
+      <TD><A name="SEC4"><FONT size="4"><B>XUPS表示<BR>
+      </B></FONT></A><FONT color="#FF0000"><B>ＸＵＰＳの表示は、マウスでＸＵＰＳの表示をクリックしていただくことで、消すことが出来ます。<BR>
+      </B></FONT>リモートホストの情報が表示されるときは、下図のように逆三角形の部分に自分自身のホスト（以降、自ホストと表記します）の状態が表示されます。<BR>
+      逆三角形の部分に表示される自分自身のホストの状態情報は、下記のようになります。
+      <UL>
+        <LI>正常時　　　　・・・　緑色で表示されます。
+        <LI>停電時　　　　・・・　オレンジ色で表示されます。
+        <LI>回復不能時　・・・　赤色で表示されます。
+      </UL>
+      <BR>
+      <IMG src="img0014.gif" width="490" height="70" border="0"><BR>
+      上図場合は、リモートホストが停電状態で、自ホストは、正常状態であることをあらわしています。<BR>
+      <BR>
+      <IMG src="img0015.gif" width="490" height="70" border="0"><BR>
+      上図の場合は、リモートホストが回復不能状態で自ホストは、正常状態であることをあらわしています。<BR>
+      <BR>
+      <BR>
+      自ホストで停電等が発生した場合は、逆三角形は表示されません。<BR>
+      <BR>
+      <IMG src="img0012.gif" width="490" height="70" border="0"><BR>
+      上図の場合は，自ホストが停電発生している状態です。<BR>
+      <BR>
+      <IMG src="img0013.gif" width="490" height="70" border="0"><BR>
+      上図の場合は、自ホストが回復不能の状態です。<BR>
+      </TD>
+    </TR>
+  </TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="q_instal.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page002.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

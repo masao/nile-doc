@@ -1,0 +1,620 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - スケジュール運転（GUI環境編）</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0" href="page005.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page009.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><FONT size="6"><B><FONT size="6">6.スケジュール運転</FONT></B>（GUI環境編）</FONT></TD></TR>
+</TABLE>
+
+<P>
+<FONT size="+0">ワークステーションのシャットダウンとUPSの起動・停止はスケジュール運転できます。また、スクリプトと組み合わせることでシステムの自動運転が可能です。スケジュールは、以下の単位で設定できます。<BR>
+<B>年間</B>：一年分の処理に使用します。年間スケジュールで指定した内容は毎年繰り返されます．<BR>
+<B>週間</B>：毎週行う処理に使用します。<BR>
+<B>単一</B>：今回の終了と次回の起動処理に使用します。</FONT>
+</P>
+<TABLE cellpadding="10">
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">
+    <H1><FONT size="+1"><A name="SEC1"><FONT size="5"><B>スケジュールの設定のルール</B></FONT></A></FONT></H1>
+スケジュールの優先順位は以下の通りで年間、単一スケジュールの初期値は週間スケジュールになります。<BR>
+　　<SMALL><B>単一＞年間＞週間</B></SMALL>
+    <P>
+設定は、必ず週間スケジュールを年間や単一の前に設定します。<BR>
+年間スケジュールで設定された内容は、週単位で繰り返されます。<BR>
+年間スケジュール設定をご利用の方は、1ヶ月もしくは、数ヶ月おきにスケジュール設定内容を確認してください。
+    </P>
+    <P>
+<BR>
+<BR>
+<A name="TAG2"></A>
+    </P>
+    <H1><FONT size="+1"><A name="SEC2"><FONT size="5"><B>スケジュールの例外処理</B></FONT></A></FONT></H1>
+    <P>
+<BR>
+スケジュール運転中に、スケジュールと関係なくシステムを起動または停止したい場合の処置を説明します。
+    </P>
+    <P>
+<BR>
+    </P>
+    <H2><A name="SEC3">スケジュール停止中の起動</A></H2>
+    <P>
+PICO-IIの場合 UPS前面のパネルの「ON」ボタンを押します。UPSからの給電が開始され、システムが起動します。<BR>
+BIROS-mini FNDの場合 UPS背面のスイッチを一度バイパスに切り替え30秒ほどしてから自動運転に切り替えます。<BR>
+BIROS-mini FNXの場合 UPS前面の「HORN SILENCE」ボタンを出力開始するまで押しつづけてください。
+    </P>
+<PRE>
+/usr/ups/bin/upsched -set off&lt;Return&gt;
+</PRE>
+このコマンドを使用しないでコンピュータを手動で起動すると、本ソフトは[UPS監視時間間隔](デフォルトは900秒)-60秒後にスケジュール停止中と判断し、シャットダウン処理を行います。上記コマンドはスケジュール機能を一時的に停止させます。<BR>
+スケジュール機能を復活させるには、次のコマンドを実行します。
+<PRE>
+/usr/ups/bin/upsched -set on&lt;Return&gt;
+</PRE>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>
+    <P>
+スケジュール停止中と判断するまでの時間は、最小値840秒です。<BR>
+[UPS監視時間間隔]を短くしても840秒以下にはなりません。<BR>
+[UPS監視時間間隔]については、「設定の変更画面」を参照してください。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD>
+    <P>
+<B><FONT size="+2"><A name="SEC4">終了時刻前の停止</A></FONT></B>
+    </P>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>スケジュールの停止前にコンピュータを停止したい場合は、次のコマンドを実行します。
+<PRE>
+/usr/ups/bin/upshut&lt;Return&gt;
+</PRE>
+    <P>
+標準の「shutdown」コマンドでもコンピュータを停止できますが、次回の起動を手動で行う必要があります。このコマンドの使用で、次回の起動時刻を設定してから終了できます。また、以下のコマンドを使用すればネットワーク上のほかのホストからも停止できます。<BR>
+    </P>
+<PRE>
+/usr/ups/bin/upshut -host ホスト名&lt;Return&gt;
+</PRE>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD>
+    <P>
+<FONT color="red"> このコマンドを使用するには、[手動停止コマンド]を「有効｣にしておく必要があります。
+</FONT>
+    </P>
+</TD></TR>
+    <TR>
+      <TD></TD>
+      <TD><B><FONT size="+2"><A name="SEC20">スケジュール運転中の長期停電時のUPS動作</A></FONT></B></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD>スケジュール運転中の長期停電時のUPS動作については、「付録」-「Q&amp;A」-「<A href="appendix.htm#SEC16">スケジュール運転中の長期停電時のUPS動作</A>」を参照してください。</TD>
+    </TR>
+    <TR>
+    <TD align="right" valign="top"></TD>
+    <TD>
+    <P>
+<A name="SEC5"><B><FONT size="+1">スケジュール設定プログラムの起動</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD>1. /usr/ups/bin/xschedを起動します。
+    <P>
+［スケジュール設定］画面が表示されます。
+    </P>
+    <CENTER><IMG src="img0027.gif" width="599" height="202" border="0"></CENTER>
+    <P>
+<B>年間スケジュールボタン (Yearly Schedule)</B>：［年間スケジュール］画面を表示します。<BR>
+<B>週間スケジュールボタン (Weekly Schedule)</B>：［週間スケジュール］画面を表示します。<BR>
+<B>単一スケジュールボタン (Individual Schedule)</B>：［単一スケジュール］画面を表示します。<BR>
+<B>遅延条件の設定ボタン (Set Delay Condition)</B>：［遅延条件の設定］画面を表示します。<BR>
+<B>設定の更新ボタン (Change the Settings)</B>：設定したスケジュールを更新します。年間、週間スケジュールでは、設定したスケジュールはワークステーションの再起動後に有効になりますが、このボタンをクリックすると直ちに有効になります。<BR>
+<B>終了ボタン (Quit)</B>：スケジュールの設定を終了します。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><FONT color="RED"><B>動作条件設定のスケジュールタイマ機能を無効としている場合、「スケジュール設定」画面の予定時刻に０が表示され、「設定の更新」ができなくなります。（年間、週間のスケジュール設定は可能です。）また年間、週間のスケジュール設定がされていない場合も予定時刻に０が表示されます。</B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B><FONT color="#ff0000">スケジュールを設定しても予定時刻に０が表示される事があります。この場合はスケジュール設定内容に矛盾があります。週間スケジュール，月間スケジュール，単一スケジュールの設定をそれぞれ確認してください。</FONT></B></TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><BR>
+    <P>
+<A name="SEC6"><B><FONT size="+1">週間スケジュールの設定 (Weekly Schedule)</FONT></B></A>
+    </P>
+<BR>
+週間スケジュールには、毎週行う処理を設定します。</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD>
+    <OL>
+      <LI>[スケジュール設定］(xsched)画面で、［週間スケジュール］(Weekly
+        Schedule)ボタンをクリックします。<BR>
+        ［週間スケジュール］(Weekly Schedule)画面が表示されます。
+        <CENTER><IMG src="img0028.gif" width="359" height="474" border="0"></CENTER>
+      <LI>設定したい［時刻］フィールドをクリックします。<BR>
+［時刻］フィールドの左側のチェックボックスにチェックが入ります。[Shift]キーを使用すると、複数の［時刻］フィールドが選択できます。
+      <LI>起動（左側）および終了（右側）の時刻を入力します。
+      <LI>［登録］(Register)ボタンをクリックします。
+      <LI>［終了］(Quit)ボタンをクリックします。 週間スケジュールの設定を終了します。<BR>
+    </OL>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><FONT color="#ff0000"><B>週間スケジュール(Weekly Schedule)設定ルールについて</B><BR>
+週間スケジュールを設定する際には，曜日をまたいでもかまいませんが必ず終了の次には起動，起動の次には必ず終了が来るように必ず対になるように入力してください。正しくスケジュールを入力されていないとスケジュール運転できません。実際の<A href="#SEC14">スケジュール例</A>がこのページの最後にありますので参照してください。</FONT></TD></TR>
+  <TR>
+    <TD>　</TD>
+    <TD><B><FONT size="+1">＊週間スケジュール画面 <FONT size="+1">(Weekly Schedule)</FONT></FONT></B>
+    <CENTER><IMG src="img0028.gif" width="359" height="474" border="0"></CENTER>
+<BR>
+    <DL>
+      <DT><B>編集メニュー(Edit)</B>
+      <DD><B>クリア(Clear)</B>：選択中の［時刻］フィールドをクリアします。<BR>
+<B>コピー(Copy)</B>：選択中の［時刻］フィールドの値をコピーします。複数選択されている場合は、最も上にあるフィールドの値をコピーします。<BR>
+<B>ペースト(Paste)</B>：選択中の［時刻］フィールドにペーストします。<BR>
+<B>全てを選択(Select All)</B>：全曜日を選択します。<BR>
+      <DT><B>設定メニュー(Set)</B>
+      <DD><B>開始曜日(First Day)</B>：カレンダの開始曜日を設定します。「日曜日」と「月曜日」が選択できます。時計選択：時刻の表示方法を選択します。「12時間時計」と「24時間時計」が選択できます。<BR>
+      <DT><B>登録ボタン(Register)</B>：設定した週間スケジュールを登録します。
+      <DT><B>終了ボタン(Quit)</B>：週間スケジュールの設定を終了します。
+    </DL>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><FONT color="RED"><B>現在時刻から間近（数分後）の終了時刻を設定した場合、最大でUPS監視時間間隔（デフォルト値15分）程度終了時刻が延びることがあります。</B></FONT></TD></TR>
+  <TR>
+    <TD>　</TD>
+    <TD>
+    <HR>
+    <P>
+<A name="SEC8"><B><FONT size="+1">年間スケジュールの設定 (Yearly Schedule)</FONT></B></A>
+    </P>
+　年間スケジュールには、日付を指定して行う処理を設定します。毎年繰り返されます。</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD valign="top">
+    <OL>
+      <LI>［スケジュール設定］(xsched)画面で、［年間スケジュール］(Yearly
+        Schedule)ボタンをクリックします。<BR>
+        ［年間スケジュール］(Yearly Schedule)画面が表示されます。
+        <CENTER><IMG src="img0029.gif" width="263" height="262" border="0"></CENTER>
+      <LI>前月(&lt;)、翌月(&gt;)のボタンを使用して、スケジュール設定したい月を選択します。
+      <LI>設定したい［日付］ボタンをクリックします。<BR>
+［日付スケジュール設定］画面が表示されます。
+      <CENTER><IMG src="img0030.gif" width="299" height="197" border="0"></CENTER>
+      <LI>［起動時刻］(Startup Time)および［終了時刻］(Shutdown
+        Time)を入力して、［登録］(Register)ボタンをクリックします。
+      <LI>必要なだけ、操作2.～4.を繰り返します。
+      <LI>［リスト］(List)ボタンをクリックします。［設定リスト］(List)画面が表示され、その月に設定されているスケジュールが一覧表示されます。
+        <CENTER><IMG src="img0031.gif" width="237" height="263" border="0"></CENTER>
+      <LI>設定した内容を確認して、ウィンドウを閉じます。
+      <LI>［年間スケジュール］(Yearly Schedule)画面の［終了］(Quit)ボタンをクリックします。年間スケジュールの設定を終了します。
+    </OL>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD valign="top"><FONT color="#ff0000"><B>年間スケジュール(Yearly Schedule)設定ルールについて</B><BR>
+年間スケジュールを設定する際には，日付をまたいでもかまいませんが現在時刻からおって必ず終了の次には起動，起動の次には必ず終了が来るように必ず対になるように入力してください。正しく入力されていないとスケジュール運転できません。<A href="#SEC14">スケジュール例</A>がこのページの最後にありますので参照してください。</FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD valign="top">
+    <H2><A name="SEC9"><B>＊年間スケジュール画面 (Yearly Schedule)</B></A></H2>
+    <CENTER><IMG src="img0032.gif" width="263" height="262" border="0"></CENTER>
+    <DL>
+      <DT><B>設定メニュー(Set)</B><BR>
+      <DD><B>休日設定</B>：休日を設定します。メニューを選択後、休日に設定したい［日付］ボタンをクリックします。もう一度メニューを選択すると、休日の設定が完了します。休日設定は、スケジュール動作に影響は、与えません。<BR>
+      <DD><B>開始曜日</B>：カレンダの開始曜日を設定します。「日曜日」と「月曜日」が選択できます。<BR>
+      <DD><B>リストボタン(List)</B>：［設定リスト］画面を表示します。その月に設定されているスケジュールが一覧表示されます。<BR>
+      <DD><B>終了ボタン(Quit)</B>：年間スケジュールの設定を終了します。<BR>
+      <DD><B>＜ ボタン</B>：前月のカレンダを表示します。<BR>
+      <DD><B>＞ ボタン</B>：翌月のカレンダを表示します。<BR>
+      <DD><B>日付ボタン</B>：対象日の［日付スケジュール設定］画面を表示します。設定済みのボタンは反転表示されます。<BR>
+    </DL>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>
+    <P>
+<A name="SEC10"><B><FONT size="+1">日付スケジュール設定画面</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD valign="top"><B>日付の表示方法が異なることがあります。</B><BR>
+</TD>
+    <TD>
+    <CENTER><IMG src="img0030.gif" width="299" height="197" border="0"></CENTER>
+<BR>
+    <DL>
+      <DT><B>編集メニュー(Edit)</B><BR>
+      <DD><B>クリア(Clear)</B>：選択中の［時刻］フィールドの値をクリアします。<BR>
+      <DT><B>設定メニュー(Set)</B><BR>
+      <DD><B>時計選択(Select Clock)</B>：時刻の表示方法を選択します。「12時間時計」と「24時間時計」が選択できます。<BR>
+      <DT><B>登録ボタン(Register)</B>：設定した内容を登録します。<BR>
+      <DT><B>削除ボタン(Clear)</B>：設定されているスケジュールを削除します。［年間スケジュール］画面で反転表示されていた［日付］ボタンが通常の表示に戻ります。<BR>
+      <DT><B>中止ボタン(Cancel)</B>：設定を中止します。<BR>
+      <DT><B>起動時刻フィールド(Startup Time)</B>：起動時刻を設定します。空白を設定した場合は、起動しないことを示します。<BR>
+      <DT><B>終了時刻フィールド(Shutdown Time)</B>：終了時刻を設定します。空白を設定した場合は、シャットダウンしないことを示します。
+    </DL>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><BR>
+<FONT color="red"><B>現在時刻から間近（数分後）の終了時刻を設定した場合、最大でUPS
+監視時間間隔（デフォルト値15分）程度終了時刻が延びることがあります。</B></FONT>
+    <P>
+<BR>
+<A name="TAG10"></A>
+    </P>
+    <H2><A name="SEC11"><B>＊設定リスト画面 (List)</B></A></H2>
+    <CENTER><IMG src="img0031.gif" width="237" height="263" border="0"></CENTER>
+    <P>
+<B>スクロールリスト</B>：設定されているスケジュールが一覧表示されます。
+    </P>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>
+    <HR>
+    <P>
+<B><FONT size="+1"><A name="SEC12">単一スケジュールの設定 (Individual Schedule)</A></FONT></B>
+    </P>
+<BR>
+　単一スケジュールには、今回の終了と次回の起動を設定します。</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD valign="top">
+    <OL>
+      <LI>［スケジュール設定］(xsched)画面で、［単一スケジュール］(Individual
+        Schedule)ボタンをクリックします。<BR>
+        ［単一スケジュール］(Individual Schedule)画面が表示されます。日付指定欄にはデフォルトで今日と明日の日付が表示されます。
+        <CENTER><IMG src="img0033.gif" width="538" height="614" border="0"></CENTER>
+      <LI>［今回の終了時刻］(Shutdown)と［次回の起動時刻］(Start
+        Up)を設定します。
+      <LI>［登録］(Register)ボタンをクリックします。設定内容が登録され、［単一スケジュール］画面が閉じます。
+    </OL>
+<FONT size="+1"><B><A name="TAG12"></A></B></FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD valign="top"><FONT color="#ff0000"><B>単一スケジュール(Individual Schedule)設定ルールについて</B><BR>
+      単一スケジュールを入力する際には，終了時刻のみの入力、起動時刻のみの入力はできません。正しく入力されていないとスケジュール運転できません。<A href="#SEC14">スケジュール例</A>がこのページの最後にありますので参照してください。</FONT></TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD valign="top">
+    <DIV align="left">
+<B>＊単一スケジュール画面</B>
+    </DIV>
+<BR>
+<CENTER><IMG src="img0033.gif" width="538" height="614" border="0"></CENTER>
+    <DL>
+      <DT><B>編集メニュー(Edit)</B><BR>
+      <DD><B>クリア(Clear)</B>：選択されている時刻フィールドをクリアします。<BR>
+      <DT><B>設定メニュー(Set)</B><BR>
+      <DD><B>時計選択(Select Clock)</B>：時刻の表示方法を選択します。「12時間時計」と「24時間時計」が選択できます。<BR>
+      <DT><B>登録ボタン(Register)</B>：設定内容で登録します。<BR>
+      <DT><B>削除ボタン(Clear)</B>：登録されている単一スケジュールを削除します。<BR>
+      <DT><B>中止ボタン(Cancel)</B>：設定を中止します。<BR>
+      <DT><B>今回の終了時刻(Shutdown)</B>：今回の終了時刻を設定します。空白を設定した場合は年間、週間スケジュールを使用することになります。<BR>
+      <DT><B>次回の起動時刻(Start Up)</B>：次回の起動時刻を設定します。空白を設定した場合は年間、週間スケジュールを使用することになります。<BR>
+    </DL>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD valign="top"><FONT color="RED"><B>現在時刻から間近（数分後）の終了時刻を設定した場合、最大でUPS監視時間間隔（デフォルト値15分）程度終了時刻が延びることがあります。</B></FONT></TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>
+    <P>
+<B><FONT size="+1"><A name="SEC13">遅延条件の設定 (Set Delay Condition)</A></FONT></B>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD valign="top">
+    <OL>
+      <LI>［スケジュール設定］(xsched)画面で、［遅延条件の設定］(Set
+        Delay Condition)ボタンをクリックします。<BR>［遅延条件の設定］(Set Delay Condition)画面が表示されます。
+    </OL>
+遅延条件設定は、「<A href="page009.htm">遅延条件の設定</A>」を参照してください。<BR>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"></TD>
+    <TD valign="top">
+    <P>
+<B><FONT size="+2"><A name="SEC14">スケジュール例</A></FONT></B>
+    </P>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>
+    <BLOCKQUOTE>
+
+    <P>
+<FONT color="#ff0000">注意 xx:xx の設定は，時間設定を空白に設定する意味です．</FONT><BR>
+<FONT color="#ff0000">注意 設定する時間表示部分は，全て24時間表記です．</FONT>
+    </P>
+    </BLOCKQUOTE>
+    <UL>
+      <LI><A href="#SEC15">基本スケジュール１.....月曜日から金曜日まで毎日AM08:00に起動してPM09:00に停止させる，土曜日と日曜日は起動させない。</A>
+      <LI><A href="#SEC16">基本スケジュール２.....毎日夜中AM02:00からAM03:00の間停止したい。</A>
+      <LI><A href="#SEC17">基本スケジュール３.....月曜日のAM06:00に起動して金曜日のPM11:00に停止したい。</A>
+      <LI><A href="#SEC18">基本スケジュール４.....連続運転中の一時停止</A>
+      <LI><A href="#SEC19">基本スケジュール５.....長期休暇のスケジュール停止</A>
+    </UL>
+    <P>
+<BR>
+    </P>
+    <HR>
+    <H2><A name="SEC15"><FONT color="#0000ff"><FONT size="+1">基本スケジュール１</FONT></FONT><BR>
+      <FONT color="#0000ff"><FONT size="+1">月曜日から金曜日まで毎日AM08:00に起動してPM09:00に停止させる，土曜日と日曜日は起動させない。</FONT></FONT></A></H2>
+    <P>
+週間スケジュールで設定します．
+    </P>
+    <BLOCKQUOTE>
+
+    <TABLE border="1">
+      <TR>
+        <TD>日</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>月</TD>
+        <TD>08:00</TD>
+        <TD>-</TD>
+        <TD>21:00</TD></TR>
+      <TR>
+        <TD>火</TD>
+        <TD>08:00</TD>
+        <TD>-</TD>
+        <TD>21:00</TD></TR>
+      <TR>
+        <TD>水</TD>
+        <TD>08:00</TD>
+        <TD>-</TD>
+        <TD>21:00</TD></TR>
+      <TR>
+        <TD>木</TD>
+        <TD>08:00</TD>
+        <TD>-</TD>
+        <TD>21:00</TD></TR>
+      <TR>
+        <TD>金</TD>
+        <TD>08:00</TD>
+        <TD>-</TD>
+        <TD>21:00</TD></TR>
+      <TR>
+        <TD>土</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+    </TABLE>
+
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+*さらに，祝日に起動させたくない．<BR>
+年間スケジュールで指定します．
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+
+    <BLOCKQUOTE>
+1/1 xx:xx - xx:xx<BR>
+1/15 xx:xx - xx:xx<BR>
+2/11 xx:xx - xx:xx など
+    </BLOCKQUOTE>
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+*さらに，休日出勤で2月7日土曜日のAM09:00に起動してPM06:00に停止させたい．<BR>
+年間スケジュールで指定します．
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+
+    <BLOCKQUOTE>
+2/7（土） 09:00 - 18:00
+    </BLOCKQUOTE>
+    </BLOCKQUOTE>
+      <HR>
+    <H2><FONT color="#0000ff"><FONT size="+1"><A name="SEC16">基本スケジュール２<BR>
+      毎日夜中AM02:00からAM03:00の間停止したい。</A></FONT></FONT></H2>
+    <P>
+（停止が起動より早い<FONT color="#ff0000">時刻</FONT>の場合は，停止時間に24時間足されます．）<BR>
+週間スケジュールで設定します．
+    </P>
+    <BLOCKQUOTE>
+
+    <TABLE border="1">
+      <TR>
+        <TD>日</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>月</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>火</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>水</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>木</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>金</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+      <TR>
+        <TD>土</TD>
+        <TD>03:00</TD>
+        <TD>-</TD>
+        <TD>02:00</TD></TR>
+    </TABLE>
+
+    </BLOCKQUOTE>
+    <HR>
+    <H2><FONT color="#0000ff"><FONT size="+1"><A name="SEC17">基本スケジュール３<BR>
+      月曜日のAM06:00に起動して金曜日のPM11:00に停止したい。</A></FONT></FONT></H2>
+    <P>
+週間スケジュールを使います．<BR>
+    </P>
+    <BLOCKQUOTE>
+
+    <TABLE border="1">
+      <TR>
+        <TD>日</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>月</TD>
+        <TD>06:00</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>火</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>水</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>木</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR>
+        <TD>金</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>23:00</TD></TR>
+      <TR>
+        <TD>土</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+    </TABLE>
+
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+*さらに，2月6日金曜日は停止させずに2月7日土曜日PM09:00に停止したい．<BR>
+年間スケジュールを使います．
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+
+    <BLOCKQUOTE>
+2/6 xx:xx - xx:xx<BR>
+2/7 xx:xx - 21:00
+    </BLOCKQUOTE>
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+*さらに，1月15日木曜日は祝日なので1月14日水曜日のPM11:00に停止させて1月16日金曜日のAM06:00に起動させ金曜日なのでPM11:00に停止させたい．<BR>
+年間スケジュールを使います．
+    </BLOCKQUOTE>
+    <BLOCKQUOTE>
+
+    <BLOCKQUOTE>
+1/14 xx:xx - 23:00<BR>
+1/15 xx:xx - xx:xx<BR>
+1/16 06:00 - 23:00
+    </BLOCKQUOTE>
+    </BLOCKQUOTE>
+    <HR>
+    <H2><FONT size="+1" color="#0000ff"><A name="SEC18">基本スケジュール４<BR>
+      連続運転中の一時停止</A></FONT></H2>
+    <P>
+2月3日火曜日当日PM00:10に停止してPM00:45に起動したい．<BR>
+単一スケジュールを使います．
+    </P>
+    <BLOCKQUOTE>
+停止 2/3 12:10<BR>
+起動 2/3 12:45
+    </BLOCKQUOTE>
+    <HR>
+      <H2><FONT size="+1" color="#0000ff"><A name="SEC19">基本スケジュール５<BR>
+	長期休暇（12月29日から1月3日）のスケジュールを設定したい</A></FONT></H2>
+      年間スケジュールを使います．
+      <BLOCKQUOTE>
+
+    <TABLE>
+      <TR align="center">
+        <TD></TD>
+        <TD>起動</TD>
+        <TD></TD>
+        <TD>停止</TD></TR>
+      <TR align="center">
+        <TD>12/29</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>18:00</TD></TR>
+      <TR align="center">
+        <TD>12/30</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR align="center">
+        <TD>12/31</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR align="center">
+        <TD>1/1</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR align="center">
+        <TD>1/2</TD>
+        <TD>xx:xx</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+      <TR align="center">
+        <TD>1/3</TD>
+        <TD>23:00</TD>
+        <TD>-</TD>
+        <TD>xx:xx</TD></TR>
+    </TABLE></BLOCKQUOTE>
+</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page005.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page009.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

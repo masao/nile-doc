@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - ログビュー機能</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page060.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="appendix.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">15.ログビュー機能</FONT></B></TD></TR>
+</TABLE>
+<P><BR>
+この機能を使って、パワーバイザがインストールされていないワークステーションで
+パワーバイザのログを見る事ができます。<BR><BR>
+<BR>
+使用にあたっての注意点</P>
+<OL>
+  <LI>同じOSでなければ使用できません。
+  <LI><B>VIEWER.tar</B>ファイルは、パワーバイザがインストールされているワークステーション毎に作成し、そのファイルを使用しなければなりません。
+</OL>
+<P><BR>
+<BR>
+<A name="tag0"></A><FONT size="+3"><B>tar</B>ファイルの作成</FONT></P>
+<OL>
+  <LI>まず、パワーバイザがインストールされているワークステーション上で
+  /インストール先/ｂｉｎ ディレクトリ の下に存在する
+  VIEWINST を実行します。<BR>
+  <B>/インストール先/ｂｉｎ/VIEWINST&lt;Return&gt;</B>
+  <LI>1.を実行すると、同じディレクトリに <B>VIEWER.tar</B> ファイルが作成されます。これが logviewが入っている<B>tar</B>ファイルで、パワーバイザがインストールされていないワークステーションで使用するファイルです。
+</OL>
+<P><BR>
+<BR>
+<A name="tag1"></A><FONT size="+3">ログビュー機能に必要なファイル</FONT><BR><BR>
+パワーバイザがインストールされていないワークステーションで
+パワーバイザのログを見るために必要なファイルは、以下のファイルです。</P>
+<OL>
+  <LI>「tarファイルの作成」で作成した <B>VIEWER.tar</B>ファイル
+  <LI>UPSのログファイル（<B>tar</B>ファイルを作成したワークステーションのログファイル：
+  /インストール先/log/upslog ファイル）
+</OL>
+<P><BR>
+<BR>
+<A name="tag2"></A><FONT size="+3">logviewの展開（インストール）</FONT></P>
+<OL>
+  <LI><B>VIEWER.tar</B>ファイルと UPSのログファイルを、ログを見るワークステーションの
+  <B>/tmp</B> にコピーします。
+  <LI><B>tar</B>ファイルを展開します。<BR>
+  <B>tar xvf VIEWER.tar&lt;Return&gt;</B><BR>パワーバイザをインストールしたディレクトリ構成（/インストール先/bin/logview）にtarファイルが展開されます。パワーバイザをインストールしたディレクトリ（/インストール先/bin/logview）に展開されない場合は、VIEWER.tarファイルをルートディレクトリに置いてから実行してください。）
+</OL>
+<P><BR><BR>
+<A name="tag3"></A><FONT size="+3">logviewの使い方</FONT><BR><BR>
+logviewは以下のようにして実行します。<BR>
+<B>logview -log ログファイル名&lt;Return&gt;</B><BR>
+（例） /usr/ups/bin/logview -log /tmp/upslog&lt;Return&gt;<BR>
+<BR>
+引数としては以下のものがあります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>-log</TD>
+      <TD>表示するログファイルを指定します。</TD>
+    </TR>
+    <TR>
+      <TD>-lin</TD>
+      <TD>UPSの詳細コードが付いたデータを表示します。</TD>
+    </TR>
+    <TR>
+      <TD>-csv</TD>
+      <TD>CSV形式でログを表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>（例）CSV形式でログを表示する場合<BR>
+/usr/ups/bin/logview -csv -log /tmp/upslog&lt;Return&gt;</P>
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page060.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="appendix.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - ヒストリ管理</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P><A name="TAG0"></A><A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page027.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page035.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">10.ヒストリ管理</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+<A name="SEC1"></A>UPSのステータス情報およびイベント情報は、ログファイルに自動的に記録されています。いつでもテキスト情報として確認できます。
+</P>
+<H2><A name="SEC2"><B>ステータスログ</B></A></H2>
+<DL>
+  <DD>UPSのステータス情報は、upslogファイル（/usr/ups/log/）に記録されます。テキスト情報として確認したい場合は、次のコマンドを実行します。<BR>
+/usr/ups/bin/upslog ＜Return＞<BR>
+下記のようなステータスログが表示されます。<BR>
+  <P>
+日本語環境の場合
+  </P>
+<PRE>＊＊＊＊＊＊＊　UPS情報（1）　＊＊＊＊＊＊＊
+時刻     ：Fri  Jun  24  17:39:51  1994
+商用電圧  ：100.0V, 出力電圧  ：100.0V, バッテリ電圧： 69.0V
+商用周波数：60.0Hz, 出力周波数：60.0Hz, 負荷率      ： 32.0%
+給電実績  ：   0分, ステータス：正常
+
+＊＊＊＊＊＊＊　UPS情報（1）　＊＊＊＊＊＊＊
+時刻     ：Fri  Jun  24  17:54:51  1994
+商用電圧  ：100.0V, 出力電圧  ：100.0V, バッテリ電圧： 69.0V
+商用周波数：60.0Hz, 出力周波数：60.0Hz, 負荷率      ： 32.0%
+給電実績  ：   0分, ステータス：正常</PRE>
+  <P>
+英語環境の場合
+  </P>
+<PRE>＊＊＊＊＊＊＊　UPS information（1）　＊＊＊＊＊＊＊
+TIME      ：Fri  Jun  24  17:39:51  1994
+UTIL.VOLT ：100.0V, OUT VOLT  ：100.0V, BAT.VOLT： 69.0V
+UTIL.FREQ ：60.0Hz, OUT FREQ  ：60.0Hz, LOAD PER： 32.0%
+STATUS    ：Normal
+
+＊＊＊＊＊＊＊　UPS information（1）　＊＊＊＊＊＊＊
+TIME      ：Fri  Jun  24  17:54:51  1994
+UTIL.VOLT ：100.0V, OUT VOLT  ：100.0V, BAT.VOLT： 69.0V
+UTIL.FREQ ：60.0Hz, OUT FREQ  ：60.0Hz, LOAD PER： 32.0%
+STATUS    ：Normal</PRE>
+表計算ソフトなどで読み込み可能なCSV形式のテキストファイルとして出力したい場合は、以下のようにリダイレクトします。<BR>
+/usr/ups/bin/upslog -csv ＞ $HOME/ups.csv ＜Return＞<BR>
+<BR>
+CSV形式テキストファイルの例
+  <TABLE width="500">
+    <TR>
+      <TD>94/06/24,</TD>
+      <TD>19:04:51,</TD>
+      <TD>100.0,</TD>
+      <TD>100.0,</TD>
+      <TD>069.0,</TD>
+      <TD>060.0,</TD>
+      <TD>060.0,</TD>
+      <TD>030.0,</TD>
+      <TD>0000</TD></TR>
+    <TR>
+      <TD>94/06/24,</TD>
+      <TD>19:19:51,</TD>
+      <TD>100.0,</TD>
+      <TD>100.0,</TD>
+      <TD>069.0,</TD>
+      <TD>060.0,</TD>
+      <TD>060.0,</TD>
+      <TD>030.0,</TD>
+      <TD>0000</TD></TR>
+    <TR>
+      <TD>94/06/24,</TD>
+      <TD>19:34:51,</TD>
+      <TD>100.0,</TD>
+      <TD>100.0,</TD>
+      <TD>069.0,</TD>
+      <TD>060.0,</TD>
+      <TD>060.0,</TD>
+      <TD>030.0,</TD>
+      <TD>0000</TD></TR>
+    <TR align="center">
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD></TR>
+    <TR align="center">
+      <TD align="left">年月日</TD>
+      <TD align="left">時刻</TD>
+      <TD align="left">商用<BR>
+電圧</TD>
+      <TD align="left">出力<BR>
+電圧</TD>
+      <TD align="left">バッテリ<BR>
+電圧</TD>
+      <TD align="left">商用<BR>
+周波数</TD>
+      <TD align="left">出力<BR>
+周波数</TD>
+      <TD align="left">負荷率</TD>
+      <TD align="left">給電<BR>
+実績</TD></TR>
+  </TABLE>
+
+</DL>
+<H2><A name="SEC3"><B>イベントログ</B></A></H2>
+<DL>
+  <DD>停電発生や復電、シャットダウンなどのイベント発生時には、イベントの内容がイベントログファイルに記録されます。テキスト情報として確認したい場合は、次のコマンドを実行します。<BR>
+/usr/ups/bin/upslog -ev ＜Return＞<BR>
+<BR>
+  下記のようなイベントログが表示されます。<BR>
+  <TABLE width="500">
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:08:36</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Power trouble!</TD></TR>
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:08:41</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Solve the problem quickly</TD></TR>
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:08:46</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Power trouble!</TD></TR>
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:08:51</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Solve the problem quickly</TD></TR>
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:08:56</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Power trouble!</TD></TR>
+    <TR>
+      <TD>Jun 17</TD>
+      <TD>00:09:01</TD>
+      <TD>moon</TD>
+      <TD>upsd[9815]:</TD>
+      <TD>(moon)</TD>
+      <TD>Recovered...</TD></TR>
+    <TR align="center">
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD>
+      <TD align="left">↑</TD></TR>
+    <TR align="center">
+      <TD align="left">日付</TD>
+      <TD align="left">時刻</TD>
+      <TD align="left">ホスト名</TD>
+      <TD align="left">プログラム名<BR>
+（upsd固定）</TD>
+      <TD align="left">ホスト名</TD>
+      <TD align="left">イベント内容</TD></TR>
+  </TABLE>
+
+</DL>
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page027.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page035.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - 動作条件の設定（CUI環境編）</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<A name="TAG0"></A> <A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page002.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page005.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">4.動作条件の設定（CUI環境編）</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+警報メッセージの表示やシャットダウンのタイミングなどの動作条件は、［Configuration］画面で設定します。
+</P>
+<TABLE cellpadding="10">
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <HR>
+</TD></TR>
+  <TR>
+    <TD align="right" NOWAP></TD>
+    <TD valign="top">
+    <A name="SEC0"><FONT size="5"><B>画面の操作方法</B></FONT></A>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>最初に画面の操作方法について説明します。<BR>
+<BR>
+設定画面の上半分を「入力領域」、下半分を「メニュー領域」と呼びます。画面を開いた最初の状態では、カーソルは「入力領域」の先頭の入力項目の上にあります。動作条件を設定する際は、TABキーを使ってカーソルを設定したい入力項目に移動させます。入力を終えたら、TABキーで次の入力項目に移ります。必要なすべての入力が終了したら、ESCキーを使ってカーソルをメニュー領域にジャンプさせます。
+TABキーを使って、カーソルを選択したいメニュー項目へ移動させ&lt;Return&gt;キーで選択し実行します。<BR>
+<BR>
+[Configuration]画面は、複数のサブ画面を持っています。画面の切替えは、「入力領域」でTABキーを使ってカーソルを「*Prev
+Sheet」または「*Next Sheet」に移動させ、 &lt;Return&gt;キーで選択することによって行います。<BR>
+    <TABLE border="1">
+      <TR>
+        <TD bgcolor="#CCFFFF"><B>ESCキー</B></TD>
+        <TD>「入力領域」、「メニュー領域」間のカーソルジャンプ</TD></TR>
+      <TR>
+        <TD bgcolor="#CCFFFF"><B>TABキー</B></TD>
+        <TD>入力項目、メニュー項目のカーソル移動</TD></TR>
+      <TR>
+        <TD bgcolor="#CCFFFF"><B>&lt;Return&gt;キー</B></TD>
+        <TD>メニュー項目の選択と実行</TD></TR>
+      <TR>
+        <TD bgcolor="#CCFFFF"><B>*Prev Sheet</B></TD>
+        <TD>前のサブ画面へ戻る</TD></TR>
+      <TR>
+        <TD bgcolor="#CCFFFF"><B>*Next Sheet</B></TD>
+        <TD>次のサブ画面へ進む</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B>[Configuration]画面はcursesライブラリを使用しています。 そのために、TERM環境変数の設定によって、画面の文字化けが発生したりキーマップが狂うことがあります。 
+その場合は、TERM環境変数を&quot;vt100&quot;などのポピュラーな端末設定に変更して試してみてください。</B></TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>Configuration 終了後、ターミナルがエコーバックしなくなる、改行しなくなるなどの現象が現れた場合は、次のコマンドを実行してみてください。<BR>
+<B># stty sane &lt;Return&gt; または tset &lt;Return&gt;</B></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <HR>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD><A name="SEC1"><B><FONT size="+2">設定の変更画面 </FONT>(Change Operating Conditions)</B></A></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>［Configuration］画面は、［Main Window］画面（/usr/ups/bin/cinst
+      &lt;Return&gt;）で「[3] Change Set Up」を選択し、「[1]
+      Change Operating Conditions」を選択すると表示されます。</TD></TR>
+  <TR>
+    <TD align="right" NOWAP></TD>
+    <TD bgcolor="#80ff80">
+<P>    
+<A name="SEC2"><B><FONT size="+1">動作環境の設定</FONT></B></A>
+</P>
+</TD></TR>
+  <TR>
+    <TD align="right"><B><FONT size="2" color="#ff0000">実際のレイアウトと数値は図と異なることがあります。</FONT></B></TD>
+    <TD><IMG src="img017.gif" width="400" height="333" border="0"><BR>
+※ ifnameは、ご使用のネットワークカードによってかわります。
+    <P>
+<B>ttyname（TTY名）</B><BR>
+コミュニケーションケーブルを接続するシリアルポートを指定します。
+    </P>
+    <P>
+<B>ifname（ネットワークインタフェース名）</B><BR>
+ネットワークのインタフェース名を指定します。
+    </P>
+    <P>
+<B>upslog（ログファイル名）</B><BR>
+ログファイルのパスを指定します。
+    </P>
+    <P>
+<B>history（ログの記録期間）</B><BR>
+ログの記録期間を設定します。単位は「month」「week」「day」「hour」「record」「rotate」が選択できます。
+「rotate」を指定すると、１ヶ月サイズのログファイルが、インデックス付きで指定ローテーション数だけ作られます。
+    </P>
+    <P>
+<B>upsrc（シャットダウンスクリプト）</B><BR>
+スクリプトファイルのパスを指定します。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD><BR>
+      スクリプトについては、<A href="page005.htm">「スクリプト」</A>を参照してください。
+      <P>
+<IMG src="img015.gif" height="296" width="607">
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD><B>rclevel（実行レベル）</B><BR>
+スクリプトの実行レベルを指定します。１～７が選択できます。
+    <P>
+<B>broadcast（ステータスのブロードキャスト）</B><BR>
+      YESにすると、LAN上の他のクライアントマシンにステータス情報を表示できます。（オプションのクライアントソフトウェアが必要です。）</P>
+    <P>
+<B>enabletimer（タイマ機能）</B><BR>
+      YESにすると、スケジュール運転を実行します。</P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <A name="SEC3"><B><FONT size="+1">時間パラメータ </FONT></B></A>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#ff0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img018.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>watchinterval(sec) （UPS監視時間間隔）</B><BR>
+UPSのステータス情報（時刻、電圧、周波数、出力電流など）を記録する時間間隔（秒）を設定します。デフォルトは900秒（15分）です。
+    </P>
+    <P>
+<B>untilshutdown(sec) （停電確認時間）</B><BR>
+停電が発生してからシャットダウン処理を実行するまでの時間（秒）を設定します。この間に復電すると、システムは通常状態に戻ります。デフォルトは150秒です。
+    </P>
+    <P>
+<B>forshutdown(sec) （シャットダウン遅延時間）</B><BR>
+シャットダウン処理に入ってから、実際にシャットダウンスクリプトを起動するまでの待機時間を設定します。この間X-Window画面上では、赤色の警報メッセージを表示します。シャットダウン遅延時間内に復電しても、システムはシャットダウン処理を続行します。デフォルトは30秒です。
+    </P>
+    <P>
+<B>forpreprocess(sec) （シャットダウン前処理開始時間）</B><BR>
+スケジュール運転で、シャットダウンを行う前の処理（スクリプトの実行レベル＝７）を開始する時間を設定します。シャットダウンの何秒前に処理を開始するか設定します。
+    </P>
+    <P>
+<B>enableputoff（終了遅延条件）</B><BR>
+スケジュール運転でオートシャットダウンを行う場合に、プロセスが実行されていたり他のユーザがログインしているときはシャットダウン処理の実行を遅らせることができます。「プロセス実行」「ログインユーザ」「マウント」からシャットダウンを遅らせる条件を指定します。複数選択が可能です。<BR>
+    </P>
+    <TABLE border="1">
+      <TR>
+        <TD bgcolor="#80ffff"><B>1</B></TD>
+        <TD bgcolor="#80ffff">プロセス実行</TD>
+        <TD>特定のプロセスが実行中。</TD></TR>
+      <TR>
+        <TD bgcolor="#80ffff"><B>2</B></TD>
+        <TD bgcolor="#80ffff">ログインユーザ</TD>
+        <TD>ログインしているユーザがいる。</TD></TR>
+      <TR>
+        <TD bgcolor="#80ffff"><B>4</B></TD>
+        <TD bgcolor="#80ffff">マウント</TD>
+        <TD>他ホストからマウントされている。</TD></TR>
+          <TR>
+            <TD bgcolor="#80ffff"><B>3</B></TD>
+            <TD bgcolor="#80ffff">プロセス実行&amp;ログインユーザ</TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TD bgcolor="#80ffff"><B>5</B></TD>
+            <TD bgcolor="#80ffff">プロセス実行&amp;マウント</TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TD bgcolor="#80ffff"><B>6</B></TD>
+            <TD bgcolor="#80ffff">ログインユーザ&amp;マウント</TD>
+            <TD></TD>
+          </TR>
+          <TR>
+            <TD bgcolor="#80ffff"><B>7</B></TD>
+            <TD bgcolor="#80ffff">プロセス実行&amp;ログインユーザ&amp;マウント</TD>
+            <TD></TD>
+          </TR>
+        </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>
+    <P>「特定のプロセス」とは、スケジュールの［遅延条件の設定］画面に登録されているプロセスです。詳細については、「<A href="page009.htm#TAG0">遅延条件の設定</A>」を参照してください。</P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>putofftime（終了遅延時間）</B><BR>
+      ［enableputoff（終了遅延条件）］が設定されている場合の遅延時間（秒）を設定します。デフォルトは600秒です。</P>
+</TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B><FONT color="RED"> ［enableputoff］または［putofftime］のどちらかを０にすると、終了遅延は実行されません。
+</FONT></B></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>putoffrepeat（繰り返し終了遅延）</B><BR>
+      YESにすると、［終了遅延条件］が解除されるまでシャットダウンを［putofftime］分繰り返し延長します。</P>
+    <P>
+<B>upsautodown（UPS自動停止）</B><BR>
+      YESにすると、シャットダウン処理終了後にUPSを停止します。停止までの時間は［autodowntime］で設定します。UPS自動停止「NO（無効）」に設定しUPSを停止しない場合は、「動作環境の設定」の「タイマ機能(enabletimer)」も「NO（無効）」に設定する必要があります。</P>
+    <P>
+<B>autodowntime（自動停止時間）</B><BR>
+［upsautodown］がYESの場合に、シャットダウン処理直前からUPSを停止するまでの時間（秒）を設定します。デフォルトは150秒です。
+    </P>
+<IMG src="img015.gif" height="296" width="607"></TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>スケジュールについては、「スケジュール運転」を参照してください。</TD></TR>
+    <TR>
+      <TD align="right"><IMG src="img0004.gif" height="55" width="55" align="top"></TD>
+      <TD>サーバソフト（本ソフト）と共に別のワークステーションにクライアントソフトをインストールしてご使用頂く場合には、下記の点に注意して設定を行ってください。
+      <UL>
+        <LI><FONT color="#ff0000">同一UPSに接続しているサーバ側のUPS自動停止時間は、サーバとクライアント両方のシャットダウン処理が完了できるように設定してください。</FONT>
+        <LI><FONT color="#ff0000">シャットダウン遅延時間(サーバ側)+UPS自動停止時間(サーバ側)
+        &gt; シャットダウン遅延時間(クライアント側)+シャットダウン処理時間(クライアント側)</FONT>
+        <LI><FONT color="#ff0000">UPS自動停止時間(サーバ側) &gt; シャットダウン処理時間(サーバ側)</FONT>
+      </UL>
+      </TD>
+    </TR>
+    <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <A name="SEC4"><B><FONT size="+1">出力制御（ご使用のUPSがBM-FNXの場合のみこの設定が可能です） </FONT></B></A>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#ff0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0170.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>maincontrol（メイン出力制御）</B><BR>
+UPSのメイン出力を停止させたくない場合は無効に設定してください。デフォルトは有効です。<BR>
+メイン出力制御を無効にしても出力1、出力2は出力を停止します。<BR>
+    </P>
+    <P>
+<B>ongain1（出力1の起動遅延時間）</B><BR>
+出力1の起動時の出力開始遅延時間を入力してください。単位は分です。<BR>
+    </P>
+    <P>
+<B>ongain2（出力2の起動遅延時間）</B><BR>
+出力2の起動時の出力開始遅延時間を入力してください。単位は分です。<BR>
+    </P>
+    <P>
+<B>offdelay1（出力1の停止遅延時間）</B><BR>
+出力1の停止時の出力停止遅延時間を入力してください。単位は分です。<BR>
+    </P>
+    <P>
+<B>offdelay2（出力2の停止遅延時間）</B><BR>
+出力2の停止時の出力停止遅延時間を入力してください。単位は分です。<BR>
+    </P>
+    <P>
+<B>manualswitch（リモートスイッチ機能）</B><BR>
+      UPSの「HORN SILENCE」ボタンを5秒以上押しつづけた時に、自動シャットダウン処理が行える機能を有効にするかどうかを設定します。（上記機能での停止後の操作については、「スケジュール停止中の起動」の項目を参照ください。）<BR>
+    </P>
+</TD></TR>
+    <TR>
+      <TD></TD>
+      <TD><IMG src="out_off.gif" width="600" height="300" border="0"></TD>
+    </TR>
+    <TR>
+      <TD></TD>
+      <TD><IMG src="out_on.gif" width="600" height="300" border="0"></TD>
+    </TR>
+    <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <A name="SEC5"><B><FONT size="+1">一般設定</FONT></B></A>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#ff0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img019.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>autoreboot（復電時自動起動）</B><BR>
+YESにすると、復電時にUPSを自動的に起動します。
+    </P>
+    <P>
+<B>netshutdown（手動停止コマンド）</B><BR>
+YESにすると、スケジュール運転中の例外的な停止、起動が可能になります。詳細については、第14章「スケジュールの例外処理」を参照してください。
+    </P>
+    <P>
+<B>syslogpriority（シスログ優先度）</B><BR>
+イベントが発生した場合に表示される（最初の）メッセージの優先度を設定します。「emerg」「alert」「crit」「err」「warn」「info」「none」から選択します。シスログ優先度を設定することによって、不要なメッセージの表示を禁止できます。
+    </P>
+    <P>
+<B>syslogpriorit 2（シスログ優先度繰り返し）</B><BR>
+繰り返し表示されるメッセージの優先度を設定します。「emerg」「alert」「crit」「err」「warn」「info」「none」から選択します。
+    </P>
+    <P>
+<B>srvtype（サービスの種類）</B><BR>
+オプションの分岐ケーブルを使用した場合に設定します。分岐ケーブルをご使用になられない場合は必ず「master」に設定して下さい。分岐ケーブルをご使用の際は分岐ケーブルに添付されているマニュアルをお読み下さい。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <P>
+<A name="SEC6"><B><FONT size="+1">トラップ</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#FF0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0171.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>snmptrap（SNMPトラップ送信）</B><BR>
+トラップを送信するかどうかを、設定します。「yes」にすれば、SNMPv1トラップを送信します。デフォルトは「no」です。<BR>
+送信できるトラップは、次の3種類です。
+    </P>
+    <TABLE border="1">
+      <TR>
+        <TD bgcolor="#FFCC00">停電時<BR>
+異常時</TD>
+        <TD>enterpriseSpecific(6)</TD>
+        <TD>upsTrapOnBattery</TD>
+        <TD>33.2.1.0</TD></TR>
+      <TR>
+        <TD bgcolor="#FF0000">シャットダウン時<BR>
+バイパス給電時<BR>
+故障時</TD>
+        <TD></TD>
+        <TD>upsTrapAlarmEntryAdded</TD>
+        <TD>33.2.3.0</TD></TR>
+      <TR>
+        <TD bgcolor="#00FF00">復電時</TD>
+        <TD></TD>
+        <TD>upsTrapAlarmEntryRemoved</TD>
+        <TD>33.2.4.0</TD></TR>
+    </TABLE>
+
+    <P>
+<B>community（SNMPコミュニティ）</B><BR>
+SNMPトラップのコミュニティを設定します。
+    </P>
+    <P>
+<B>trapto（トラップ送信先）</B><BR>
+送信先のホスト名またはIPアドレスを指定します。最大3箇所まで指定できます。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><FONT color="#ff0000">SNMPトラップの発生は，SNMPマネージャに対して以上が発生したことを知らせるために発生させます。<BR>
+障害発生の目安としてご使用ください。<BR>
+upsTrapAlarmEntryAddedとupsTrapAlarmEntryRemovedは対になって発生しないことがあります。</FONT></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <P>
+<A name="SEC7"><B><FONT size="+1">メール</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#FF0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0172.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>sendmail（電子メール送信）</B><BR>
+電子メールを送信するかどうかを、設定します。「yes」にすれば、電子メールが送信されます。送信されるタイミングは、停電時、シャットダウン、復電時、バイパス給電時、異常時、故障時です。<BR>
+    </P>
+    <P>
+<B>mailserv（SMTPサーバアドレス）</B><BR>
+電子メールを配信するSMTPサーバを入力してください。ホスト名、IPアドレスどちらでもかまいません。<BR>
+    </P>
+    <P>
+<B>mailfrom（メール発信者）</B><BR>
+メール発信者を入力してください。ここで入力された内容が、受信メールの発信元に表示されます。<BR>
+    </P>
+    <P>
+<B>mailto（メール受取人）</B><BR>
+メールを送る先を入力してください。3箇所までメールを送ることができます。<BR>
+    </P>
+    <P>
+<B>mailups（添付文字列）</B><BR>
+メール本文に付ける識別用の文字列を入力してください。<BR>
+    </P>
+    <P>
+<B>mailnlog（添付ログ件数）</B><BR>
+メール本文に付けるUPSログの件数を入力します。<BR>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <HR>
+    <P>
+<A name="SEC8"><B><FONT size="+2">セキュリティの変更画面</FONT> (Security)</B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD><BR>
+［セキュリティの変更］画面は、メインメニュー画面（/usr/ups/bin/cinst &lt;Return&gt;）で［Cheng
+Setup］を選択しさらに[Change Security Settings]を選択すると表示されます。</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <P>
+<A name="SEC9"><B><FONT size="+1">パスワード</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#FF0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0173.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>oldpasswd（古いパスワード）</B><BR>
+今まで設定されていたパスワードを入力します。インストール直後は、設定されていませんので入力する必要は、ありません。<BR>
+    </P>
+    <P>
+<B>newpasswd（新しいパスワード）</B><BR>
+変更したいパスワードを入力してください。ここで登録するパスワードは、本ソフトを使用するためのセキュリティパスワードです。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <P>
+<A name="SEC10"><B><FONT size="+1">管理ユーザ</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#FF0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0174.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>admusers（管理ユーザ名）</B><BR>
+rootユーザ以外に、本ソフトの設定変更を許可するユーザを登録します。最大5ユーザまで登録できます。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD bgcolor="#80ff80">
+    <P>
+<A name="SEC11"><B><FONT size="+1">管理ホスト</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right"><FONT size="2" color="#FF0000"><B>実際のレイアウトと数値は図と異なることがあります。</B></FONT></TD>
+    <TD><IMG src="img0175.gif" width="400" height="333" border="0"></TD></TR>
+  <TR>
+    <TD align="right"></TD>
+    <TD>
+    <P>
+<B>admhosts（管理ホスト名）</B><BR>
+管理ツールでネットワーク経由での監視管理を行う場合は、管理ツールを使用するワークステーションのホスト名を管理ホスト名に設定する必要があります。管理ホストとして登録できるのは最大5ヶ所のホストです。
+    </P>
+</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page002.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A> <A href="page005.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

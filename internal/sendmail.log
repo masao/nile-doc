@@ -1,0 +1,78 @@
+2001.08.15(Wed)		いとうちなつ
+sendmail.cf の変更
+
+# cd /usr/lib/mail/cf
+# cp main-v7sun.mc test.mc
+#  /usr/ccs/bin/make test.cf
+/usr/bin/mv test.cf test.cf.prev
+mv: test.cf を使用できません。
+*** Error code 2 (ignored)
+/usr/ccs/bin/m4 ../m4/cf.m4 test.mc > test.cf
+
+# diff -c test.cf.org test.cf
+*** test.cf.org Wed Aug 15 19:06:01 2001
+--- test.cf     Wed Aug 15 19:03:27 2001
+***************
+*** 18,24 ****
+  #####
+  #####         SENDMAIL CONFIGURATION FILE
+  #####
+! ##### built by root@nile on 2001年08月15日 (水) 19時06分01秒 JST
+  ##### in /usr/lib/mail/cf
+  ##### using ../ as configuration include directory
+  #####
+--- 18,24 ----
+  #####
+  #####         SENDMAIL CONFIGURATION FILE
+  #####
+! ##### built by root@nile on 2001年08月15日 (水) 18時39分37秒 JST
+  ##### in /usr/lib/mail/cf
+  ##### using ../ as configuration include directory
+  #####
+***************
+*** 62,80 ****
+  #   local info   #
+  ##################
+  
+! Cwlocalhost
+  # file containing names of hosts for which we receive email
+! Fw-o /etc/mail/sendmail.cw
+  
+  # my official domain name
+  # ... define this only if sendmail cannot automatically determine your domain
+! #Dj$w.Foo.COM
+  
+  
+  CP.
+  
+  # "Smart" relay host (may be null)
+! DS
+  
+  
+  # operators that cannot be in local usernames (i.e., network indicators)
+--- 62,81 ----
+  #   local info   #
+  ##################
+  
+! Cwnile
+  # file containing names of hosts for which we receive email
+! #Fw-o /etc/mail/sendmail.cw
+  
+  # my official domain name
+  # ... define this only if sendmail cannot automatically determine your domain
+! Dj$w.ulis.ac.jp
+  
+  
+  CP.
+  
+  # "Smart" relay host (may be null)
+! #DS
+! DSsmtp.ipc.ulis.ac.jp
+  
+  
+  # operators that cannot be in local usernames (i.e., network indicators)
+
+# /usr/lib/sendmail -C /usr/lib/mail/cf/test.cf test@nile.ulis.ac.jp < /dev/null
+# mv /etc/sendmail.cf /etc/sendmail.cf.mask
+# cp test.cf /etc/mail/sendmail.cf
+# pkill -HUP sendmail

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - スクリプト</TITLE>
+</HEAD>
+
+<BODY bgcolor="white">
+
+<P>
+<A name="TAG0"></A> <A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page003.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page017.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">5.スクリプト</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+<BR>
+本ソフトでは、オートシャットダウン時やスケジュール運転での停止前などいくつかのタイミングでスクリプトが実行できます。スクリプトは、各タイミングごとに必要な処理を
+upsrc（/usr/ups/bin/upsrc）ファイルに記述します。
+</P>
+<P>
+<BR>
+</P>
+<H2><A name="SEC1"><FONT size="4"><B>スクリプトの実行レベル</B></FONT></A></H2>
+<DL>
+  <DT>スクリプト実行のタイミングを実行レベル（rclevel）といいます。<BR>
+実行レベルには以下の７段階があり、１つのレベルを指定すると、それ以下の全てのレベルでスクリプトが実行されます。
+  <DD>rclever：7 スケジュール運転での停止前処理
+  <DD>rclever：6 スタートアップ時
+  <DD>rclever：5 復電時
+  <DD>rclever：4 スケジュール運転での停止時
+  <DD>rclever：3 停電発生時
+  <DD>rclever：2 回復不能とみなされたとき（赤色警報）
+  <DD>rclever：1 オートシャットダウン時
+  <DT>以下に、各タイミングと実行レベルの関係を示します。○内の数字が実行レベルです。
+</DL>
+<P>
+<BR>
+<B>電源異常発生時</B><BR>
+<IMG src="img015.gif" height="296" width="607">
+</P>
+<P>
+<BR>
+<B>スケジュール運転時</B><BR>
+<IMG src="img021.gif" height="249" width="551">
+</P>
+<DL>
+  <DT>スクリプトは、設定した実行レベル以下の各タイミングで実行されます。たとえば、実行レベルを３に設定した場合は、「停電発生時」「回復不能とみなされたとき」「オートシャットダウン時」の各タイミングでスクリプトが実行されます。具体的には、各タイミングで実行レベルが引数として渡されスクリプトが実行されます。
+  <DD>３（停電発生時）：/usr/ups/bin/upsrc 3
+  <DD>２（回復不能とみなされたとき）：/usr/ups/bin/upsrc 2
+  <DD>１（オートシャットダウン時）：/usr/ups/bin/upsrc 1
+</DL>
+<P>
+<BR>
+</P>
+<H2><A name="SEC2"><FONT size="5"><B>実行レベルの指定</B></FONT></A></H2>
+<P>
+<BR>
+</P>
+<P>スクリプトの実行レベルは、［設定の変更］画面の［実行レベル］で設定します。上位のレベルは下位のレベルを含むので、処理を行いたい最上位のレベルを選択します。<BR>
+<IMG src="scrpt003.gif" width="570" height="333" border="0"><BR><BR>
+<IMG src="scrpt004.gif" width="570" height="333" border="0"><BR>
+</P>
+<TABLE>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD><BR>
+［設定の変更］画面は、メインメニュー画面（/usr/ups/bin/xinst ＜Return＞）で［設定の変更］ボタンをクリックすると表示されます。詳細については、
+<A href="page002.htm">「動作条件の設定(GUI環境編)」</A> 又は、<A href="page003.htm">「動作条件の設定(CUI環境編)」</A>を参照してください。</TD></TR>
+</TABLE>
+
+<P>
+<BR>
+</P>
+<H2><A name="SEC3"><FONT size="5"><B>スクリプトの記述</B></FONT></A></H2>
+<P>
+<BR>
+</P>
+<P>
+スクリプトの記述については、以下の例を参考にしてください。スクリプト内部で引数を判断して、実行レベルに合った処理を行うようにします。
+</P>
+<TABLE>
+  <TR>
+    <TD></TD>
+    <TD>
+<PRE>
+#! /bin/sh
+#
+
+# シャットダウン処理
+_do_shutdown()
+{
+  ###### シャットダウン時に何か処理を入れる時は､こちらにコマンドを入れてください
+        cd /
+        /etc/shutdown -y -i0 -g0 &gt;/dev/console 2&gt;&amp;1
+}
+
+# シャットダウン前処理
+_pre_shutdown()
+{
+        データベースの終了処理など
+}
+
+# 停電検知処理
+_detect_power_fail()
+{
+        ファイルのバックアップ処理など
+}
+# main routine
+PATH=/bin:/usr/bin:/etc:.
+case $1 in
+# シャットダウン実行
+1) _do_shutdown ;;
+
+# 回復不能
+2) _pre_shutdown ;;
+
+# 停電検知
+3) _detect_power_fail ;;
+esac
+
+exit 0
+</PRE>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>古いバージョンのボーンシェルでは、上記例の関数タイプが使用できないものもあります。</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page003.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A> <A href="page017.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

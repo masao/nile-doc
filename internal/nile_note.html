@@ -1,0 +1,174 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=x-euc-jp">
+<title>
+memo about nile
+</title>
+</head>
+<h3>
+nile 覚え書き<br>
+</h3>
+<b>
+最終更新：2002年3月24日 (日) 
+</b>
+<hr>
+	<ul>
+	<li>nile について
+	<table>
+	<tr> <td>OS 	<td>Solaris7 ( SunOS 5.7 ) <tr> <td>マシン <td>Ultra-Enterprise3000
+	<tr> <td>Host Id 	<td>8081d1e8
+	<tr> <td>IPアドレス	<td>133.51.14.8
+	<tr> <td><br>
+	<tr> <td> netmask		<td>255.255.255.0
+	<tr> <td> domain 		<td>ulis.ac.jp
+	<tr> <td> search		<td>ulis.ac.jp ipc.ulis.ac.jp .
+	<tr> <td> nameserver      <td>133.51.16.242
+	<tr> <td> nameserver      <td>133.51.20.242
+	<!--
+	uni にシステムが移行した後、使用できるか不明なので
+	resolv.conf でコメントアウトしてる。
+	<tr> <td> nameserver      <td>133.51.60.51(停電時用)
+	-->
+	</table>	
+	<br>
+	<!--
+		2001年4月6日以前のIPアドレス	133.51.20.13
+	    2001年4月6日以前のnetmask 		255.255.252.0
+		2002年2月14日以前のnameserver 133.51.168.11(dream),133.51.168.12(hope)
+	-->
+
+	<li>ハードディスクの構成
+	<table border=2>
+	<tr>	
+		<td>デバイス名	
+		<td><br>	
+		<td><br>	
+		<td>スライス番号	
+		<td>SCSIアドレス
+	<tr>
+		<td rowspan=2>c0t0d0(4GB)	
+		<td> /	
+		<td>1.9GB	
+		<td align=center>0	
+		<td rowspan=2  align=center>0
+	<tr>
+		<td> /usr	
+		<td>1.9GB	
+		<td align=center>6	
+	<tr>
+		<td rowspan=2 >c0t1d0(4GB)	 
+		<td>/var 	
+		<td>1GB	
+		<td align=center>3	
+		<td rowspan=2  align=center>1
+	<tr>
+		<td>/tmp (swap)	
+		<td>3GB	
+		<td align=center>1	
+	<tr>
+		<td rowspan=2>c0t2d0(9GB)	 
+		<td>/usr/local	
+		<td>4.3GB	
+		<td align=center>6	
+		<td rowspan=2 align=center>2
+	<tr>	 
+		<td>/opt 	
+		<td>4.3GB	
+		<td align=center>5	
+	<tr>
+		<td>c0t3d0	(9GB)
+		<td>/project2
+		<td>8.6GB
+		<td align=center>7
+		<td align=center>3
+	<tr>
+		<td>c0t10d0	(18GB)
+		<td>/home
+		<td>17.2GB
+		<td align=center>7
+		<td align=center>10
+	<tr>
+		<td>c0t11d0	(18GB)
+		<td>/project
+		<td>17.2GB
+		<td align=center>7
+		<td align=center>11
+	<tr>
+		<td>c0t12d0	(34GB)
+		<td>/project3
+		<td>34GB
+		<td align=center>7
+		<td align=center>12
+	</table><br>
+
+	<br>
+	<li>付属機器
+	<ul>
+	<li>テープドライブ<br>
+		<table border=2>
+		<tr><td>　</td>
+			<td>SCSIアドレス</td>
+			<td align=center>型番</td>
+			<td align=center>備品番号</td>
+			<td align=center>物品簿記帳登録日</td>
+		</tr>
+		<tr>
+			<td>DDS3テープドライブ<br>(内蔵)</td>
+			<td align=center>5</td>
+			<td>　</td>
+			<td>　</td>
+			<td>　</td>
+		</tr>
+		<tr>
+			<td>DDS4オートローダドライブ<br>DDS4×6(外付け)</td> 
+			<td align=center>4</td>
+			<td> ニューテック N240<br> DDS4 A/MP</td>
+			<td> 学部 Q (54)01-6</td>
+			<td>平成13年5月24日</td>
+		</tr>
+		</table>
+		<br>
+		<ul>
+		<li>DDS4オートローダドライブ保証期間<br>
+			2001年5月18日- 3年間<br>
+		<br>
+		<li>DDS4オートローダ用ソフト BakBorn NETVAULT 6.03<br>
+			シリアルナンバー、マシンID、ライセンスキーは黄色のファイルにあり。
+		</ul>
+	<br>
+	<li>UPS　(2001年4月14日交換）<br>
+			<a href="http://www.gsee.co.jp">GSEE社</a> PICO II (http://www.gsee.co.jp)<br>
+		<!-- 20010322 nile のUPS を宇陀先生の部屋からもらってくる -->
+			UPS管理ソフト：PowerVisor Ver.3 
+				（<a href="./ups_manual/index.htm">マニュアル</a>）
+	</ul>
+		
+	<br>
+	<li>nile ローカルの .cshrc .login のありか
+		<ul>
+		/usr/local/skel/.cshrc<br>
+		/usr/local/skel/.login<br>
+		ユーザ共通に必要なパスは、 /usr/local/skel/.cshrc に追加。<br>
+		</ul><br>
+	
+	<li>nile のユーザ情報<br>
+		/usr/local/adm/usr_info
+	<br>
+
+	<br>
+	<li>関連ホスト
+		<table>
+		<tr><td>uni	<td>133.51.16.242
+		<tr><td>s-2koups<td>133.51.5.22
+		</table>
+		<!--seine	133.51.24.111
+		dream	133.51.168.11
+		asama	133.51.7.15
+		daisen	133.51.6.58
+		eboshi	133.51.6.59
+		cosmo	133.51.5.11
+		voyager	133.51.24.112-->
+	</ul>
+
+<hr>
+<a href="../admin.html">nile 管理者用ページ</a><br>
+<html>

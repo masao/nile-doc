@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - アンインストール（削除）</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page045.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page061.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">14.アンインストール（削除）</FONT></B></TD></TR>
+</TABLE>
+
+<P>本ソフトのプログラム等を削除して、インストール前の状態に戻したいときは、スーパユーザとなって下記コマンドを実行してください。<BR>
+<BR>
+<FONT size="+1">１．RPM形式を使用してインストールした場合</FONT><BR>
+<BR>
+<B>#rpm -a -q | grep pv&lt;Return&gt;</B><BR>
+<BR>
+上記コマンドを実行し、「<B>pv-3.0-X</B>」（Xの部分(数字)はバージョンによって変わります）と表示されたらRPM形式でインストールされていますので次のコマンドを実行してアンインストールを行ってください。もし表示されない場合は、「２．TAR形式を使用してインストールした場合」を参照してアンインストールを行ってください。<BR>
+<BR>
+<B>#rpm -e pv-3.0-X&lt;Return&gt;</B><BR>
+<BR>
+このコマンドを実行すると、本ソフトが動作していれば、該当プロセスをkillし、本ソフト関連ファイルを削除し、環境関連のファイル内容をインストール前の内容に戻します。<BR>
+<BR>
+<FONT size="+1">２．TAR形式を使用してインストールした場合</FONT><BR>
+<BR>
+<B># /usr/ups/bin/CLEANUP</B><BR>
+<BR>
+このコマンドを実行すると、本ソフトが動作していれば、該当プロセスをkillし、本ソフト関連ファイルを削除し、環境関連のファイル内容をインストール前の内容に戻します。<BR>
+</P>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page045.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page061.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

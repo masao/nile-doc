@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - 遅延条件の設定</TITLE>
+</HEAD>
+
+<BODY bgcolor="white">
+
+<P>
+<A name="TAG0"></A> <A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page017.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page018.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">7.遅延条件の設定</FONT></B></TD></TR>
+</TABLE>
+
+<TABLE cellpadding="10">
+  <TR>
+    <TD colspan="2" valign="top">
+    <P>
+スケジュールの終了時刻に他のユーザがログインしていたり、特定のプロセスが起動中の場合には、終了時刻を遅らせることができます。
+    </P>
+</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>終了の遅延時間や繰り返しなどは、［<A href="page002.htm#SEC1">設定の変更</A>］画面で設定します。詳細については、［終了遅延条件］(enableputoff)［終了遅延時間］(putofftime(sec))［繰り返し終了遅延］(putoffrepeat)を参照してください。</TD></TR>
+  <TR>
+    <TD align="right" valign="top"><IMG src="img0002.gif" height="58" width="58"></TD>
+    <TD>
+    <OL>
+      <LI>［スケジュール設定］(xsched)画面で、［遅延条件の設定］(Set
+        Delay Condition)ボタンをクリックします。［遅延条件の設定］(Delay
+        Conditions Settings)画面が表示されます。
+      <LI>［特定プロセスの実行時］(When a specific
+        process is executed)［ユーザログイン時］(When
+        a user is logged in)［マウントされている時］(When
+        mounted from a remote host)から遅延条件を指定します。
+      <LI>［特定プロセスの実行時］(When a specific
+        process is executed)を指定した場合は、プロセス名を［追加／削除したいプロセス］フィールド(Processes
+        to be added/removed)に入力して、［追加］(Add)ボタンをクリックします。［登録プロセス一覧］(Registered
+        Processes List)に追加したプロセスが表示されます。
+      <LI>［終了］(Quit)ボタンをクリックします。設定した内容を登録して、遅延条件の設定を終了します。
+    </OL>
+<FONT size="4"><B>●遅延条件の設定画面</B></FONT>
+    <DL>
+      <DT><B>編集メニュー(Edit)</B>
+      <DD><B>クリア(Clear)</B>：［追加／削除したいプロセス］フィールドをクリアします。
+      <DT><B>追加ボタン(Add)</B>：［追加／削除したいプロセス］フィールドに入力されているプロセスを特定プロセスとして登録します。
+      <DT><B>削除ボタン(Clear)</B>：［追加／削除したいプロセス］フィールドに入力されているプロセスを削除します。
+      <DT><B>終了ボタン(Quit)</B>：遅延条件の設定を終了します。
+      <DT><B>登録プロセス一覧リスト(Registered Processes
+        List)</B>：遅延条件として登録されているプロセスを一覧表示します。
+      <DT><B>追加／削除したいプロセスフィールド(Processes
+        to be added/removed)</B>：遅延条件として登録または削除したいプロセス名を入力します。プロセス名を入力して［追加］ボタンをクリックすると、［登録プロセス一覧］フィールドにプロセスが登録されます。登録されているプロセスを削除したい場合は、プロセス名を入力して［削除］ボタンをクリックします。
+      <DT><B>特定プロセスの実行時(When a specific process
+        is executed)チェックボックス</B>：オンにすると［登録プロセス一覧］に登録されているプロセスが実行されている場合に、スケジュールの終了を延期します。
+      <DT><B>ユーザログイン時(When a user is logged in)チェックボックス</B>：オンにするとログインユーザがいる場合に、スケジュールの終了を延期します。
+      <DT><B>マウントされている時(When mounted from a
+        remote host)チェックボックス</B>：オンにすると他のホストからマウントされている場合に、スケジュールの終了を延期します。
+    </DL>
+</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page017.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A> <A href="page018.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

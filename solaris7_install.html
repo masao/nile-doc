@@ -1,0 +1,294 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=x-euc-jp">
+<title>
+	[nile] Solaris7_install_memo
+</title>
+</head>
+<body>
+<body bgcolor = white>
+<pre>
+1999年9月23日(木）
+Solaris7 インストール(上書きインストール)
+作業者：齋藤ひとみ、伊東千夏
+記録：伊東千夏
+
+<hr>
+前日の作業
+	/home,/project のバックアップをとる。
+<hr>
+
+# shutdown -0
+> OKプロンプト→ CD-ROM を入れる。
+> boot cdrom - browser
+boot.
+ディスプレイの種類を聞いてくるので、CIT-600のターミナル をsetup + C を使って 
+VVT52に変更し、VT-52 を選択。
+
+システム識別
+	ファンクションキーなしのキーボードを選択し、以降は Esc キーを使って
+	設定を行なう。
+	Host name : nile
+	Network 接続：yes
+	IP Adress : 133.51.20.13
+	Name Servise : DNS を選択
+	Domain : ulis.ac.jp
+	DNS Servise Sever IP Adress :133.51.168.11
+				    :133.51.168.12
+	Search domain 	: ulis.ac.jp
+			: ipc.ulis.ac.jp
+			: ac.jp
+			: multi.ulis.ac.jp 
+			（実際には、pの文字が入力できなかったので、
+				後でresolv.conf に追加)
+			: .
+
+	DNS でnile が特定できない、情報を追加するか? と出る。yes としても
+	今までの入力項目と同じ物しか出てこないので、no にして先に進むこと
+	にする。
+	＃ 特に問題はでなかった。
+	サブネットの1つか？:yes →ネットマスクを入力
+					255.255.252.0
+	タイムゾーンの設定 ASIA/EASTAN → JAPAN
+	日付と時間の設定
+	
+	システム識別終了。
+	
+	上書きでインストール(1)を選択。
+	クライアントサーバモード(1)でインストールする。
+		パスワードを聞いてくるので、何かパスワードを入れる。
+		URL と ユーザネームが出てくるので、それを控えて、
+		ほかのマシンに移動。
+12:00
+	マニュアルには書いてませんが、クライアントサーバモードインストールは、
+	同じサブネット内のマシンでないとできません...。
+	今回は、clover のIP アドレスを借りて、nile と同じハブにマシンを
+	つないでインストール作業を続けました。
+13:00
+
+14:00
+インストール開始。
+	ブラウザを立ち上げ指定された URL に接続。指定されたユーザネームと
+	先ほど設定したパスワードを入力。
+	
+	nile のroot のパスワードを入力。
+	カスタマイズでインストールする。
+		#デフォルトだとファイルシステムが勝手に決められてしまうため。
+	
+	1. ソフトウェア選択。
+		基本としてチェックが入っているものはそのままインストールする
+		ことにした。
+		いらなそうな PPP などはインストールせず。必要ならば、あとで
+		CD-ROM からインストールする。
+		---------------------- インストールしたもの---------------------
+		Netscape Communicator 4.5 
+					EUC
+		AnswerBook2 Documentation Server
+		Solaris 7 5/99 Documentation 
+					EUC
+		ODBC Driver Manager 2.11
+		OpenGL 1.1.2
+		PC launcher 1.0/PC file viewer 1.0.1
+		ShowMe TV 1.2.1
+		Solaris 7 5/99 on Sun Hardware AnswerBook
+					EUC
+		SunVTS 3.2
+		Solstice AdminSuite 2.3 & AutoClient 2.1
+		Solstice AdminSuite 2.3 & AutoClient 2.1 AnswerBook
+							EUC
+		Sun Directory Services 3.1 
+		Sun Directory Services 3.1 AnswerBook
+							EUC
+		Java IDL 1.1
+		Solaris Consol Manegement1.0 
+		Solaris Consol Manegement1.0 AnswerBook
+							EUC
+		Sun NFS AnswerBook
+		Sun WebServer 2.0
+		Sun WebServer 2.0 AnswerBook
+						EUC
+		TotalNET Advanced Server 5.2
+		TotalNET Advanced Server 5.2 AnswerBook 
+							EUC
+		---------------------- インストールしたもの---------------------
+
+	2. Solaris の設定。
+		Solaris ソフトウェアグループ: 
+			Entire Distribution + OEM Support Software Group
+
+		日本語サポートは3つとも選択。(EUC,PCKANJI,UTF-8)
+		ディスクレス及びAutoclientシステム：いいえ
+
+	3. ファイルシステムの配置
+		手動で配置を選択
+		表示された「利用できるディスク」をすべて選択。
+	
+		c0t0d0	(4GB)
+				(MB)	(スライス）
+			/ 	2000 	0
+			/usr	2000	6
+		c0t1d0	(4GB)
+			/var	1000	3
+			/tmp	3000	1
+			(swap)
+		c0t2d0	(9GB)
+			/usr/local	4.3	6
+			/opt	4.3	5
+		c0t3d0	(9GB)
+			/project2	8633	7	
+		c0t10d0	(18GB)
+			/home	172696	7
+		c0t11d0	(18GB)
+			/project	172696	7
+
+			↓
+15:00		インストール
+		OPEN Boot フラッシュPROM の更新が必要と出てきた。
+		後で、行なうことにする。
+		ここからは、nile のコンソールの指示に従ってCD-ROM を入れ換える。
+<hr>
+	
+	OPEN Boot フラッシュPROM の更新を行なう。
+		boot の前に、nile のコンソールの鍵の位置を "diagonosys(診断）"
+		の位置にしておく。boot 時にPROM の更新を行なうか聞いてくるので 
+		yes にしておくと自動的にパッチをあてている。
+		→その後、リブート。
+
+		これにて、64bit の?? ができるようになる。← Solaris7 の売り。
+		PROM のバージョンは3.2.16 となる。
+		シリアル番号 #8507880 とでたけど、これは何だろう?
+
+	nile にログインしたところ、DNS が働いていないことが判明。
+	調べてみたところ、 resolve.conf が作成されていなかった。 
+	seine からresolve.conf をコピーして解決。
+	原因は、一番最初のシステム識別の時にnile がDNS で特定できなかった...。
+	というのに関係していると思われる。
+
+/etc/group に group "ulis"を作成。
+		%groupadd -g 300 -o ulis
+	ユーザ登録を行なう。
+		2.6 の時の passwd, shadow をdream 上にコピーしていたので、
+		それをftp した。
+		なお、今回からは NIS を行なわないので、前回までの 
+		passwd + passwd.global = solaris7 のpasswd ファイルとした。
+
+		/etc/passwd.org
+		/etc/shadow.org	がシステムにより一番始めにつくられたもの。
+
+	#試しで、hitomi,chinatsu   のアカウントを作成。
+	ホームディレクトリも作成し、リモートでログインしようとしたところ、
+	ログインしてもすぐにログアウトされてしまう状態になった。これは 
+	ホームディレクトリのオーナーが root  で、グループがothers だったため。
+	chown user名、chgrp ulis にしたら治った。
+	
+	Java2 を /project2/adm に一時保管。
+	/etc/cron.d/cron.allow を作成。中身はクーロンを仕掛けられる人を書く。
+	これがないとだれでも crontab に書くことができるのでセキュリティ上
+	危ないのではないか(と判断）。
+
+<hr>
+
+バックアップを取っていたものをリストアする。
+	# ufsrestore is 1	i は対話モード	
+				s は
+	/home のリストア
+	ファイルシステム全体の復元を行なう。
+	Solaris のシステム管理（第一巻）Solaris2.6 のp.620 を元に行なう。
+	シングルユーザモードになり、
+	#umount /home
+	#newfs /dev/dsk/c0t10d0s7
+		
+	#mount /dev/dsk/c0t10d0s7 /mnt
+	#cd /mnt
+	#ufsrestore rf /dev/rmt/0
+		#本では、rvf オプションであるが、v をつけるとすべての
+		メッセージを出力するので、冗長になるのでつけるのをやめた。
+		というか、表示で遅くなるため。
+<hr>
+9月24日(金)	
+	18:50	
+	/home の ufsrestore がなかなか終了しないので、一度止めて様子をみる。
+	Ctr-Cでnを選択していったん終了。
+	別に書き込みができていないわけではなかったが、4分の1くらい
+	(1.3GB 全体の 8%)までだった。
+	そこで、続きから再開するためのオプション(R)と、デバイス名を0から
+	リストアのスピードが上がるかもといわれた0bにしてリストアを再開した。
+	終わるまで待つことになった。
+	#ufsrestore rfR /dev/rmt/0b
+	(リストアの時に作られるrestoresymtableがないと途中からはできないと
+	思う。)
+	0b の b は バークレー のb （ SunOs 4.X 互換）
+	R 復元の再開。復元を再開するボリュームを尋ねるプロンプトを表示し、
+	チェックポイントから再開する。完全復元（レポジション）が中断された
+	後は、このオプションを指定して、ufsrestore コマンドをやり直す。
+	(see  Solaris のシステム管理 2巻 p637)
+<hr>
+9月25日(土)
+	午後5時ごろになってようやくリストアが終了した。
+	リストアの終了後にやること。
+	#rm restoresymtable
+	#cd /
+	#umount /mnt
+	#mount /dev/dsk/c0t10d0s7 /home
+	6.5gbに40時間くらいかかった。
+	(原因は結局わからない。1つのディレクトリに40万程度のファイルがあった
+	からとか、18GBを1パーティションに切ったからかもしれない。)
+	
+	contrib グループを作成。
+		#groupadd -g 211 -o contrib
+
+<hr>
+
+9月26日（日）
+9月27日（月）
+9月28日（火）
+	/etc/aliases に admin,nakalab,contrib,testなどを追加。
+
+	パッチをあてる。(伊東)
+		http://sunsolve.sun.co.jp/pub-cgi/show.pl?target=patches/patch-access
+		より、7_Recommended.tar を手に入れる。これは、その時点での
+		推奨パッチがまとめられている。
+		インストール方法は、附属のREADME に従う。
+
+		推奨パッチになくて必要なものは、パッチリストで確認。
+		SunSITE ( http://SunSITE.sut.ac.jp/pub/sun-info/sunsolve-patches/ ) 
+		から見つける。
+		patchadd でインストール。
+
+		nile# patchadd /home/chinatsu/adm/patch/104945-02
+			← /home.. は、パッチを置いてある場所。 
+	
+		インストールしたパッチ群。
+		106793-03   SunOS 5.7: ufsdump and ufsrestore patch
+		107115-02 * SunOS 5.7: LP Patch
+		107451-01 * SunOS 5.7: /usr/sbin/cron patch
+		107684-01 * SunOS 5.7: Sendmail patch
+		107972-01 * SunOS 5.7: /usr/sbin/static/rcp patch
+		107200-08 * CDE 1.3: dtmail patch
+		107219-02 * CDE 1.3: dtprintinfo patch
+
+
+	UPS を利用するためのソフトのインストール及び設定（伊東）
+		UPS の説明書などは、2講のrabbit などの下にある、
+		nile, seine 関連箱にあり。
+		フロッピーディスクに入っているバイナリを見ることができなかったので、
+		2.6 のダンプからコピー。
+		
+		/usr/local/ups にインストール。
+		インストール方法は説明書の通りにする。
+		設定で変えているところ、
+			log を作るところを、 /var/adm/ups
+			autoreboot: off （電源断の後手動でのみ起動可）
+			
+<hr>	
+	細かい作業を分担して行った。
+
+	Sun Web Serverの設定(齋藤)
+	フォントサーバの設定(齋藤)
+	SUN WorkShopのインストール(齋藤)
+	sendmeilの設定(齋藤)
+	/usr/localのリストア
+<hr>
+</pre>	
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - 統合管理ソフトとの連携</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page035.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page045.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="+3">12.統合管理ソフトとの連携</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+<FONT size="5"><BR>
+</FONT> 本ソフトには、統合管理ソフトの電源管理機能とのインタフェースが標準で組み込まれています。<BR>
+</P>
+<TABLE cellpadding="10">
+  <TR>
+    <TD>
+    <H2><A name="SEC1"><FONT size="+2"><B>ＪＰ１との連携</B></FONT></A></H2>
+日立の統合管理ツールＪＰ１と組み合わせて使用する方法について説明します。</TD></TR>
+</TABLE>
+
+<TABLE>
+  <TR>
+    <TD></TD>
+    <TD>JP1と本ソフトを連携させるためには，本ソフトのインストール後，次の方法でインタフェースコマンドをインストールしてください。<BR>
+本ソフトのインストールディレクトリの下のups/binに移動した後<BR>
+    <P>
+<B># cd ups/bin &lt;Return&gt;<BR>
+# ./JP1INST -path インストールパス名 &lt;Return&gt;</B><BR>
+<BR>
+インストールパス名には、インタフェースコマンドをインストールする先のディレクトリを指定してください。 
+指定しなければ、<B>/usr/lib/jp1_aom</B> がインストール先になります。<BR>
+    </P>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><B><FONT size="+1">システムの自動開始自動終了</FONT></B></TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>本ソフトが提供しているインタフェースコマンドは，<B>alt_shutdown</B>です。<BR>
+<B>alt_shutdown</B>は，内部でshutdownコマンドを利用しています。<B>alt_shutdown</B>をお使いになる前に，JP1の使用環境で環境変数<B>PATH</B>にshutdownコマンドのパスが指定されていることを必ず確認してください。指定されていない場合は，<B>PATH</B>環境変数を設定し直すか，または，<B>alt_shutdown</B>をエディタで開いて，ファイルの最初の方にある<B>PATH</B>の設定行に必要なパスを追加（または順序の入れ替えを）してください。</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><B>例えば/etcを追加する場合</B><BR>
+<BR>
+<B>PATH=$PATH:/usr/bin:/usr/sbin:/usr/local/bin:/usr/bin/jp1_aom:. export
+PATH<BR>
+↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓<BR>
+</B><B>PATH=$PATH:<FONT color="#FF0000">/etc:</FONT>/usr/sbin:/usr/bin:/usr/local/bin:/usr/bin/jp1_aom:.
+export PATH</B></TD></TR>
+  <TR>
+    <TD><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD>インタフェースコマンドの実行ログは <B>/usr/lib/jp1_aom/log/pwlog</B>
+に保存されます。<BR>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><BR>
+<BR>
+    <H2><A name="SEC1"><FONT size="+1"><B>リモート電源（UPS）連携</B></FONT></A></H2>
+本ソフトが提供しているインタフェースコマンドは，<B>rm_shutdown</B>です。<BR>
+登録方法に関する詳細は，JP1のマニュアルをお読みください。<BR>
+</TD></TR>
+  <TR>
+    <TD><IMG src="img0004.gif" align="right" height="55" width="55"></TD>
+    <TD><FONT color="#ff0000">本ソフトがインストールされていないコンピュータでリモート電源（UPS）連携を行う場合は，本ソフトのインストール用CD-ROMの<B>v3</B>ディレクトリまたは<B>free</B>ディレクトリにある<B>filename.tar</B>ファイル（<B>filename</B>はOSによって異なります。）内のインタフェースコマンド<B>rm_shutdown</B>を<B>/usr/lib/jp1_aom</B>ディレクトリの直下にコピーしてください。</FONT></TD></TR>
+  <TR>
+    <TD><IMG src="img0004.gif" align="right" height="55" width="55"></TD>
+    <TD><B><FONT color="#ff0000">リモート電源（UPS）連携には，UPS側にSNMPカードが必要です。</FONT></B></TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page035.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page045.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

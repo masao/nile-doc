@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - 管理ツール</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page020.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page043.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">11.管理ツール</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+管理ツールとは､1つのワークステーションからネットワーク上の本ソフトインストール済みのワークステーションをリモートで監視できる機能です｡
+リモート監視機能には、次のような機能があります。<BR>
+</P>
+<UL>
+  <LI>リアルタイム表示<FONT color="RED"><B>（注１）</B></FONT>
+  <LI>スケジュール設定<FONT color="RED"><B>（注１）</B></FONT>
+  <LI>動作条件設定<FONT color="RED"><B>（注１）</B></FONT>
+  <LI>イベントログ表示<FONT color="RED"><B>（注１）</B></FONT>
+  <LI>強制終了
+  <LI>複数のワークステーションへの同一スケジュールのコピー<FONT color="RED"><B>（注１）</B></FONT>
+  <LI>各ワークステーションのプロパティ表示
+  <LI>予めリモート監視するホストの登録とその削除
+  <LI>他のUPS監視ソフトから送信されたSNMPのUPSトラップの受信
+</UL>
+<TABLE cellpadding="10">
+  
+    <TR>
+      <TD></TD>
+      <TD><FONT color="RED"><B><FONT color="RED">（注１）</FONT><FONT color="RED"><FONT color="RED">ＮＴ、ＵＮＩＸ間通信では、この機能は使用できません。</FONT></FONT></B></FONT></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>
+    <H2><A name="SEC1"><FONT size="+1"><B>管理ツールの起動</B></FONT></A></H2>
+    <DL>
+      <DD>/usr/ups/bin/netadmのコマンドを実行します。<BR>
+[netadm]のウィドウが表示され、ネットワーク上の本ソフトをインストールされているホストの検索が始まります。<BR>
+2分ほどで、検索されたホスト一覧が表示されます。
+    </DL>
+管理ツールの画面は次のように表示されます。<BR>
+    <CENTER><IMG src="adm001.gif" width="662" height="668" border="0"><BR>
+    </CENTER>
+リモート監視のできるワークステーションには現在スケジュールがホスト名の後に表示されています。 
+それぞれのメニューの実行には、任意のホストをクリックし、メニューバーから実行するメニューを選んでください。<BR>
+<B><FONT color="#ff0000">注意：管理ツールで管理する場合は、管理される側で動作条件の設定を使って管理ホストの一覧に追加する必要があります．</FONT></B><BR>
+<B>画面の説明</B><BR>
+    <DL>
+      <DT><B>SNMPトラップ表示領域</B>
+      <DD>本ソフトをインストールされた、ワークステーションからの、SNMPトラップを受け取った場合に、トラップ内容を表示します。
+      <DT><B>電球アイコン</B>
+      <DD>各ワークステーションのインストールされている本ソフトの状態を色で表示します。<BR>
+      <TABLE border="1">
+        <TR>
+          <TD>オレンジ</TD>
+          <TD>本ソフト動作中（バックアップ中）</TD></TR>
+        <TR>
+          <TD>黄色</TD>
+          <TD>通電中（本ソフトは、動作していない）</TD></TR>
+        <TR>
+          <TD>グレー</TD>
+          <TD>ワークステーション停止中</TD></TR>
+        <TR>
+          <TD>黒</TD>
+          <TD>定義されていないワークステーション</TD></TR>
+        <TR>
+          <TD>赤</TD>
+          <TD>パワーバイザ動作中（UPS障害発生）</TD></TR>
+      </TABLE>
+
+      <DT><B>ワークステーションアイコン</B>
+      <DD>各ワークステーションとパワーバイザの状態を表示<BR>
+      <TABLE border="1">
+        <TR>
+          <TD>緑</TD>
+          <TD>ワークステーション運転中</TD></TR>
+        <TR>
+          <TD>赤</TD>
+          <TD>停電発生</TD></TR>
+        <TR>
+          <TD>白</TD>
+          <TD>ワークステーション運転中（本ソフトは、動作していない)</TD></TR>
+        <TR>
+          <TD>グレー</TD>
+          <TD>ワークステーション停止中</TD></TR>
+        <TR>
+          <TD>黒</TD>
+          <TD>定義されていないノード</TD></TR>
+      </TABLE>
+
+    </DL>
+<BR>
+各メニューには、次の機能があります。<BR>
+    <DL>
+      <DT><B>ファイル (File)</B>
+      <DD>
+      <UL>
+        <LI>ホストの登録 (Register)
+        <LI>ホストの削除 (Delete)
+        <LI>スケジュールのコピー (Copy)
+        <LI>ホストの属性 (Property)
+        <LI>終了 (Quit)
+      </UL>
+      <DT><B>表示 (Show)</B>
+      <DD>
+      <UL>
+        <LI>アイコンの整列 (Arrange Icon)
+        <LI>表示の更新 (Update)
+      </UL>
+      <DT><B>道具 (Tool)</B>
+      <DD>
+      <UL>
+        <LI>グラフ表示 (Graph Display)
+        <LI>スケジュールの設定 (Schedule)
+        <LI>動作条件設定 (Operation Cond)
+        <LI>イベントログ (Event Log)
+        <LI>強制停止 (Shutdown)
+      </UL>
+    </DL>
+<BR>
+<BR>
+    <OL>
+      <LI><B>リモート監視するホストの登録</B><BR>
+        予め、リモート監視するホスト名を登録しておく事ができます。
+        「ファイル」(File)から｢ホストの登録｣(Register)を実行してください。新しいホストの登録画面が表示されますので、登録する場合は、ホスト名を入力して［Add］ボタンを押してください。<BR>
+        <CENTER><IMG src="adm002.gif" width="260" height="95" border="0"></CENTER>
+      <LI><B>リモート監視するホストの削除</B><BR>
+        既に登録されているホストを削除します。削除するホストを一覧から選択してから、「ファイル」(File)から「ホストの削除」(Delete)を実行してください。確認ウィンドが表示されますので、よければ、実行してください。<BR>
+      <LI><B>スケジュールのコピー</B><BR>
+        スケジュールのコピー元を選択して「ファイル」(File)から「スケジュールのコピー」(Copy)を実行してください。<BR>
+      <CENTER><IMG src="adm003.gif" width="375" height="326" border="0"><BR>
+      </CENTER>
+        画面の左側のリストにホストがリスト表示されます。コピーしたい場合は、ホストを選択し、［→］ボタンを押してください。コピーするホストは右のリストに表示されます。コピーを取り消したい場合は右側のリストより任意のホストを選択し、［←］ボタンを押してください。コピーするホストの選択後、実行(Execute)ボタンを押すと各ホストにスケジュールがコピーされます。<BR>
+一覧表示に、設定されたスケジュールが表示されますので確認してください。<BR>
+      <LI><B>ホストのプロパティ表示</B><BR>
+        プロパティ表示したいホストを選択し、「ファイル」(File)から「ホストの属性」(Property)を実行してください。そのホストの「システム情報」(System),
+        「UPS情報」(UPS), 「保守情報」(Maint)が表示されます。<BR>
+      <CENTER><IMG src="adm004.gif" width="378" height="265" border="0"><BR>
+      </CENTER>
+      <LI><B>表示の更新</B><BR>
+        管理ツール画面を新しく更新します。 「表示」(Show)から「表示の更新」(Update)を実行してください。更新の終了には、<FONT color="#ff0000">最低でも２分から３分</FONT>かかります。<BR>
+      <LI><B>「グラフ表示」(Graph Display), 「スケジュール設定」(Schedule),
+        「動作条件設定」(Operation Cond), 「イベントログ表示」(Event
+        Log)</B><BR>
+        対象のホストを選択し「道具」(Tool)からそれぞれ「グラフ表示(Graph
+        Display)」「スケジュール設定(Schedule)」「動作条件設定(Operation
+        Cond.)」「イベントログ表示(Event Log)」それぞれを選択してください。それぞれの表示される内容は、それぞれの機能説明を参照してください。<BR>
+      <LI><B>強制停止</B><BR>
+        強制停止したいホストを選択し、「道具」(Tool)から｢強制停止｣(Shutdown)を実行してください。<BR>
+        停止時間と再起動時間を分単位で入力してください。［OK(Execute)］ボタンにより強制停止が実行されます。<BR>
+        <CENTER><IMG src="adm005.gif" width="197" height="115" border="0"></CENTER>
+      </OL>
+</TD>
+    <TD></TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page020.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page043.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

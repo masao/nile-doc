@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<CENTER>
+<A href="#INDEX"><IMG src="title.gif" alt="PowerVisorV3" align="middle" height="278" width="565" border="0"></A>
+</CENTER>
+<CENTER>
+<BR>
+<FONT size="5"><B><I>ユーザーズガイド</I></B></FONT><BR>
+<BR>
+<BR>
+<BR>
+<FONT size="5"><B>UNIX版</B></FONT><BR>
+<BR>
+<BR>
+<BR>
+<FONT size="4"><B>ジーエス・イーイー 株式会社</B></FONT><BR>
+<FONT size="4"><B>アルファテック　株式会社</B></FONT><BR>
+<BR>
+<BR>
+</CENTER>
+<P>
+<BR>
+</P>
+<HR>
+<P>
+<BR>
+</P>
+<TABLE>
+  <TR>
+    <TD width="100"></TD>
+    <TD>
+    <H2><A name="INDEX"></A>＝ 目 次 ＝</H2>
+</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD>
+    <UL>
+      <LI><A href="page000.htm#TAG0">ソフトウエア概要</A>
+    </UL>
+    <OL>
+      <LI><A href="q_instal.htm#TAG0">インストール</A>
+      <UL>
+        <LI><A href="q_instal.htm#SEC1">ワークステーションとUPSの接続</A>
+        <LI><A href="q_instal.htm#SEC2">インストールの前に</A>
+          <LI><A href="q_instal.htm#SEC3">インストールプログラムのコピー</A>
+          <UL>
+            <LI><A href="q_instal.htm#SEC5">TAR形式ファイルを使用する場合</A>
+            <LI><A href="q_instal.htm#SEC6">RPM形式ファイルを使用する場合</A>
+          </UL>
+          <LI><A href="q_instal.htm#SEC4">ソフトウェアのインストール</A>
+      </UL>
+      <LI><A href="page001.htm#TAG0">動作確認</A>
+      <UL>
+        <LI><A href="page001.htm#SEC1">デーモンのチェック</A>
+        <LI><A href="page001.htm#SEC2">xupsのチェック</A>
+        <LI><A href="page001.htm#SEC3">停電動作のチェック</A>
+          <LI><A href="page001.htm#SEC4">XUPS表示</A>
+        </UL>
+      <LI><A href="page002.htm#TAG0">動作条件の設定(GUI環境編)</A>
+      <UL>
+        <LI><A href="page002.htm#SEC1">設定の変更画面</A>
+        <UL>
+          <LI><A href="page002.htm#SEC2">動作環境の設定</A>
+          <LI><A href="page002.htm#SEC3">時間パラメータ</A>
+          <LI><A href="page002.htm#SEC4">出力制御</A>
+          <LI><A href="page002.htm#SEC5">一般設定</A>
+          <LI><A href="page002.htm#SEC6">トラップ</A>
+          <LI><A href="page002.htm#SEC7">メール</A>
+        </UL>
+        <LI><A href="page002.htm#SEC8">セキュリティの変更画面</A>
+        <UL>
+          <LI><A href="page002.htm#SEC9">パスワード</A>
+          <LI><A href="page002.htm#SEC10">管理ユーザ</A>
+          <LI><A href="page002.htm#SEC11">管理ホスト</A>
+        </UL>
+      </UL>
+      <LI><A href="page003.htm#TAG0">動作条件の設定(CUI環境編)</A>
+      <UL>
+        <LI><A href="page003.htm#SEC0">画面の操作方法</A>
+        <LI><A href="page003.htm#SEC1">設定の変更画面</A>
+        <UL>
+          <LI><A href="page003.htm#SEC2">動作環境の設定</A>
+          <LI><A href="page003.htm#SEC3">時間パラメータ</A>
+          <LI><A href="page003.htm#SEC4">出力制御</A>
+          <LI><A href="page003.htm#SEC5">一般設定</A>
+          <LI><A href="page003.htm#SEC6">トラップ</A>
+          <LI><A href="page003.htm#SEC7">メール</A>
+        </UL>
+        <LI><A href="page003.htm#SEC8">セキュリティの変更画面</A>
+        <UL>
+          <LI><A href="page003.htm#SEC9">パスワード</A>
+          <LI><A href="page003.htm#SEC10">管理ユーザ</A>
+          <LI><A href="page003.htm#SEC11">管理ホスト</A>
+        </UL>
+      </UL>
+      <LI><A href="page005.htm#TAG0">スクリプト</A>
+      <UL>
+        <LI><A href="page005.htm#SEC1">スクリプトの実行レベル</A>
+        <LI><A href="page005.htm#SEC2">実行レベルの指定</A>
+        <LI><A href="page005.htm#SEC3">スクリプトの記述</A>
+      </UL>
+      <LI><A href="page017.htm#TAG0">スケジュール運転（GUI環境編）</A>
+      <UL>
+        <LI><A href="page017.htm#SEC1">スケジュール設定のルール</A>
+        <LI><A href="page017.htm#SEC2">スケジュールの例外処理</A>
+        <UL>
+          <LI><A href="page017.htm#SEC3">スケジュール停止中の起動</A>
+          <LI><A href="page017.htm#SEC4">終了時刻前の停止</A>
+            <LI><A href="page017.htm#SEC20">スケジュール運転中の長期停電時のUPS動作</A>
+          </UL>
+        <LI><A href="page017.htm#SEC5">スケジュール設定プログラムの起動</A>
+        <UL>
+          <LI><A href="page017.htm#SEC6">週間スケジュールの設定</A>
+          <LI><A href="page017.htm#SEC8">年間スケジュールの設定</A>
+          <LI><A href="page017.htm#SEC10">日付スケジュール設定画面</A>
+          <LI><A href="page017.htm#SEC11">設定リスト画面</A>
+          <LI><A href="page017.htm#SEC12">単一スケジュールの設定</A>
+          <LI><A href="page017.htm#SEC13">遅延条件の設定</A>
+        </UL>
+        <LI><A href="page017.htm#SEC14">スケジュール例</A>
+      </UL>
+      <LI><A href="page009.htm#TAG0">遅延条件の設定</A>
+      <LI><A href="page018.htm#TAG0">スケジュール運転（CUI環境編）</A>
+      <UL>
+        <LI><A href="page018.htm#SEC1">スケジュール設定のルール</A>
+        <LI><A href="page018.htm#SEC2">スケジュールの例外処理</A>
+        <UL>
+          <LI><A href="page018.htm#SEC3">スケジュール停止中の起動</A>
+          <LI><A href="page018.htm#SEC4">終了時刻前の停止</A>
+            <LI><A href="page018.htm#SEC20">スケジュール運転中の長期停電時のUPS動作</A>
+          </UL>
+        <LI><A href="page018.htm#SEC5">スケジュール設定プログラムの起動</A>
+        <UL>
+          <LI><A href="page018.htm#SEC6">週間スケジュールの設定</A>
+          <LI><A href="page018.htm#SEC8">年間スケジュールの設定</A>
+          <LI><A href="page018.htm#SEC12">単一スケジュールの設定</A>
+          <LI><A href="page018.htm#SEC13">遅延条件の設定</A>
+        </UL>
+        <LI><A href="page018.htm#SEC14">スケジュール例</A>
+      </UL>
+      <LI><A href="page027.htm#TAG0">ステータス情報</A>
+      <UL>
+        <LI><A href="page027.htm#SEC1">グラフの表示</A>
+        <LI><A href="page027.htm#SEC2">グラフの設定</A>
+      </UL>
+      <LI><A href="page020.htm#TAG0">ヒストリ管理</A>
+      <UL>
+        <LI><A href="page020.htm#SEC2">ステータスログ</A>
+        <LI><A href="page020.htm#SEC3">イベントログ</A>
+      </UL>
+      <LI><A href="page035.htm#TAG0">管理ツール</A>
+      <UL>
+        <LI><A href="page035.htm#SEC1">管理ツールの起動</A>
+      </UL>
+      <LI><A href="page043.htm#TAG0">統合管理ソフトとの連携</A>
+      <UL>
+        <LI><A href="page043.htm#SEC1">ＪＰ１との連携</A>
+      </UL>
+        <LI><A href="page045.htm">Webサーバの起動</A>
+        <UL>
+          <LI><A href="page045.htm#SEC1">Webサーバの起動</A>
+          <LI><A href="page045.htm#SEC2">Webブラウザ側の指定</A>
+        </UL>
+        <LI><A href="page060.htm#TAG0">アンインストール（削除）</A>
+      <LI><A href="page061.htm">ログビュー機能</A>
+	<UL>
+	<LI><A href="page061.htm#tag0">tarファイルの作成</A>
+	<LI><A href="page061.htm#tag1">ログビュー機能に必要なファイル</A>
+	<LI><A href="page061.htm#tag2">logviewの展開</A>
+	<LI><A href="page061.htm#tag3">logviewの使い方</A>
+	</UL>    </OL>
+    <UL>
+      <LI><A href="appendix.htm#TAG0">付録</A>
+      <UL>
+        <LI><A href="appendix.htm#SEC1">upstabファイル</A>
+        <LI><A href="appendix.htm#SEC2">エラーメッセージ</A>
+        <LI><A href="appendix.htm#SEC3">Ｑ＆Ａ</A>
+        <LI><A href="appendix.htm#SEC4">制限事項</A>
+      </UL>
+    </UL>
+</TD></TR>
+</TABLE>
+
+<P>
+<BR>
+<BR>
+</P>
+<HR>
+<P>
+<BR>
+</P>
+<P>
+<FONT size="+2" color="red"><B>||||| ご注意 |||||</B></FONT>
+</P>
+<OL>
+  <LI>本マニュアルに記載されたソフトウエアは、ソフトウエア使用許諾契約の下で供給されています。
+  <LI>本マニュアルの内容の一部または全部を無断で転載することは禁止されています。
+  <LI>OSの種類、バージョンまたはコンピュータの機種によって、本マニュアルの内容が実際と食い違う場合があります 
+のでご注意ください。
+  <LI>本マニュアルおよびそこに記載されている製品を使用したことによってシステムや機器に 
+万一トラブルや故障が発生しても、弊社は原因の如何にかかわらず一切その責任を負い 
+かねますのでご了承ください。
+  <LI>本マニュアルの内容およびそこに記載されている製品の仕様は、将来予告なしに変更する 
+ことがあります。
+  <LI>製品の内容については万全を期していますが、ご不審の点、誤りおよび本マニュアルの記載漏れなど 
+お気付きの点がありましたら、弊社までご連絡ください。
+</OL>
+<HR>
+<P>
+<BR>
+</P>
+<P>
+<FONT size="+2" color="green"><B>||||| 商標について |||||</B></FONT>
+</P>
+<UL>
+  <LI>UNIXはX/Openカンパニーリミテッドがライセンスする、米国およびにその他の国における登録商標です。
+  <LI>本マニュアルに記載されている会社名、製品名は、各社の商標および登録商標です。
+</UL>
+<HR>
+<P>
+<BR>
+</P>
+<P>
+<FONT size="+2" color="blue"><B>||||| 保証期限 |||||</B></FONT>
+</P>
+<UL>
+  <LI>本商品の供給媒体の材料および製造上の瑕疵に対する保証期限は、お買い上げ日から３ヶ月です。
+  <LI>本商品に付属のケーブル等のハードウエアの保証期限は、お買い上げ日から６ヶ月です。
+</UL>
+<HR>
+<P>
+<BR>
+</P>
+<P>
+<FONT size="+2" color="#FF6600"><B>||||| サポートについて |||||</B></FONT>
+</P>
+<P>本ソフトウエアに関するお問い合わせは、電子メールをいただくか、同封インストールガイドの巻末の「問い合わせ票」をコピーの上、記入してFAXしてください。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD colspan="2"><FONT size="+1">（GSEEサポートセンター）</FONT><BR>
+      TEL 06-6396-6652 FAX 06-6396-6641<BR>
+      Email: <A href="mailto:support@gsee.co.jp">support@gsee.co.jp</A></TD>
+    </TR>
+    <TR>
+      <TD><A href="http://www.gsee.co.jp/"><FONT size="+1">（販売元）</FONT><BR>
+      <B><FONT size="+2">ジーエス・イーイー株式会社</FONT></B><BR>
+      営業部（東京）<BR>
+      〒105-0003 東京都港区西新橋1-8-1 日本電池ビル4F<BR>
+      TEL 03-3502-6554 FAX 03-3502-6557<BR>
+      営業部（大阪）<BR>
+      〒532-0002 大阪市淀川区東三国4-3-1 グロリア240
+      6F<BR>
+      TEL 06-6396-6652 FAX 06-6396-6641<BR>
+      営業部（名古屋）<BR>
+      〒450-0002 名古屋市中村区名駅4-10-7 第二豊田ビル西館2F<BR>
+      TEL 052-584-7543 FAX 052-584-7544</A><BR>
+      </TD>
+      <TD valign="top"><A href="http://www.alfatech.co.jp/network/"><FONT size="+1">（開発元）</FONT><BR>
+      <FONT size="+2"><B>アルファテック株式会社</B></FONT><BR>
+      〒532-0011 大阪市淀川区西中島4-5-18 新大阪エイトビル8F<BR>
+      TEL 06-6300-0306 FAX 06-6300-0851</A><BR>
+      Email: <A href="mailto:upssoft@alfatech.co.jp">upssoft@alfatech.co.jp</A></TD>
+    </TR>
+  </TBODY>
+</TABLE><CENTER>
+</CENTER>
+</BODY>
+</HTML>

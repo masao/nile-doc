@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - Webサーバの起動</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page043.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A>　 <A href="page060.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="+3">13.Webサーバの起動</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+<FONT size="5"><BR>
+</FONT> 本ソフトには、Webブラウザを使ってUPS状態の監視、動作パラメータの設定を行うための簡易Webサーバが入っています。ここではWebサーバの起動起動方法とブラウザで見る方法を説明します。<BR>
+<BR>
+</P>
+<TABLE cellpadding="10">
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD><A name="SEC1"><FONT><B><FONT size="+2">Webサーバの起動</FONT></B></FONT></A></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>本ソフトを本マニュアルにしたがってインストールするとWebサーバデーモン（upswwwd）が/usr/ups/binの下にインストールされています。このデーモンを起動するには下記のコマンドを実行します。<BR>
+# /usr/ups/bin/upswwwd<BR>
+これで，ブラウザからUPS状態の監視，動作パラメータの設定を行うことができます。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B><FONT color="#ff0000">動作パラメータは，一部の項目のみ設定可能です。設定可能な項目は実際の画面で表示された項目のみです。</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B><FONT color="#ff0000">同じコンピュータで既にWebサーバを起動している場合は，tcpポート番号が衝突して起動できなくなります。<BR>
+その場合は，Webサーバ（upswwwd）の起動時にオプションを付けてポート番号を変更してください。<BR>
+# /usr/ups/bin/upswwwd -p 8080</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD><FONT size="-1"><B><FONT size="+1">コンピュータ起動時にWebサーバを起動する方法</FONT></B></FONT></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>コンピュータ起動時にWebサーバを起動するには，/etc/rc.upsファイルを編集して/usr/ups/bin/upswwwdを起動するようにしてください。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>変更例（HP-UXの場合）
+    <TABLE>
+      <TR>
+        <TD>#!/bin/sh<BR>
+#<BR>
+# $Header$ Alfatech;<BR>
+#<BR>
+<BR>
+if [ -x /usr/ups/bin/upsd ]; then
+        <BLOCKQUOTE>
+
+        <TABLE>
+          <TR>
+            <TD>PATH=/usr/ups/bin:$PATH export PATH<BR>
+/usr/ups/bin/upsd<BR>
+echo &quot;Starting UPS monitor...&quot;<BR>
+<B><FONT color="#0000a0">/usr/ups/bin/upswwwd</FONT></B></TD></TR>
+        </TABLE>
+
+        </BLOCKQUOTE>
+fi<BR>
+<BR>
+exit 0</TD></TR>
+    </TABLE>
+
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>
+    <HR>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD><A name="SEC2"><B><FONT size="+2">Webブラウザ側の指定</FONT></B></A></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD>Webブラウザ側で表示するには、ブラウザのアドレス入力領域で直接指定してください。<BR>
+<BR>
+アドレス：<B>hostname/menu.htmｌ<BR>
+</B><BR>
+<B>[hostname]</B>は、本ソフトをインストールしているホスト名もしくは、IPアドレスで指定してください。</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page043.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page060.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

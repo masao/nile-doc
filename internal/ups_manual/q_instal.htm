@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - インストール</TITLE>
+</HEAD>
+
+<BODY bgcolor="#FFFFFF">
+
+<P>
+<A name="TAG0"></A> <A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page001.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD><B><FONT size="6">1.インストール</FONT></B></TD></TR>
+</TABLE>
+
+<P>
+<BR>
+<FONT size="-1" color="#FF0000"><B>OSの種類、バージョンまたはコンピュータの機種によって、本マニュアルが実際と食い違う場合がありますのでご注意ください。</B></FONT><BR>
+</P>
+<H2><A name="SEC1"><FONT size="5"><B>ワークステーションとUPSの接続</B></FONT></A></H2>
+<OL>
+  <LI>ワークステーションおよびUPSの電源を切ります。
+  <LI>ワークステーションの電源コードをUPS背面の出力コンセントに接続します。
+  <LI>付属のインタフェースケーブルを使って、ワークステーションのシリアルポート 
+（RS-232C）とUPSのコミュニケーションコネクタを接続します。
+</OL>
+<TABLE>
+  <TR>
+    <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B>Sunワークステーションでttybを使用する場合、一部の機種では オプションケーブルが必要です。<BR>
+詳しくはメーカにお問い合わせください。</B></TD></TR>
+  <TR>
+    <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B>HP9000のEthernetインタフェースは終端抵抗を内蔵していません。<BR>
+HPワークステーションを単体で使用する場合は、必ず外部終端抵抗を付けてください。</B></TD></TR>
+</TABLE>
+
+<H2><A name="SEC2"><FONT size="5"><B>インストールの前に</B></FONT></A></H2>
+<P>
+正しくUPSとワークステーションを接続してください。 また、UPSを接続するシリアルデバイス（tty）を確認してください。シリアルデバイスがない場合は作成する必要があります。作成方法は、OSのドキュメントを参照してください。<BR>
+OSの種類によってインストール方法が異なります。ご使用のOSとそのバージョンを確認の上、以下の説明に従って、OSごとに必要な設定を行ってください。<BR>
+</P>
+<OL type="A">
+  <LI><B>HPの場合</B><BR>
+HP9000シリーズではUPS制御ポートをUPSとの接続に利用できます。その場合には、
+/etc/inittabファイルの次の行をコメントアウトしてください。行がない場合は、 
+変更の必要がありません。<BR>
+<B># ups::respawn:rtprio 0 /etc/ups_mond -f /etc/ups_conf</B><BR>
+<BR>
+  <LI><B>SiliconGraphicsの場合</B><BR>
+IRIX6.3以降のOSでは、使用するシリアルポートの設定が「available」になって 
+いることを確認してください。<BR>
+<BR>
+  <LI><B>BSDIの場合</B><BR>
+Version3以降ではイベントログデータが保存されません。<BR>
+これは、syslogdが通信で使用するUNIXドメインのソケット名が/dev/logから /var/run/logに変更になったためです。/dev/logの名前でシンボリックリンク 
+を作成してください。<BR>
+<B># ln -s /var/run/log /dev/log &lt;Return&gt;</B><BR>
+<BR>
+</OL>
+<H2><A name="SEC3"><FONT size="5"><B>インストールプログラムのコピー</B></FONT></A></H2>
+<P><FONT size="+1">インストール用ファイルとして、<A href="#SEC5">TAR形式</A>ファイルと<A href="#SEC6">RPM形式</A>ファイルが用意されています。</FONT></P>
+<P><FONT size="+1"><A name="SEC5">１．TAR形式ファイルを使用する場合</A></FONT></P>
+<P>
+CD-ROMからプログラムを、以下の手順でワークステーションの&quot;/usr&quot;ディレクトリにコピーします。
+</P>
+<TABLE>
+  <TR>
+    <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD bgcolor="#FFFF00"><B>インストールは、スーパユーザ（ルート権限のある人）が行う必要があります。</B></TD></TR>
+</TABLE>
+
+<OL>
+  <LI>ルートでログインします。<BR>
+<B>root&lt;Return&gt;</B>
+  <LI>カレントディレクトリを&quot;/usr&quot;に変更します。 &quot;/usr&quot;のパーティションに空きがなければ任意のディレクトリにインストールしてもかまいません。<BR>
+<B># cd /usr&lt;Return&gt;</B>
+  <LI>CD-ROMをドライブに装着して、ファイルシステムとしてマウントします。<BR>
+マウント方法は、OSやバージョンによって変わります。 詳しくはOSのマニュアルを参照してください。
+  <LI>必要なプログラムをカレントディレクトリにコピーします。<BR>
+カレントディレクトリの下にupsというディレクトリが作られて、その下にプログラムがコピーされます。<BR>
+<B># tar xvf <U>filename</U> &lt;Return&gt;</B>
+  <P>
+※ filenameは使用環境とインストールOSによってかわります。下表を参考にしてください。
+  </P>
+<B>ご使用OSとファイル名の関係リスト</B>
+  <TABLE border="2" cellpadding="5">
+    <TR bgcolor="#CCFFFF">
+      <TH>OS</TH>
+      <TH>FILENAME</TH></TR>
+    <TR>
+      <TD></TD>
+      <TD></TD></TR>
+    <TR>
+      <TD>Solaris 2.X 日本語　SPARC版<BR>
+        Solaris 7 日本語　SPARC版</TD>
+      <TD>v3/unix/pv_solj.tar</TD></TR>
+      <TR>
+        <TD>Solaris 8 日本語　SPARC版</TD>
+        <TD>v3/unix/pv_sol8j.tar</TD>
+      </TR>
+      <TR>
+        <TD>Solaris Netraシリーズ</TD>
+        <TD>v3/unix/pv_netra.tar</TD>
+      </TR>
+      <TR>
+        <TD>Solaris 2.X 英語　SPARC版<BR>
+        Solaris 7 英語　SPARC版</TD>
+        <TD>v3/unix/pv_sole.tar</TD>
+      </TR>
+      <TR>
+        <TD>Solaris 8 英語　SPARC版</TD>
+        <TD>v3/unix/pv_sol8e.tar</TD>
+      </TR>
+      <TR>
+      <TD>Solaris 2.X 日本語 Intel版<BR>
+        Solaris 7 日本語　Intel版</TD>
+      <TD>v3/unix/pv_solp.tar</TD></TR>
+      <TR>
+        <TD>Solaris 8 日本語 Intel版</TD>
+        <TD>v3/unix/pv_sol8p.tar</TD>
+      </TR>
+      <TR>
+      <TD>IBM AIX 4.X</TD>
+      <TD>v3/unix/pv_ibm.tar</TD></TR>
+    <TR>
+      <TD>HP9000/700 シリーズ</TD>
+      <TD>v3/unix/pv_hp7.tar</TD></TR>
+    <TR>
+      <TD>HP9000/800 シリーズ</TD>
+      <TD>v3/unix/pv_hp8.tar</TD></TR>
+    <TR>
+      <TD>SGI IRIX</TD>
+      <TD>v3/unix/pv_sgi.tar</TD></TR>
+      <TR>
+        <TD>Compaq Tru64(DEC Digital UNIX)</TD>
+        <TD>v3/unix/pv_tru.tar</TD>
+      </TR>
+      <TR>
+      <TD>BSDI Ver.2.X 3.X</TD>
+      <TD>v3/unix/pv_bsdi2.tar</TD></TR>
+      <TR>
+        <TD>BSDI Ver.4.X</TD>
+        <TD>v3/unix/pv_bsdi4.tar</TD>
+      </TR>
+      <TR>
+      <TD>SCO UnixWare</TD>
+      <TD>v3/unix/pv_unixw.tar</TD></TR>
+      <TR>
+        <TD>Linux(TurboLinux3.X, 4.X, 6.X, Server1.0以降)
+        Intel版</TD>
+        <TD>v3/free/i386/pv_turb4.tar</TD>
+      </TR>
+      <TR>
+      <TD>Linux (RedHat,Debian) Intel版</TD>
+      <TD>v3/free/i386/pv_redha.tar</TD></TR>
+      <TR>
+        <TD>Linux (Kondara MNU/Linux) Intel版</TD>
+        <TD>v3/free/i386/pv_kond.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux(OpenLinux, eServer) Intel版</TD>
+        <TD>v3/free/i386/pv_cald.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Laser5Linux) Intel版</TD>
+        <TD>v3/free/i386/pv_lasr5.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux (Miracle Linux) Intel版</TD>
+        <TD>v3/free/i386/pv_mirac.tar</TD>
+      </TR>
+      <TR>
+      <TD>Linux (Slackware) Intel版</TD>
+      <TD>v3/free/i386/pv_linux.tar</TD></TR>
+      <TR>
+        <TD>Linux (VineLinux) Intel版</TD>
+        <TD>v3/free/i386/pv_vine.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux (プロサーバ 2.0) Intel版</TD>
+        <TD>v3/free/i386/pv_linux.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux (プロサーバ 3.0) Intel版</TD>
+        <TD>v3/free/i386/pv_redha.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux (Suse Linux) Intel版</TD>
+        <TD>v3/free/i386/pv_suse.tar</TD>
+      </TR>
+      <TR>
+        <TD>FreeBSD Ver 2.2.X</TD>
+        <TD>v3/free/i386/pv_fbsd2.tar</TD>
+      </TR>
+      <TR>
+        <TD>FreeBSD Ver 3.X</TD>
+        <TD>v3/free/i386/pv_fbsd3.tar</TD>
+      </TR>
+      <TR>
+        <TD>FreeBSD Ver 4.X</TD>
+        <TD>v3/free/i386/pv_fbsd4.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Redhat) Alpha版</TD>
+        <TD>v3/free/alpha/pv_redha.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Kondara MNU/Linux) Alpha版</TD>
+        <TD>v3/free/alpha/pv_kond.tar</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Laser5Linux) Alpha版</TD>
+        <TD>v3/free/alpha/pv_lasr5.tar</TD>
+      </TR>
+    </TABLE>
+  OSやマウントされる方法によって、ファイル名の大文字／小文字が変化します。必ず、lsコマンドでファイル名を確認してください。
+  <DL>
+    <DT><B>－例－</B>
+    <DD>ディレクトリ/cd-romにマウントされたCD-ROMから、Solaris2.X SPARC版にインストールする場合<BR>
+<B># tar xvf /cd-rom/v3/pv_solj.tar &lt;Return&gt;</B>
+  </DL>
+</OL>
+<TABLE>
+  <TR>
+    <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD><B>コピーは、/usrディレクトリの下にupsというディレクトリを作成します。<BR>
+すでに/usr/upsディレクトリが存在する場合は、他のディレクトリにインストールするように 
+してください。<BR>
+なお、その場合は、本マニュアルに記述されている/usr/upsの部分をインストール先ディレクトリ 
+に変更して作業してください。</B></TD></TR>
+</TABLE>
+
+<TABLE>
+  <TR>
+    <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+    <TD bgcolor="#FFFF00"><B>HPの場合はファイル名をダブルクォート（&quot;）でくくってください。<BR>
+# tar xvf &quot;/cd-rom/v3/pv_hp7.tar;1&quot; &lt;Return&gt;</B></TD></TR>
+</TABLE>
+<OL>
+  <LI value="5">ファイルのコピーが終了したら、「<A href="#SEC4">ソフトウエアのインストール</A>」に進んでください
+</OL>
+
+<P><FONT size="+1"><A name="SEC6">２．RPM形式ファイルを使用する場合</A></FONT></P>
+<P>CD-ROMからプログラムを、以下の手順でワークステーションの&quot;/usr&quot;ディレクトリにコピーします。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+      <TD><B>コピーは、/usrディレクトリの下にupsというディレクトリを作成します。<BR>
+      <FONT color="#ff0000">RPM形式でのインストールはインストール先の変更には対応しておりません。<BR>
+      </FONT>インストール先を任意の場所に変更してインストールする場合には、ＴＡＲ形式でのインストールを実行してください。</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+      <TD bgcolor="#FFFF00"><B>インストールは、スーパユーザ（ルート権限のある人）が行う必要があります。</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<OL>
+  <LI>ルートでログインします。<BR>
+  <B>root&lt;Return&gt;</B>
+  <LI>カレントディレクトリを&quot;/tmp&quot;に変更します。
+  &quot;/tmp&quot;のパーティションに空きがなければ任意のディレクトリにコピーしてもかまいません。<BR>
+  <B># cd /tmp&lt;Return&gt;</B>
+  <LI>CD-ROMをドライブに装着して、ファイルシステムとしてマウントします。<BR>マウント方法は、OSやバージョンによって変わります。
+  詳しくはOSのマニュアルを参照してください。
+  <LI>必要なプログラム(RPM)をカレントディレクトリにコピーします。<BR>
+  カレントディレクトリの下にRPMファイルがコピーされます。<BR>
+  <B># tar xvfz <U>filename</U> &lt;Return&gt;</B>
+  <P>※ filenameは使用環境とインストールOSによってかわります。下表を参考にしてください。</P>
+  <B>ご使用OSとファイル名の関係リスト(表にないディストリビューションについては、RPM形式でのインストールに対応していません)</B>
+  <TABLE border="2" cellpadding="5">
+    <TBODY>
+      <TR bgcolor="#CCFFFF">
+        <TH>OS</TH>
+        <TH>FILENAME</TH>
+      </TR>
+      <TR>
+        <TD></TD>
+        <TD></TD>
+      </TR>
+      <TR>
+        <TD>Linux (TurboLinux3.X, 4.X, 6.X, Server1.0以降)
+        Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_turb4.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux (RedHat) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_redha.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Kondara MNU/Linux) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_kond.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(OpenLinux, eServer) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_cald.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Laser5Linux) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_lasr5.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(MiracleLinux) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_mirac.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux (VineLinux) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_vine.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Suse Linux) Intel版</TD>
+        <TD>v3/free/i386/rpm/pv_suse.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux (RedHat) Alpha版</TD>
+        <TD>v3/free/alpha/rpm/pv_redha.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Kondara MNU/Linux) Alpha版</TD>
+        <TD>v3/free/alpha/rpm/pv_kond.taz</TD>
+      </TR>
+      <TR>
+        <TD>Linux(Laser5Linux) Alpha版</TD>
+        <TD>v3/free/alpha/rpm/pv_lasr5.taz</TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+  OSやマウントされる方法によって、ファイル名の大文字／小文字が変化します。必ず、lsコマンドでファイル名を確認してください．
+  <DL>
+    <DT><B>－例－</B>
+    <DD>ディレクトリ/mnt/cdromにマウントされたCD-ROMから、TurboLinux
+    Intel版にインストールする場合<BR>
+    <B># tar xvfz /mnt/cdrom/v3/free/i386/rpm/pv_turb4.taz
+    &lt;Return&gt;</B>
+  </DL>
+</OL>
+<OL>
+  <LI value="5">コピーされたRPMファイルをインストールします。
+  <DL>
+    <DT><B>－例－</B>
+  </DL>
+  <DL>
+    <DD><B>Intel版のRPMファイルをインストールする場合</B><BR>
+    <B># rpm -ihv pv-3.0-3.i386.rpm&lt;Return&gt;</B>
+  </DL>
+</OL>
+<OL>
+  <LI value="6">5.のコマンドを実行すると、/usrディレクトリの下にups以下のディレクトリが作成されます。
+</OL>
+<OL>
+  <LI value="7">RPMのインストールが終了したら、「<A href="#SEC4">ソフトウエアのインストール</A>」に進んでください。
+</OL>
+<H2><A name="SEC4"><FONT size="5"><B>ソフトウェアのインストール</B></FONT></A></H2>
+<DL>
+  <DT>1.次のコマンドを入力して、インストールプログラムを起動します。
+  <DD><B># cd ups/bin&lt;Return&gt;(RPM形式でソフトウエアをコピーした場合は、cd
+  /usr/ups/bin&lt;Return&gt;) </B>
+  <DD><B># ./XINSTALL&lt;Return&gt;（ウィンドウ環境の場合）</B>
+  <DD><B># ./XINSTALL -C&lt;Return&gt;（非ウィンドウ環境の場合）</B>
+</DL>
+<P>
+以降の操作では、ウィンドウ環境と非ウィンドウ環境で操作方法が異なります。
+</P>
+<TABLE cellpadding="10">
+  <TR>
+    <TD><B>●ウィンドウ環境</B><BR>
+      1.［xinst］ウィンドウに［メインメニュー］画面が表示されます。<BR>
+      ［自動インストール］ボタンをクリックして次へ進んでください。<BR>
+      <IMG src="img001.gif" width="400" height="334" border="0"></TD>
+    <TD><B>●非ウィンドウ環境</B><BR>
+      1.［Main Window］画面が表示されます。<BR>
+      ※入力領域とメニュー領域とのカーソル移動はESCキーで行います。<BR>
+      <IMG src="img002.gif" width="400" height="333" border="0"></TD></TR>
+    <TR>
+      <TD colspan="2">
+      <TABLE>
+        <TBODY>
+          <TR>
+            <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+            <TD><B>シリアル番号とオーソライゼーションコードは、CD-ROMのケースに貼付されているか、
+            または製品に同封されています。<BR>
+            入力する際は、次のフォントに注意してください。<BR>
+            ゼロ＝Ф オー＝Ｏ</B></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+      </TD>
+    </TR>
+    <TR>
+    <TD>2.［オーソライゼーションコードの入力］画面が表示されます。<BR>
+      シリアル番号とオーソライゼーションコードを入力して、［次の画面に進む］ボタンをクリックして次へ進んでください。<BR>
+      <IMG src="img003.gif" width="400" height="334" border="0"></TD>
+    <TD>2.［Authorization］画面が表示されます。選択は&lt;Tab&gt;キーと&lt;Return&gt;キーで行います。<BR>
+      シリアル番号とオーソライゼーションコードを入力して、「[1]
+      Proceed to<BR>
+      Next Screen」を選択して次へ進んでください。<BR>
+      <IMG src="img004.gif" width="400" height="333" border="0"></TD></TR>
+    <TR>
+    <TD>3. 表示されているインストール先に間違いが無いか確認し、［次の画面に進む］ボタンを押して次に進んでください。<BR>
+      <IMG src="img005.gif" width="400" height="334" border="0"></TD>
+    <TD>3.表示されているインストール先に間違いが無いか確認して、「[1]
+      Proceed to Next Screen」を選択して次へ進んでください。
+      <BR>
+      <IMG src="img006.gif" width="400" height="333" border="0"></TD></TR>
+    <TR>
+      <TD colspan="2">
+      <TABLE>
+        <TBODY>
+          <TR>
+            <TD><IMG src="img0004.gif" height="55" width="55"></TD>
+            <TD><B>これから選択するネットワーク機能を [GUI:
+            「はい(yes)」 CUI: 「yes」] を選択してご使用頂く場合は、「inetd
+            サービス（daemon）」がインストールされ動作している必要があります。<BR>
+            <BR>
+            ネットワーク機能を [GUI: 「いいえ(no)」 CUI:
+            「no」]を選択してご使用頂く場合は、以下の機能が使用できません。</B>
+            <UL>
+              <LI><B>管理ツール機能（netadm）</B>
+              <LI><B>ステータスのブロードキャスト(broadcast)</B>
+              <LI><B>手動停止コマンド（upshut）</B>
+            </UL>
+            <B>ファイアウォールなどをインストールする場合は、ネットワーク機能を使用しない方が安全です。</B></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+      </TD>
+    </TR>
+    <TR>
+      <TD>4. ネットワーク機能を使用するかどうかを選択してください。
+      &quot;いいえ&quot;を選択すると、管理ツールなどの一部の機能が使えなくなります。<BR>
+      ファイアウォールなどをインストールする場合は、ネットワーク機能を使用しない方が安全です。<BR>
+      選択した後［次の画面に進む］ボタンをクリックして次へ進んでください。<BR>
+      <IMG src="img0051.gif" width="400" height="334" border="0"></TD>
+      <TD>4. ネットワーク機能を使用するかどうかを選択してください。
+      &quot;no&quot;を選択すると、管理ツールなどの一部の機能が使えなくなります。<BR>
+      ファイアウォールなどをインストールする場合は、ネットワーク機能を使用しない方が安全です。<BR>
+      選択した後、「[1] Proceed to Next Screen」を選択して次へ進んでください。
+      <BR>
+      <IMG src="img0061.gif" width="400" height="333" border="0"></TD>
+    </TR>
+    <TR>
+      <TD>これから選択する使用するUPSの機種選択は、下記のように判断して選択してください。<BR>
+      <UL>
+        <LI>PICO-II の場合は、「PICOII」
+        <LI>Biros-mini FND, FNDII の場合は、「BIROS」
+        <LI>Biros-mini FNX の場合は、「FNX」
+      </UL>
+      </TD>
+      <TD>これから選択する使用するUPSの機種選択は、下記のように判断して入力してください。<BR>
+      <UL>
+        <LI>PICO-II の場合は、「PI」
+        <LI>Biros-mini FND, FNDII の場合は、「BI」
+        <LI>Biros-mini FNX の場合は、「FNX」
+      </UL>
+      </TD>
+    </TR>
+    <TR>
+      <TD>5. ［ワークステーション情報］画面が表示されます。<BR>
+      ご使用になるUPS機種を、UPSのモデル名のリストをクリックして指定してください。<BR>
+      選択した後［次の画面に進む］ボタンを押して次に進んでください。<BR>
+      <IMG src="img007.gif" width="400" height="334" border="0"><BR>
+      ※必要に応じて「ワークステーションの機種」「OSのバージョン」を変更してください。
+      ここで変更した内容は、管理ツールでコンピュータのプロパティを選択した際に表示されます。</TD>
+      <TD>5. ［ワークステーション情報］画面が表示されます。<BR>
+      ご使用になるUPS機種を入力して指定してください。<BR>
+      選択した後、「[1] Proceed to Next Screen」を選択して次へ進んでください。
+      <BR>
+      <IMG src="img008.gif" width="400" height="333" border="0"><BR>
+      ※必要に応じて「Computer Type」「OS
+      Version」を変更してください。
+      ここで変更した内容は、管理ツールでコンピュータのプロパティを選択した際に表示されます。</TD>
+    </TR>
+    <TR>
+      <TD>6. ［インストール実行］画面が表示されます。<BR>
+      ［インストールを実行します］ボタンをクリックすると、インストールが開始されます。<BR>
+      <IMG src="img009.gif" width="400" height="343" border="0"></TD>
+      <TD>6. ［インストール実行］画面が表示されます。<BR>
+      「[1] Execute Installation」を選択すると、インストールが開始されます。<BR>
+      <IMG src="img010.gif" width="400" height="333" border="0"></TD>
+    </TR>
+    <TR>
+      <TD>7.インストールが終了すると画面中央に「Done...」が表示されます。<BR>
+      <IMG src="img0091.gif" width="400" height="343" border="0"><BR><BR>
+      <IMG src="img0092.gif" width="400" height="343" border="0"></TD>
+      <TD>7.インストールが終了すると画面左下に「Done...」が表示されます。<BR>
+      <IMG src="img0101.gif" width="400" height="333" border="0"><BR>
+      <BR>
+      <IMG src="img0102.gif" width="400" height="333" border="0"></TD>
+    </TR>
+    <TR>
+      <TD>8.インストーラーを終了します。<BR>
+      ［メインメニューに戻る］ボタンをクリックしてください。<BR>
+      次の画面で、［終了］ボタンをクリックしてください。<BR>
+      インストーラが終了します。<BR>
+      <IMG src="img0093.gif" width="400" height="343" border="0"><BR><BR>
+      <IMG src="img0094.gif" width="400" height="334" border="0"></TD>
+      <TD>8.インストーラーを終了します。<BR>
+      「[2] Return to Main Menu」を選択してください。<BR>
+      次の画面で、［Quit］を選択してください。<BR>
+      インストーラが終了します。<BR>
+      <IMG src="img0103.gif" width="400" height="333" border="0"><BR><BR>
+      <IMG src="img0104.gif" width="400" height="333" border="0"></TD>
+    </TR>
+    <TR>
+      <TD>9.以下の章を参照して、動作チェックと動作条件の設定を行います。<BR>
+      <A href="page002.htm">●動作条件の設定のページ</A><BR>
+      <A href="page001.htm">●動作確認のページ</A></TD>
+      <TD>以下の章を参照して、動作チェックと動作条件の設定を行います。<BR>
+      <A href="page003.htm">●動作条件の設定のページ<BR>
+      </A><A href="page001.htm">●動作確認のページ</A></TD>
+    </TR>
+  
+</TABLE>
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A> <A href="page001.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+</BODY>
+</HTML>

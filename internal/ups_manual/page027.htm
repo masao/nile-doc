@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<TITLE>PowerVisorV3 ユーザーズガイド - ステータス情報</TITLE>
+</HEAD>
+
+<BODY bgcolor="#ffffff">
+
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A name="TAG0"></A><A href="page018.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp/network/"><B>HELP</B></A> <A href="page020.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>
+</P>
+<HR>
+<TABLE width="450" border="5" cellpadding="10">
+  <TR>
+    <TD width="450"><FONT size="+1"><B><FONT size="+3">9.ステータス情報</FONT></B></FONT></TD></TR>
+</TABLE>
+
+<TABLE cellpadding="10">
+  <TR>
+    <TD align="center" valign="top"></TD>
+    <TD valign="top">UPSのステータス情報は、一定時間（UPS監視時間間隔）ごとにログファイル（upslog）に書き込まれます。このログファイルの内容はX-Window上にグラフとして表示できます。グラフには現時刻のステータス情報もリアルタイム表示できます。
+    <P>
+<BR>
+    </P>
+    <HR>
+    <P>
+<A name="SEC1"><FONT size="5"><B>グラフの表示</B></FONT></A><BR>
+    </P>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">ログファイルをグラフ表示するには、次のコマンドを実行します。<BR>
+/usr/ups/bin/upsg&lt;Return&gt;<BR>
+<BR>
+    <CENTER><IMG src="img0035.gif" width="600" height="400" border="0"></CENTER>
+    <P>
+<B>設定ボタン(Settings)：</B>グラフの表示方法などを設定します。クリックすると[コンフィグレーション]画面が表示されます。<BR>
+<B>モニタボタン(monitor)：</B>[データ表示エリア]に表示するデータを切り替えます。
+    </P>
+    <UL>
+      <LI><B>オフ（通常表示）：</B>カーソル位置のデータを表示します。
+      <LI><B>オン（赤色表示）：</B>現在のステータス情報を一定時間間隔でリアルタイム表示します。表示の間隔は[モニタ時間間隔]（コンフィギュレーション画面）で設定します。
+    </UL>
+    <P>
+<B>再表示ボタン(Re-disp.)：</B>グラフを再表示します。<BR>
+<B>終了ボタン(Quit)：</B>[UPS状態表示グラフ]画面を閉じます。<BR>
+<B>前レコードボタン(Prev Rec)：</B>カーソル位置を1つ前のレコード（データ）に移動します。<BR>
+<B>次レコードボタン(Next Rec)：</B>カーソル位置を1つ次のレコード（データ）に移動します。<BR>
+<B>UPS状態フィールド(UPS Status)：</B>UPSの状態を以下のメッセージで表示します。
+    </P>
+    <UL>
+      <LI>出力高電圧を検出
+      <LI>システム起動中
+      <LI>（給電モード）良好
+      <LI>（給電モード）低電圧
+      <LI>（給電モード）放電終止電圧
+      <LI>過電流状態
+      <LI>出力ショート
+      <LI>バッテリバックアップが間もなく終了
+      <LI>出力高電圧
+      <LI>商用電源が高過ぎる
+      <LI>通信エラー
+      <LI>バイパス運転中（出力高電圧）
+      <LI>バイパス運転中（UPS高温状態）
+      <LI>バイパス運転中（出力ショート）
+      <LI>バイパス運転中（過負荷状態）
+      <LI>バッテリ異常
+      <LI>UPS装置異常
+      <LI>インバータ起動中
+      <LI>異常動作
+      <LI>正常
+    </UL>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">
+    <HR>
+    <P>
+<A name="SEC2"><B><FONT size="+2">グラフの設定</FONT></B></A>
+    </P>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">データやグラフ表示の方法は，「コンフィギュレーション」画面で設定します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">●コンフィギュレーション画面</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">[コンフィギュレーション](Configuration)画面は，[UPS状態表示グラフ](upsg)画面で[設定](Settings)ボタンをクリックすると表示されます。<BR>
+      <IMG src="img203.gif" width="318" height="582" border="0"><BR>
+設定値と表示色を設定するには，各項目のボタンをクリックします。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><FONT size="+1"><B>出力電圧(Output Volt)，バッテリ電圧(Battery
+      Volt)，商用電圧(Util Volt)，負荷率(Percent
+      Load)ボタン</B></FONT></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">基準値とグラフの表示色を設定します。クリックすると、［表示色と基準値の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img204.gif" width="256" height="133" border="0"><BR>
+<BR>
+    <P>
+<B>基準値フィールド(Standard Value)：</B>監視項目の基準値を入力します。<BR>
+<B>色ボタン：</B>グラフおよび［データ表示エリア］に表示される項目の色を指定します。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>消すボタン(Erase)：</B>色設定をクリアします。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。
+    </P>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><FONT size="+1"><B>電圧の範囲(Volt Range)ボタン</B></FONT></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">グラフの電圧目盛（左の縦軸）の上限と下限を設定しますクリックすると、［電圧表示範囲の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img205.gif" width="155" height="108" border="0"><BR>
+<BR>
+<B>電圧の下限フィールド(Minimum Volt.)：</B>グラフ目盛の下限を設定します。デフォルトは0（%）です。<BR>
+<B>電圧の上限フィールド(Maximum Volt.)：</B>グラフ目盛の上限を設定します。デフォルトは150（%）です。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。<BR>
+</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">負荷率の範囲(Percent Load Range)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">グラフの負荷率目盛（右の縦軸）の上限と下限を設定します。クリックすると、［負荷率表示範囲の設定］画面（次ページ図参照）が表示されます。<BR>
+<BR>
+      <IMG src="img206.gif" width="168" height="108" border="0"><BR>
+<BR>
+<B>負荷率の下限フィールド(Minimum Percent Load)：</B>グラフ目盛の下限を設定します。デフォルトは0（%）です。<BR>
+<B>負荷率の上限フィールド(Maximum Percent Load)：</B>グラフ目盛の上限を設定します。デフォルトは100（%）です。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">表示開始日時(Start Data for the Display)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">グラフに表示する最初のデータの日時を指定します。クリックすると、［表示開始日時の設定］画面が表示されます。デフォルトは&quot;自動&quot;で［ログの記録期間］前の日時になります。<BR>
+<BR>
+      <IMG src="img207.gif" width="353" height="167" border="0"><BR>
+<BR>
+<B>先頭ログの日付フィールド(Date of the First
+      Log)：</B>ログファイルに記録さている最初のデータの日時を表示します。<BR>
+<B>最新ログの日付フィールド(Date of the Newest
+      Log)：</B>ログファイルに記録されている最新（最後）のデータの日付を表示します。<BR>
+<B>表示開始日時フィールド(Start Date for the
+      Display)：</B>グラフに表示させる最初のデータの日付を入力します。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>自動日付ボタン(Automatic Date)：</B>［起動開始日時］を自動設定します。開始日時は［ログの記録期間］の最初の日時になります。たとえば、「1
+month」が設定されている場合は、1ヶ月前が表示開始日時になります。<BR>
+<B>カーソル位置ボタン(Cursor Position)：</B>カーソル位置の日時を［表示開始日時］にセットします。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">表示期間(Period of Display)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">データの範囲を設定します。クリックすると、［表示期間／範囲の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img208.gif" width="156" height="157" border="0"><BR>
+<BR>
+<B>表示期間フィールド：</B>データの範囲を数値で設定します。<BR>
+<B>単位ボタン：</B>表示期間の単位を選択します。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">表示範囲(Range of Display)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">グラフに表示するデータの範囲を設定します。クリックすると、［表示期間／範囲の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img209.gif" width="156" height="157" border="0"><BR>
+<BR>
+<B>表示範囲フィールド：</B>グラフに表示させる範囲を数値で設定します。<BR>
+<B>単位ボタン：</B>表示範囲の単位を選択します。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"><IMG src="img0003.gif" height="36" width="77"></TD>
+    <TD valign="top">表示期間は、グラフをスクロールして表示される範囲です。表示範囲はグラフに表示される（見えている）範囲です。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">モニタ時間間隔(Interval of Monitor)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">リアルタイム表示時の表示間隔（秒）を設定します。クリックすると［モニタ時間間隔の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img210.gif" width="183" height="88" border="0"><BR>
+<BR>
+<B>時間間隔フィールド：</B>リアルタイム表示する時間間隔を設定します。<BR>
+<B>決定ボタン(Set)：</B>設定内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top"><B><FONT size="+1">区切り線間隔(Dividing Line Interval)ボタン</FONT></B></TD></TR>
+  <TR>
+    <TD nowrap align="right" valign="top"></TD>
+    <TD valign="top">グラフの区切り線の間隔を指定します。クリックすると、［区切り線間隔の設定］画面が表示されます。<BR>
+<BR>
+      <IMG src="img211.gif" width="156" height="88" border="0"><BR>
+<BR>
+<B>レコード数フィールド(Number of Records)：</B>入力したレコード（データ）数ごとに区切り線が入ります。<BR>
+<B>決定ボタン(Set)：</B>設定した内容を確定します。<BR>
+<B>中止ボタン(Cancel)：</B>設定を中止します。</TD></TR>
+</TABLE>
+
+<HR>
+<P>
+<A href="index.htm#INDEX"><IMG src="index.gif" alt="目次" height="40" width="66" border="0"></A>
+<A href="page018.htm"><IMG src="bback.gif" height="32" width="55" border="0"></A>　
+<A href="http://www.alfatech.co.jp"><B>HELP</B></A>　 <A href="page020.htm"><IMG src="nnext.gif" height="32" width="55" border="0"></A>　
+</P>
+</BODY>
+</HTML>

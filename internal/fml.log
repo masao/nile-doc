@@ -1,0 +1,155 @@
+fml-4.0.1インストールメモ  (2001/06/13 いとうちなつ)
+----------------------------------------------------
+ソース
+	ftp://ftp.fml.org/pub/fml/stable/fml-4.0.1.tar.gz  
+参考ページ
+	http://www.sapporo.iij.ad.jp/staff/fukachan/fml/
+	http://www.fml.org
+	#ほぼ同じである
+
+作業は、http://www.sapporo.iij.ad.jp/staff/fukachan/fml/
+を元に行った。
+
+	・fml 用にグループfml(gid 950), ユーザfml(uid 950) を作成
+
+	・sudo mkdir /usr/local/fml /var/spool/ml
+	・sudo chown fml /usr/local/fml /var/spool/ml 
+	・sudo chgrp fml  /usr/local/fml /var/spool/ml
+
+	インストールはユーザfmlで行った。
+	 %make install RECOMMEND=yes
+
+変更点
+	Personal, Group, Fmlserv (personal/group/fmlserv) [personal] group
+	DOMAIN NAME [nile.ulis.ac.jp] nile.ulis.ac.jp
+
+	DOMAIN NAME はTo, Repay-to に使われるのでnile.ulis.ac.jp にしておいた。
+
+	マニュアルがコピーされなかったので
+	/usr/local/fml/doc/man/fml.8 -> /usr/local/man/man8
+	/usr/local/fml/doc/man/makefml.1 -> /usr/local/man/man1
+	にコピー。
+
+Reply-to への対応
+	nile はsendmail で Reply-To を "@nile.ulis.ac.jp" から "@ulis.ac.jp"に
+	変更する設定になっている。
+	それを回避する方法としてfml でReply-To を設定する。
+
+	今回は、Reply to についてML 全体で同じ設定にする。
+		/var/spool/ml/etc/fml/site_init.ph に
+		&DEFINE_FIELD_ORIGINAL('reply-to');
+		1;
+	と書く。
+
+	それぞれのML で対応するためには
+		/var/spool/ml/ML_NAME/config.ph に
+		&DEFINE_FIELD_ORIGINAL('reply-to');　
+	をつけることで返信の時にnile.ulis.ac.jp になる。
+
+
+	#阪口先生曰く、sendmail.cf をいじってfrom 行はそのままで出すようにして、
+	メーラのほうで細かい設定をしたほうがいいとのこと。確かに、こうなってくると
+	面倒だ。
+
+CGI
+	fml-4.0 から CGIでも管理できるようになった。
+	ただし、suexec　を使わないといけないようなので今回は設定しない。
+
+fml使い方メモ
+	/var/spool/ml/README.html として作成。
+	http://nile.ulis.ac.jp/nile/fml_readme.html でも見れる。
+
+fml で新規ML を動かすためにroot がやること。
+	/var/spool/ml/README.html にも書きましたが、
+
+	ML を新規作成する時
+
+        1) 管理者を グループ fml に登録する。
+                admintool を使ってもよし、コマンドをつかってもよし。
+
+        2) NEW_MLを作成する。
+                # /usr/local/fml/makefml newml NEW_ML_NAME
+                /usr/local/fml/makefml/NEW_ML_NAME が作成される。
+
+        3) /var/spool/ml/NEW_ML_NAME 以下の owner を管理者にする
+                # chmod -R  管理者  /var/spool/ml/ML_NAME
+
+        4) /var/spool/ml/NEW_ML_NAME/aliases の中身を /etc/aliases にコピーする
+
+        5) rootで newalises する。
+
+
+	ML を削除する時
+		1) rm -fr /var/spool/ml/ML_NAME でファイル群を消す。 
+		2) /etc/aliases から該当する ML の部分を削って newaliases を実行。
+
+
+	ML の管理者を変更するには
+		1) /var/spool/ml/ML_NAME/ 以下のowner を新管理者にする。
+                # chmod -R  newadministrator /var/spool/ml/ML_NAME
+
+		2) /var/spool/ml/ML_NAME/aliases の前管理者の名前を新管理者の名前に
+		 変更して /etc/aliases の中身を変更し、newaliases をする。
+                fml_test-admin: chinatsu@avalon.ulis.ac.jp
+                ↑の書き方でもきちんと連絡がいった。
+
+        ML_NAME-admin を複数で管理する裏技（か？）。
+        /etc/aliases を
+        fml_test-admin: chinatsu,chinatsu@avalon.ulis.ac.jp
+        とすればメールは届く。
+
+------------------------------------------
+
+設定失敗の巻
+	メーリングリスト宛にメールを送れない。
+	/var/spool/ml/fml_test/var/log
+	:include:/var/spool/ml/ora/include... Cannot open /var/spool/ml/ora/include: Group writable directory
+	fml_test@nile.ulis.ac.jp... aliasing/forwarding loop broken
+
+	writable directory,loop...　と出るときは各ディレクトリのパーミッションを
+	チェックせよと書いてあった。
+	/usr, /var 以下の関係箇所がg+w だとだめとのことなので
+	/usr/, /usr/local, /var のg-w としてみるとうまくいった。
+----------------------------------------------------
+ログ
+chinatsu@nile[1]% pwd /home/chinatsu/src/fml-4.0.1
+chinatsu@nile[11]% su fml
+Password: 
+fml@nile[2]% ls
+INSTALL.en@     bin/            drafts/         messages/       sys/
+INSTALL.jp@     cf/             etc/            module/         www/
+Makefile        contrib/        install.log     ntinstall.cmd
+README.en@      databases/      libexec/        sbin/
+README.jp@      doc/            makefml@        src/
+fml@nile[9]%  make install RECOMMEND=yes
+perl ./makefml install
+unshift(@INC, /home/chinatsu/src/fml-4.0.1/src)
+   THIS HOST (nile.ulis.ac.jp) IS [sparc-sun-solaris2.7]
+---Locking /var/spool/ml
+   Nothing exists. Go ahead anyway!
+---Please Define Your Fml System Configurations
+
+Personal Use or ML-Admin-Group-Shared or fmlserv you use? 
+Personal, Group, Fmlserv (personal/group/fmlserv) [personal] group
+Please define the group (in /etc/group) ML Operators use
+Group of Mailing List Operators (fml or GID ([\w\d]+)) [fml] 
+DOMAIN NAME               [nile.ulis.ac.jp] nile.ulis.ac.jp
+FQDN                      [nile.ulis.ac.jp] 
+EXEC FILES DIRECTORY      [/usr/local/fml] 
+TOP LEVEL ML DIRECTORY    [/var/spool/ml] 
+Language (Japanese or English) [Japanese] 
+TimeZone (TZ: e.g. +0900, -0300) [+0900] 
+  --- summary ---
+      DOMAIN: nile.ulis.ac.jp
+        FQDN: nile.ulis.ac.jp
+    EXEC_DIR: /usr/local/fml
+      ML_DIR: /var/spool/ml
+    Language: Japanese
+    TimeZone: +0900
+The current configuration is saved in /usr/local/fml/.fml/system
+---Install the Fml system to /usr/local/fml. (y/n) [n] y
+Done.
+---UnLocking
+   Please check the group permission in /var/spool/ml
+ -- Enjoy Internetworking!
+
