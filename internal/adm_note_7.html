@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Tue May 14 20:05:58 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Tue May 14 20:39:59 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -63,44 +63,6 @@
   <li><a href="#19991205">makeuser変更</a>
 </ul>
 
-<!--
-/usr/lib/dmi/snmpXdmid を000にする
-http://www.securityfocus.com/bid/2417 
-
-chinatsu@nile[198]% ls -l /usr/lib/dmi/snmpXdmid
--rwxr-xr-x   1 root     sys       213268  4月 14日  05:09 /usr/lib/dmi/snmpXdmid*
-chinatsu@nile[199]% sudo chmod 000 /usr/lib/dmi/snmpXdmid
-Password:
-chinatsu@nile[200]% !ls
-ls -l /usr/lib/dmi/snmpXdmid
-----------   1 root     sys       213268  4月 14日  05:09 /usr/lib/dmi/snmpXdmid
-
-/usr/openwin/bin/Xsunのsuid を落とす
-http://www.securityfocus.com/archive/1/175490
-chinatsu@nile[16]% ls -l Xsun
--rwxr-sr-x   1 root     root     1947056  2月 14日  15:02 Xsun*
-chinatsu@nile[17]% sudo chmod -s /usr/openwin/bin/Xsun
-chinatsu@nile[39]% ls -l Xsun
--rwxr-xr-x   1 root     root     1947056  2月 14日  15:02 Xsun*
-
-/usr/openwin/bin/kcms_configure のsuid を落とす
-http://www.securityfocus.com/archive/1/175144
-chinatsu@nile[30]% ls -l kcms_configure
--rwsr-sr-x   1 root     bin        23360  8月 18日 2000年 kcms_configure*
-chinatsu@nile[31]% sudo chmod -s /usr/openwin/bin/kcms_configure
-chinatsu@nile[38]% ls -l kcms_configure
--rwxr-xr-x   1 root     bin        23360  8月 18日 2000年 kcms_configure*
-
-
-/usr/bin/tip のsuid を落とす。
-http://www.securityfocus.com/archive/1/171686
-chinatsu@nile[34]% ls -l tip
--rws--x--x   1 uucp     bin        56240  8月 18日 2000年 tip*
-chinatsu@nile[35]% sudo chmod -s /usr/bin/tip
-chinatsu@nile[36]% ls -l tip
--rwx--x--x   1 uucp     bin        56240  8月 18日 2000年 tip*
--->
-
 <hr>
 <h2>2002年5月14日</h2>
 <dl>
@@ -108,11 +70,10 @@ chinatsu@nile[36]% ls -l tip
   <dd><p>
       SSH の X-forwarding を有効にしてログインしている際に、
       <code>xhost +</code>とかしても
-      <pre>xhost:  unable to open display "nile:11.0"</pre>
+      <code>xhost:  unable to open display "nile:11.0"</code>
       とエラーになるだけだったので、標準の$PATHの順序を入れかえて、
       <code>/usr/openwin/bin</code>が先になるように
       <code>/usr/local/skel/.cshrc</code>を変更した。
-      （直接的には<code>xauth</code>が原因か…）
       </p>
       <p>
       また、ついでに今はなくなっているJavaWorkShopも消しておく。
