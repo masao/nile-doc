@@ -1,4 +1,5 @@
-fml-4.0.1インストールメモ  (2001/06/13 いとうちなつ)
+fml-4.0.1インストールメモ+α  (2001/06/13 いとうちなつ)
+$Id$
 ----------------------------------------------------
 ソース
 	ftp://ftp.fml.org/pub/fml/stable/fml-4.0.1.tar.gz  
@@ -72,7 +73,7 @@ fml で新規ML を動かすためにroot がやること。
                 /usr/local/fml/makefml/NEW_ML_NAME が作成される。
 
         3) /var/spool/ml/NEW_ML_NAME 以下の owner を管理者にする
-                # chmod -R  管理者  /var/spool/ml/ML_NAME
+                # chown -R  管理者  /var/spool/ml/ML_NAME
 
         4) /var/spool/ml/NEW_ML_NAME/aliases の中身を /etc/aliases にコピーする
 
@@ -86,7 +87,7 @@ fml で新規ML を動かすためにroot がやること。
 
 	ML の管理者を変更するには
 		1) /var/spool/ml/ML_NAME/ 以下のowner を新管理者にする。
-                # chmod -R  newadministrator /var/spool/ml/ML_NAME
+                # chown -R  newadministrator /var/spool/ml/ML_NAME
 
 		2) /var/spool/ml/ML_NAME/aliases の前管理者の名前を新管理者の名前に
 		 変更して /etc/aliases の中身を変更し、newaliases をする。
