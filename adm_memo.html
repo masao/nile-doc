@@ -7,7 +7,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Mon Apr 15 23:38:18 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Fri Apr 19 11:14:07 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile関連の仕事メモ</h1>
@@ -27,6 +27,7 @@ nileで定期的にやっている仕事のメモです。
   <li><a href="#patch">パッチをあてる ＆ 技術情報</a>
   <li><a href="#add_user">ユーザ登録</a>
   <li><a href="#center">4月：センターからファイルのコピー</a>
+  <li><a href="#newml">メーリングリストの作成</a>
 </ul>
 
 <hr>
@@ -187,7 +188,7 @@ Cronでバックアップをとっています。<br>
 <strong>バックアップ用メディア( DDS3, DDS4)とクリーニングテープ</strong><br>
 空のメディアは gakkou, nikkou の本体が置いてあるあたりに箱に入ってます。
 数が少なくなったら宇陀先生に言ってください。
-<p>一度 nile で使用したものは、nile本体のところにあります。
+<p>一度 nile で使用したものは、nile本体のところにあります。</p>
 
 <hr>
 <h2><a name="restore">バックアップテープからのリストア</a></h2>
@@ -255,6 +256,46 @@ nileのバックアップはufsdumpコマンドでとっています。
 としてあります。<br>
 今までのを見るに、"passwd.center.新しいバージョンをもらってきた年月"に mv したようです。
 </p>
+
+<hr>
+<h2><a name="newml">メーリングリストの作成</a></h2>
+<p>
+ゼミの連絡用などの用途でメーリングリストを運営できるように<a href="http://www.fml.org/">fml</a>を導入しています。
+メーリングリストの作成依頼があった場合には、以下の作業をroot権限で実行する。
+あとは、<kbd>/usr/local/fml/makefml</kbd>をML管理者に実行してもらう。
+</p>
+<p>
+以下では、ML名: mui-zemi、ML管理者: kanpan を例に挙げます。
+</p>
+<ol>
+  <li><kbd>makefml newml mui-zemi</kbd> する。（fml ユーザ権限）
+      <pre>
+      % sudo -u fml /usr/local/fml/makefml newml mui-zemi
+      </pre>
+
+  <li>管理者のユーザ権限で設定がいじれるよう chown する
+      <pre>
+      % sudo chown -R kanpan /var/spool/ml/mui-zemi
+      </pre>
+
+  <li>管理者のアドレスを fml → 実際の管理者のものに変更する
+      <pre>
+      % sudo vi /var/spool/ml/mui-zemi/aliases
+      :%s/fml/kanpan/
+      :wq
+      </pre>
+  <li><code>/etc/aliases</code>にメーリングリストを登録
+      <pre>      
+      % sudo vi /etc/aliases
+      :r/var/spool/ml/mui-zemi/aliases
+      :wq
+      </pre>
+  <li><kbd>newaliases</kbd> で <code>/etc/aliases</code> の設定内容を更新
+      <pre>
+      % sudo newaliases
+      </pre>
+</ol>
+
 
 <hr>
 <h2>過去のメモ</h2>
