@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Wed May 29 03:44:56 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Thu May 30 21:07:11 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020530.insei-printer">プリンタ<code>insei-prt2a-1</code>, <code>insei-prt2a-2</code>を登録した</a>
   <li><a href="#20020528.2kou8100">プリンタ<code>2kou8100</code>を登録した</a>
   <li><a href="#20020527.delprinter">無効なプリンタ（<code>600ps</code>, <code>kiki</code>）を削除</a>
   <li><a href="#20020527.etchosts"><code>/etc/hosts</code>の内容を修正</a>
@@ -71,6 +72,62 @@
 </ul>
 
 <hr>
+<h2>2002年5月30日</h2>
+<dl>
+  <dt><a name="20020530.insei-printer">プリンタ<code>insei-prt2a-1</code>, <code>insei-prt2a-2</code>を登録した</a>
+  <dd><p>
+      非PostScriptプリンタであるEPSON LP9400Rを登録した。
+      </p>
+      <ol>
+	<li>terminfo にエントリを登録
+	    <pre>
+	    % infocmp epson-vp5085 &gt; epson-lp9400
+	    % vi epson-lp9400
+	    （先頭の "epson-vp5085" を "epson-lp9400"にする）
+	    % sudo tic epson-lp9400
+	    </pre>
+	<li>プリンタの登録
+	    <pre>
+	    % sudo lpadmin -p insei-prt2a-1 \
+	    	-D "院生室2A" \
+	    	-v /dev/null -T epson-lp9400 -I epson-lp9400
+	    % sudo lpadmin -p insei-prt2a-2 \
+	    	-D "院生室2A" \
+	    	-v /dev/null -T epson-lp9400 -I epson-lp9400
+	    % sudo enable insei-prt2a-1 insei-prt2a-2
+	    % sudo accept insei-prt2a-1 insei-prt2a-2
+	    </pre>
+	<li>フィルタの登録
+	    <p>
+	    <code>2kou8100</code>と同じフィルタを使うよう設定する。
+	    </p>
+	    <pre>
+	    % cd /etc/lp/fd
+	    % sudo vi postepson.fd
+	    % diff -u postepson.fd.20020530 postepson.fd
+--- postepson.fd.20020530	Thu May 30 20:37:45 2002
++++ postepson.fd	Thu May 30 20:38:00 2002
+@@ -2,7 +2,7 @@
+ # filter description for non-PS Printer(s) to print PS files.
+ Input types: postscript
+ Output types: any
+-Printer types: epson-lp8100
++Printer types: epson-lp8100,epson-lp9400
+ Printers: any
+ Filter type: slow
+ Command: /usr/local/libexec/gsfilter.sh
+	    % sudo lpfilter -f postepson -F postepson.fd
+	    </pre>
+	<li>ネットワーク・インターフェースを設定する
+	    <pre>
+	    % sudo lpadmin -p insei-prt2a-1 -m netstandard \
+	    	-o protocol=bsd -o dest=insei-prt2a-1.ulis.ac.jp:LPT1
+	    % sudo lpadmin -p insei-prt2a-2 -m netstandard \
+	    	-o protocol=bsd -o dest=insei-prt2a-2.ulis.ac.jp:LPT1
+	    </pre>
+      </ol>
+</dl>
+
 <h2>2002年5月28日</h2>
 <dl>
   <dt><a name="20020528.2kou8100">プリンタ<code>2kou8100</code>を登録した</a>
@@ -82,7 +139,7 @@
       <ol>
 	<li>terminfo にエントリを登録する
 	    <pre>
-	    % infocmp epson-vp5085 > epson-lp8100
+	    % infocmp epson-vp5085 &gt; epson-lp8100
 	    % vi epson-lp8100
 	    （先頭の "epson-vp5085" を "epson-lp8100"にする）
 	    % sudo tic epson-lp8100
@@ -103,7 +160,7 @@
 	    <p>
 	    他に、
 	    <a href="http://www.humblesoft.com/gdevepag.html">EPSON ESC/Page 用ghostscriptドライバー</a>（gdevepag）や
-	    <a href="http://www.bukka.p.chiba-u.ac.jp/~ohmori/gs/">LIPS & ESC/Page & NPDL & RPDL 対応 Ghostscript デバイスドライバ</a>などもある。
+	    <a href="http://www.bukka.p.chiba-u.ac.jp/~ohmori/gs/">LIPS &amp; ESC/Page &amp; NPDL &amp; RPDL 対応 Ghostscript デバイスドライバ</a>などもある。
 	    </p>
 	    <pre>
 	    % cd /usr/local/libexec
