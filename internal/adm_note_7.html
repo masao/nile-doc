@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Mon Jun  3 21:13:26 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Mon Jun  3 22:47:08 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -19,6 +19,7 @@
 
 <ul>
   <li><a href="#20020603.ab2">AnswerBook2の起動</a>
+  <li><a href="#20020603.dais">daisを新管理者として追加</a>
   <li><a href="#20020601.prt220">プリンタ<code>prt220</code>を登録した</a>
   <li><a href="#20020530.insei-printer">プリンタ<code>insei-prt2a-1</code>, <code>insei-prt2a-2</code>を登録した</a>
   <li><a href="#20020528.2kou8100">プリンタ<code>2kou8100</code>を登録した</a>
@@ -83,6 +84,19 @@
       </p>
       <pre>% sudo /etc/init.d/ab2mgr start</pre>
 
+  <dt><a name="20020603.dais">daisを新管理者として追加</a>
+  <dd><p>
+      新管理者として石塚研D1のdaisを追加した。
+      </p>
+      <p>
+      <code>/etc/sudoers</code>、<code>admin@nile.ulis.ac.jp</code>
+      の一員に追加した。
+      </p>
+      <pre>
+      % sudo /usr/local/sbin/visudo
+      % sudo vi /etc/aliases
+      % sudo newaliases
+      </pre>
 </dl>
 
 <h2>2002年6月1日</h2>
