@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Mon Apr 29 23:50:23 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Tue Apr 30 00:18:46 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -105,8 +105,8 @@ chinatsu@nile[36]% ls -l tip
   <dt><a name="20020429">Apacheバージョンアップ</a>
   <dd><p>
       作業手順は以下の通り。
+      cf. <a href="../installer/softlist.shtml#Apache.2002-04-29"></a>
       </p>
-
 
       <ol>
 	<li>httpd.conf の退避
@@ -154,7 +154,164 @@ chinatsu@nile[36]% ls -l tip
 	    /tmp/httpd.conf.diff を見て、ひとつずつ設定項目を確認しながら編集していく。<p>
 	    <pre>
 	    % cd /usr/local/apache/conf
+	    % sudo cp httpd.conf.default httpd.conf
 	    % sudo vi httpd.conf
+	    % diff -u httpd.conf.default httpd.conf
+--- httpd.conf.default	Mon Apr 29 20:37:02 2002
++++ httpd.conf	Mon Apr 29 20:38:10 2002
+@@ -233,7 +233,7 @@
+ # Port: The port to which the standalone server listens. For
+ # ports &lt; 1023, you will need httpd to be run as root initially.
+ #
+-Port 8080
++Port 80
+ 
+ #
+ # If you wish httpd to run as a different user or group, you must run
+@@ -255,7 +255,7 @@
+ # e-mailed.  This address appears on some server-generated pages, such
+ # as error documents.
+ #
+-ServerAdmin masao@nile.ulis.ac.jp
++ServerAdmin admin@nile.ulis.ac.jp
+ 
+ #
+ # ServerName allows you to set a host name which is sent back to clients for
+@@ -314,14 +314,14 @@
+ # Note that "MultiViews" must be named *explicitly* --- "Options All"
+ # doesn't give it to you.
+ #
+-    Options Indexes FollowSymLinks MultiViews
++    Options All MultiViews
+ 
+ #
+ # This controls which options the .htaccess files in directories can
+ # override. Can also be "All", or any combination of "Options", "FileInfo", 
+ # "AuthConfig", and "Limit"
+ #
+-    AllowOverride None
++    AllowOverride All
+ 
+ #
+ # Controls who can get stuff from this server.
+@@ -342,25 +342,25 @@
+ # Control access to UserDir directories.  The following is an example
+ # for a site where these directories are restricted to read-only.
+ #
+-#&lt;Directory /home/*/public_html&gt;
+-#    AllowOverride FileInfo AuthConfig Limit
+-#    Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+-#    &lt;Limit GET POST OPTIONS PROPFIND&gt;
+-#        Order allow,deny
+-#        Allow from all
+-#    &lt;/Limit&gt;
+-#    &lt;LimitExcept GET POST OPTIONS PROPFIND&gt;
+-#        Order deny,allow
+-#        Deny from all
+-#    &lt;/LimitExcept&gt;
+-#&lt;/Directory&gt;
++&lt;Directory /home/*/public_html&gt;
++    AllowOverride All
++    Options All MultiViews
++    &lt;Limit GET POST OPTIONS PROPFIND&gt;
++        Order allow,deny
++        Allow from all
++    &lt;/Limit&gt;
++    &lt;LimitExcept GET POST OPTIONS PROPFIND&gt;
++        Order deny,allow
++        Deny from all
++    &lt;/LimitExcept&gt;
++&lt;/Directory&gt;
+ 
+ #
+ # DirectoryIndex: Name of the file or files to use as a pre-written HTML
+ # directory index.  Separate multiple entries with spaces.
+ #
+ &lt;IfModule mod_dir.c&gt;
+-    DirectoryIndex index.html
++    DirectoryIndex index.html index.shtml index.cgi
+ &lt;/IfModule&gt;
+ 
+ #
+@@ -493,7 +493,7 @@
+ # If you prefer a single logfile with access, agent, and referer information
+ # (Combined Logfile Format) you can use the following directive.
+ #
+-#CustomLog /usr/local/apache/logs/access_log combined
++CustomLog /usr/local/apache/logs/access_log combined
+ 
+ #
+ # Optionally add a line containing the server version and virtual host
+@@ -583,6 +583,15 @@
+         Allow from all
+     &lt;/Directory&gt;
+ 
++    Alias /matlab/ "/usr/local/matlab/toolbox/webserver/wsdemos/"
++
++    &lt;Directory "/usr/local/matlab/toolbox/webserver/wsdemos/"&gt;
++	AllowOverride All
++	Options All MultiViews
++	Order deny,allow
++	Allow from all
++    &lt;/Directory&gt;
++
+ &lt;/IfModule&gt;
+ # End of aliases.
+ 
+@@ -762,7 +771,7 @@
+     # more or less alphabetized them here. You probably want to change this.
+     #
+     &lt;IfModule mod_negotiation.c&gt;
+-        LanguagePriority en da nl et fr de el it ja kr no pl pt pt-br ru ltz ca es sv tw
++        LanguagePriority ja en da nl et fr de el it kr no pl pt pt-br ru ltz ca es sv tw
+     &lt;/IfModule&gt;
+ 
+     #
+@@ -781,13 +790,13 @@
+     #
+     # To use CGI scripts:
+     #
+-    #AddHandler cgi-script .cgi
++    AddHandler cgi-script .cgi
+ 
+     #
+     # To use server-parsed HTML files
+     #
+-    #AddType text/html .shtml
+-    #AddHandler server-parsed .shtml
++    AddType text/html .shtml
++    AddHandler server-parsed .shtml
+ 
+     #
+     # Uncomment the following line to enable Apache's send-asis HTTP file
+@@ -963,6 +972,7 @@
+ # Use name-based virtual hosting.
+ #
+ #NameVirtualHost *
++NameVirtualHost 133.51.14.8
+ 
+ #
+ # VirtualHost example:
+@@ -977,3 +987,19 @@
+ #    ErrorLog logs/dummy-host.example.com-error_log
+ #    CustomLog logs/dummy-host.example.com-access_log common
+ #&lt;/VirtualHost&gt;
++
++## Default Server:
++&lt;VirtualHost 133.51.14.8&gt;
++    ServerName nile.ulis.ac.jp
++&lt;/VirtualHost&gt;
++
++## For www-student:
++&lt;VirtualHost 133.51.14.8&gt;
++    ServerName www-student.ulis.ac.jp
++    Include "/project/www-student/conf/httpd.conf"
++&lt;/VirtualHost&gt;
++
++&lt;VirtualHost 133.51.14.8&gt;
++    ServerName www-student
++    Include "/project/www-student/conf/httpd.conf"
++&lt;/VirtualHost&gt;
 	    </pre>
 
 	<li>httpd.conf のテスト
