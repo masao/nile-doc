@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Tue Jun  4 00:55:05 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Thu Jul 11 09:14:53 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020711.saizo">saizo アカウントのファイルを移動</a>
   <li><a href="#20020603.ab2">AnswerBook2の起動</a>
   <li><a href="#20020603.dais">daisを新管理者として追加</a>
   <li><a href="#20020601.prt220">プリンタ<code>prt220</code>を登録した</a>
@@ -75,6 +76,25 @@
 </ul>
 
 <hr>
+<h2>2002年7月11日</h2>
+<dl>
+  <dt><a name="20020711.saizo">saizo アカウントのファイルを移動</a>
+  <dd><p>
+      <code>
+      /home</code>領域の空き容量が無くなってきました（91% used）。
+      そこで、初期に作られて以来、ほとんど使われていないロック・アカウント saizo の持つデータファイル（約1GB）を全て<code>/project3/saizo</code>以下に移し、<code>/home/saizo</code>のデータを削除した。
+      </p>
+      <pre>
+      % cd /home
+      % sudo du -sk saizo
+      1037578 saizo
+      % sudo tar cf - saizo/ | ( cd /project3; tar xvf - )
+      ...
+      % sudo diff -ru saizo/ /project3/saizo/
+      % sudo rm -rf saizo/
+      </pre>
+</dl>
+
 <h2>2002年6月3日</h2>
 <dl>
   <dt><a name="20020603.ab2">AnswerBook2の起動</a>
