@@ -1,4 +1,8 @@
 body { background-color: #ffffcc; }
 h1 { text-align: center; }
-pre { border: thin solid; }
+code, pre, tt, kbd, samp { color: navy; }
+pre {
+  border: thin solid;
+  padding: 4px;
+}
 .red { color: red; }
