@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Tue May 14 20:39:59 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Wed May 22 00:39:08 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020522"><code>/usr/local/man/windex</code>を一日に一回作成しなおすよう設定</a>
   <li><a href="#20020514">標準の $PATH を変更</a>
   <li><a href="#20020507">CacheFS daemonを無効化</a>
   <li><a href="#20020429">Apacheバージョンアップ</a>
@@ -64,6 +65,20 @@
 </ul>
 
 <hr>
+<h2>2002年5月22日</h2>
+<dl>
+  <dt><a name="20020522"><code>/usr/local/man/windex</code>を一日に一回作成しなおすよう設定</a>
+  <dd><p>
+      なぜか、Solaris7 では、
+      <code>/usr/local/man</code>などのマニュアルディレクトリにある
+      <code>windex</code>ファイルにエントリが含まれていないマニュアルを
+      manコマンドで参照できないようである。
+      そこで、頻繁に情報が追加される<code>/usr/local/man</code>だけは日に一度作り直すように設定した。
+      </p>
+      <p><code>sudo crontab -e</code>として、以下のエントリを追加した。</p>
+      <pre>0 0 * * *	/bin/catman -w -M /usr/local/man</pre>
+</dl>
+
 <h2>2002年5月14日</h2>
 <dl>
   <dt><a name="20020514">標準の $PATH を変更</a>
