@@ -77,7 +77,7 @@ fml で新規ML を動かすためにroot がやること。
 
         4) /var/spool/ml/NEW_ML_NAME/aliases の中身を /etc/aliases にコピーする
 
-        5) rootで newalises する。
+        5) rootで newaliases する。
 
 
 	ML を削除する時
