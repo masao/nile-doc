@@ -163,19 +163,36 @@ dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
 
 <hr>
 <h2><a name="printer">印刷について</a></h2>
-
-利用できるプリンタは、2koups (2階共同研究室C）です。
+<p>
+利用できるプリンタとして、
+<code>2koups</code> (2階共同研究室C）、
+<code>2kou8100</code>（2階共同研究室C）があります。
+<p>
+プリンタ名を指定しないと、<code>2koups</code>が使われます。
+また、<code>2kou8100</code>では何も指定しない場合、両面印刷になります。
+</p>
 <ul>
-  <li>プレインテキストの印刷<br>
-      a2ps テキスト名 | lp -d 2koups
-  <li>ポストスクリプトの印刷<br>
-      lp -d プリンタ名 2koups
-  <li>キャンセルの仕方<br>
-      cancel リクエストID<br>
-      cancel -u ユーザ名<br>
-  <li>プリンタの状態を確かめる<br>
-      lpstat -p 2koups
+  <li>ポストスクリプトの印刷
+      <pre>lp -d プリンタ名 hoge.ps</pre>
+  <li>プレインテキストの印刷
+      <pre>a2ps ファイル名 | lp -d プリンタ名</pre>
+  <li>プリンタの状態を確かめる
+      <pre>lpstat -p プリンタ名</pre>
+
+  <li>2kou8100でのみ可能:
+      <ul>
+	<li>片面印刷する
+	    <pre>lp -d 2kou8100 -y single hoge.ps</pre>
+	<li>両面印刷で短辺綴じする
+	    <pre>lp -d 2kou8100 -y flip hoge.ps</pre>
+      </ul>
 </ul>
+<p>
+<strong>注意: </strong>
+一度印刷指定すると、キャンセルできませんので注意してください。
+大量の印刷をする場合は、
+<code>psnup</code>コマンドで縮小印刷するなどを考慮ください。
+</p>
 
 <hr>
 <h2><a name="manuals">マニュアルについて</a></h2>
@@ -275,7 +292,7 @@ Adding password for user guest
       </ul>
 </ul>
 <hr>
-<a href="http://nile.ulis.ac.jp/nile/index.html">nile の使い方 目次へ</a><br>
+<a href="./">nile の使い方 目次へ</a><br>
 <a href="./soft.html">ソフトについて</a>
 <a href="./attention.html">使用上の注意</a>
 <hr>
