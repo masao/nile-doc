@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Mon Apr 29 23:39:52 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Mon Apr 29 23:50:23 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020429">Apacheバージョンアップ</a>
   <li><a href="#20020415">fml アカウントのパスワードをロック</a>
   <li><a href="#20020218">nile お引越</a>
   <li><a href="#20020214">DNSサーバ変更</a>
@@ -98,6 +99,77 @@ chinatsu@nile[36]% ls -l tip
 -rwx--x--x   1 uucp     bin        56240  8月 18日 2000年 tip*
 -->
 
+<hr>
+<h2>2002年4月29日（月）</h2>
+<dl>
+  <dt><a name="20020429">Apacheバージョンアップ</a>
+  <dd><p>
+      作業手順は以下の通り。
+      </p>
+
+
+      <ol>
+	<li>httpd.conf の退避
+	    <pre>
+	    % cd /usr/local/apache/conf
+	    % diff -u httpd.conf.default httpd.conf &gt; /tmp/httpd.conf.diff
+	    % sudo cp httpd.conf httpd.conf.20020427
+	    </pre>
+	<li>Apache のコンパイル
+	    <pre>
+	    % tar zxvf ~/src/apache_1.3.24.tar.gz
+	    % cd apache_1.3.24
+	    % ./configure --enable-module=all --disable-rule=EXPAT
+	    % make
+	    </pre>
+
+	<li>既存 Apache の停止
+	    <pre>
+	    % cd /etc/init.d
+	    % sudo ./apache stop
+	    </pre>
+
+	<li>ログファイルの退避
+	    <pre>
+	    % cd /usr/local/apache/logs
+	    % sudo mv access_log access_log.20020429
+	    % sudo gzip -9 access_log.20020429
+	    % sudo mv error_log error_log.20020429
+	    % sudo gzip -9 error_log.20020429
+	    
+	    % cd /project/www-student/logs
+	    % sudo mv access_log access_log.20020429
+	    % sudo gzip -9 access_log.20020429
+	    % sudo mv error_log error_log.20020429
+	    % sudo gzip -9 error_log.20020429
+	    </pre>
+
+	<li>Apache のインストール
+	    <pre>
+	    % make -n install | less
+	    % sudo make install
+	    </pre>
+	<li>httpd.conf の編集
+	    <p>
+	    /tmp/httpd.conf.diff を見て、ひとつずつ設定項目を確認しながら編集していく。<p>
+	    <pre>
+	    % cd /usr/local/apache/conf
+	    % sudo vi httpd.conf
+	    </pre>
+
+	<li>httpd.conf のテスト
+	    <pre>
+	    % /usr/local/apache/bin/httpd -t
+	    % /usr/local/apache/bin/httpd -T
+	    % /usr/local/apache/bin/httpd -S
+	    </pre>
+	<li>Apache の起動
+	    <pre>
+	    % cd /etc/init.d
+	    % sudo ./apache start
+	    </pre>
+      </ol>
+</dl>
 <hr>
 <h2>2002年4月15日（月）</h2>
 <dl>
