@@ -166,10 +166,14 @@ dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
 <p>
 利用できるプリンタとして、
 <code>2koups</code> (2階共同研究室C）、
-<code>2kou8100</code>（2階共同研究室C）があります。
+<code>2kou8100</code>（2階共同研究室C）、
+<code>prt220</code>（2階共同研究室A）、
+<code>insei-prt2a-1</code>, <code>insei-prt2a-2</code>（院生室2-A）
+があります。
 <p>
-プリンタ名を指定しないと、<code>2koups</code>が使われます。
-また、<code>2kou8100</code>では何も指定しない場合、両面印刷になります。
+プリンタ名を指定しないと、<code>2koups</code>に出力されます。
+また、<code>2kou8100</code>, <code>prt220</code>
+では何も指定しない場合、両面印刷になります。
 </p>
 <ul>
   <li>ポストスクリプトの印刷
@@ -179,7 +183,7 @@ dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
   <li>プリンタの状態を確かめる
       <pre>lpstat -p プリンタ名</pre>
 
-  <li>2kou8100でのみ可能:
+  <li>2kou8100, prt220 でのみ可能:
       <ul>
 	<li>片面印刷する
 	    <pre>lp -d 2kou8100 -y single hoge.ps</pre>
