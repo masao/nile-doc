@@ -8,3 +8,6 @@ pre {
 }
 .red { color: red; }
 dt { font-weight: bold; }
+p, dl, ul, ol {
+  line-height: 120%;
+}
