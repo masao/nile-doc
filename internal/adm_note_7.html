@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Thu Jul 11 09:14:53 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Wed Aug 28 09:17:31 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020827.j2se">J2SEのインストール</a>
   <li><a href="#20020711.saizo">saizo アカウントのファイルを移動</a>
   <li><a href="#20020603.ab2">AnswerBook2の起動</a>
   <li><a href="#20020603.dais">daisを新管理者として追加</a>
@@ -76,6 +77,60 @@
 </ul>
 
 <hr>
+<h2>2002年8月27日</h2>
+<dl>
+  <dt><a name="20020827.j2se">J2SEのインストール</a>
+  <dd><p>
+      Java2 SDK 1.4 をインストールした。
+      </p>
+      <p>
+      まず、バックアップする。
+      /, /usr, /var, /usr/local, /optをDDS4一本にまとめて取り（以下のスクリプト）、/project3 だけでもう一本。最後に /home は tar で。
+      </p>
+      <pre>
+#!/bin/sh
+# 
+tape_device=/dev/rmt/1mn
+
+mt -f $tape_device rewind
+sleep 10
+
+for dir in / /usr /var /usr/local /opt; do
+	/usr/sbin/ufsdump 0aucf /tmp/dump`echo $dir|sed -e 's/\//_/g'`.arc $tape_device $dir
+	sleep 30
+done
+
+mt -f $tape_device rewind
+      </pre>
+      <p>
+      バックアップが取れたら、次は実際にパッチをあてる。
+      パッチの内容: [107544-03, 106950-18, 106327-15, 106300-16, 108376-38, 107656-10, 107702-09, 108374-07, 107226-18, 107081-50, 107636-09, 107153-01, 107834-03, 106541-22, 106980-19]
+      </p>
+      <pre>
+      % cd /tmp
+      % unzip ~/src/J2SE_Solaris_7_Recommended.zip
+      % cd J2SE_Solaris_7_Recommended
+      % sudo ./install_cluster
+      ...
+      	（うまくいったら一旦再起動する）
+      % sudo reboot
+      </pre>
+      <p>
+      最後に、実際のJ2SE1.4をインストールする。
+      なお、既存のJ2SEはj2se_1.3.1として退避させ、
+      <code>/usr/local/j2se</code>はシンボリックリンクにする。
+      </p>
+      <pre>
+      % cd /usr/local
+      % sudo mv j2se /usr/local/j2sdk_1.3.1_01
+      % sudo sh ~/src/j2sdk-1_4_0_01-solaris-sparc.sh
+      % sudo sh ~/src/j2sdk-1_4_0_01-solaris-sparcv9.sh
+      % sudo ln -s j2sdk-1_4_0_01 j2se
+      % cd j2sdk-1_4_0_01
+      % sudo unzip ~/src/j2sdk-1_4_0-doc-ja.zip
+      </pre>
+</dl>
+
 <h2>2002年7月11日</h2>
 <dl>
   <dt><a name="20020711.saizo">saizo アカウントのファイルを移動</a>
