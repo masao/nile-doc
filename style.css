@@ -7,3 +7,4 @@ pre {
   white-space: pre;
 }
 .red { color: red; }
+dt { font-weight: bold; }

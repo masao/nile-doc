@@ -33,7 +33,7 @@
 そのため、X 端末、２階共同研究室の共用SUN ワークステーション、その他リモート端末などからアクセスすることになります。
 </p>
 <ul>
-  <li><strong>leto ,artemis, apollon（第２講座にある 共用SUN )から</strong><br>
+  <li><strong>leto ,artemis, apollon（第２講座にある共用SUN）から</strong><br>
       リモートホストの選択 → ホスト名を入力 → "nile" と入力してください。<br>
       ログイン画面が立ち上がります。<br>
       <br>
@@ -164,19 +164,18 @@ dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
 <hr>
 <h2><a name="printer">印刷について</a></h2>
 
-現在、利用できるプリンタは、2koups (2講共同）、600ps (2講共同）、kiki(機器室）、1040ps(院生室1-D)です。
+利用できるプリンタは、2koups (2階共同研究室C）です。
 <ul>
   <li>プレインテキストの印刷<br>
-      a2ps テキスト名 | lp -d プリンタ名
+      a2ps テキスト名 | lp -d 2koups
   <li>ポストスクリプトの印刷<br>
-      lp -d プリンタ名 ファイル名
+      lp -d プリンタ名 2koups
   <li>キャンセルの仕方<br>
       cancel リクエストID<br>
       cancel -u ユーザ名<br>
   <li>プリンタの状態を確かめる<br>
-      lpstat -p プリンタ名	
+      lpstat -p 2koups
 </ul>
-
 
 <hr>
 <h2><a name="manuals">マニュアルについて</a></h2>
@@ -187,7 +186,7 @@ AnswerBook2 の起動方法<br>
 　　　　　　ワークスペースメニュー → ヘルプ → AnswerBook2 <br>
 　　　　　または、<br>
 　　　　　　ウェブブラウザから
-<a href="http://nile:8888">http://nile:8888</a>   にアクセスしてください。
+<a href="http://nile:8888/">http://nile:8888/</a>   にアクセスしてください。
 
 
 <hr>
@@ -196,25 +195,23 @@ AnswerBook2 の起動方法<br>
   <li>ホームディレクトリの下に public_html　を作成し、
       ~/public_html以下にファイルを作成してください。
   <li>個人のホームページのURL は、http://nile.ulis.ac.jp/~アカウント名 となります。
-  <li>ファイル名を省略したアクセスに対してはindex.html, index.shtml の順にファイルを探します。<br>
+  <li>ファイル名を省略したアクセスに対してはindex.html, index.shtml, index.cgi の順にファイルを探します。<br>
       これらのファイルがない場合はディレクトリ内の全ファイル名，ファイルのサイズ，
       作成日時の一覧を表示します。<br>
 
       <h3><a name="www_access">アクセス制限について</a></h3>
       <ul>
-	<li> <strong>学内のみに公開する</strong><br>
-	    学内のみ公開のWebページを作成するには、学内のみに公開したいディレクトリに<br>
-	    以下の内容を書いた .htaccess というファイルを作成してください。 <br>
-	    <br>
+	<li> <strong>学内のみに公開する</strong>
+	    <p>
+	    学内のみ公開のWebページを作成するには、学内のみに公開したいディレクトリに以下の内容を書いた .htaccess というファイルを作成してください。</p>
 	    <pre>
 Order deny,allow
 deny from all
 allow from .ulis.ac.jp
 allow from 133.51.
 	    </pre>
-	    <br>
 	    
-	<li><strong>パスワードにより制限する</strong><br>
+	<li><strong>パスワードにより制限する</strong>
 	    <ol>
 	      <li>パスワードを使って制限したいディレクトリに、以下の内容を書いた
 		  .htaccess というファイルを作成してください。<br>
