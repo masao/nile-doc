@@ -1,6 +1,6 @@
 <Files "install-report.cgi">
 order deny,allow
 deny from all
-allow from nile.ulis.ac.jp
-allow from 133.51.14.8
+allow from .ulis.ac.jp
+allow from 133.51.
 </Files>
