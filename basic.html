@@ -1,308 +1,294 @@
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=x-euc-jp">
-<title>
-nile basic use
-</title>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rev="made" href="mailto:admin@nile.ulis.ac.jp">
+<title>nileの基本的な使い方</title>
 </head>
-<body bgcolor = "#ffffcc">
-<center>
-<h1>基本的な使い方</h1>
-</center>
+<body>
+<h1>nileの基本的な使い方</h1>
 <hr>
-<ol>
-<li><a href="#access">nile にアクセスできるマシン</a>
-<li><a href="#password">パスワードの変更</a>
-<li><a href="#font">フォントについて</a>
-<li><a href="#keybind">キーバインドの設定</a>
-<li><a href="#display">他の端末に nileの画面を出す</a>
-<li><a href="#printer">印刷について</a>
-<li><a href="#manuals">マニュアルについて</a>
-<li><a href="#www">ホームページ作成について</a>
-	<ul>
-	<li><a href="#www_access">アクセス制限について</a>
-	</ul>
-</ol>
-<hr>
-<br>
+<h2>目次</h2>
 
-<ol>
-<A NAME="access">
-<h3>
-<li>nile にアクセスできるマシン(直接nile にアクセスする場合）</A>
-</h3>
-<a href="./aboutnile.html">nile </a>の本体は研究開発室1 においてあります。<br>
-そのため、dream 用のX 端末、２階共同研究室の共用SUN ワークステーションなどから
-アクセスすることになります。<br>
-	<br>
-	<ul>
-	<li><b>dream 用のX端末 （T??? とナンバーがふってあるマシン）から</b><br>
-		一番下にある"" という欄に"nile" と入力して
-			Enter キーを押してください。<br>
-		nile のログイン画面が出てきます。<br>
-	<br>
-	<li><b>leto ,artemis, apollon（第２講座にある 共用SUN )から</b><br>
-	リモートホストの選択 → ホスト名を入力 → "nile" と入力してください。<br>
-	ログイン画面が立ち上がります。<br>
-	<br>
-	
-	<li><b>gakkou,nikkou,rabbit,felipe2,esabel （第２講座にあるパソコン）から</b><br>
-	Astec-X というソフトを使ってパソコンをX端末として利用します。<br>
-	<ul>
-		<li>デスクトップにX端末というディレクトリがある場合<br>
-		ディレクトリ内にある nile と書かれたショートカットキーをクリックします。<br>
-		<br>
-		<li>デスクトップにAstec-X と書いたショートカットがある場合<br>
-	
-		ショートカットキーを押すと、login 画面が出てきます。<br>
-		nile 以外のlogin 画面が立ち上がったときは、以下の手順を行ってください。<br>
-			<ol>
-			<li> ス	タートメニュー → プログラム → Astec-X　→ Control パネルを選択
-			<li> "X	DMCP/REXEC" を選んで、接続ホスト名に"nile "と入力。
-			<li> 「適用」をクリックする。
-			<li> 「OK 」をクリックする。
-			<li> ショートカットキーをクリックする。
-			</ol>
-		</ul>
-	</ul>
-	<br>
-<br>
-<A NAME="password">
-<h3>
-<li> パスワードの変更<br>
-</h3>
-</A>
+<ul>
+  <li><a href="#access">nile にアクセスできるマシン(直接nile にアクセスする場合）</a>
+  <li><a href="#password">パスワードの変更</a>
+  <li><a href="#font">フォントについて</a>
+  <li><a href="#keybind">dream のX端末から日本語を入力するには</a>
+  <li><a href="#display">自分の今使っている端末に、nile の画面を出すには</a>
+  <li><a href="#printer">印刷について</a>
+  <li><a href="#manuals">マニュアルについて</a>
+  <li><a href="#www">個人のホームページ作成について</a>
+      <ul>
+	<li><a href="#www_access">アクセス制限について</a>
+      </ul>
+</ul>
+
+<hr>
+<h2><a name="access">nile にアクセスできるマシン(直接nile にアクセスする場合）</a></h2>
+
+<p>
+<a href="./aboutnile.html">nile </a>の本体は研究開発室1 においてあります。
+そのため、X 端末、２階共同研究室の共用SUN ワークステーション、その他リモート端末などからアクセスすることになります。
+</p>
+<ul>
+  <!--
+  <li><b>dream 用のX端末 （T??? とナンバーがふってあるマシン）から</b><br>
+      一番下にある"" という欄に"nile" と入力して
+      Enter キーを押してください。<br>
+      nile のログイン画面が出てきます。<br>
+      <br>
+      -->
+  <li><b>leto ,artemis, apollon（第２講座にある 共用SUN )から</b><br>
+      リモートホストの選択 → ホスト名を入力 → "nile" と入力してください。<br>
+      ログイン画面が立ち上がります。<br>
+      <br>
+      
+  <li><b>gakkou,nikkou,rabbit,yamaarashi,esabel （第２講座にあるパソコン）から</b><br>
+      Astec-X というソフトを使ってパソコンをX端末として利用します。<br>
+      <ul>
+	<li>デスクトップにX端末というディレクトリがある場合<br>
+	    ディレクトリ内にある nile と書かれたショートカットキーをクリックします。<br>
+	    <br>
+	<li>デスクトップにAstec-X と書いたショートカットがある場合<br>
+	    
+	    ショートカットキーを押すと、login 画面が出てきます。<br>
+	    nile 以外のlogin 画面が立ち上がったときは、以下の手順を行ってください。<br>
+	    <ol>
+	      <li> ス	タートメニュー → プログラム → Astec-X　→ Control パネルを選択
+	      <li> "X	DMCP/REXEC" を選んで、接続ホスト名に"nile "と入力。
+	      <li> 「適用」をクリックする。
+	      <li> 「OK 」をクリックする。
+	      <li> ショートカットキーをクリックする。
+	    </ol>
+      </ul>
+</ul>
+
+<hr>
+<h2><a name="password">パスワードの変更</a></h2>
+<p>
 <a href="./aging.html">nileではパスワードのエージング</a>を行っています。そのため、約4ヶ月(17週間）に一回は<br>
 パスワードを変更する必要があります。<br>
-パスワードを変更するには　nile にログインし、"passwd" コマンドを使います。
-	<blockquote>
-	(例）<br>
-	chinatsu@nile[1]%passwd   <br>
-	passwd:  Changing password for chinatsu    <br>
-	Enter login password:********   ←　今までのパスワードを入れる（実際には表示されません）<br>
-	New password:******** ←　新しいパスワードを入力（実際には表示されません）<br>
-	Re-enter new password:******** ←　もう一度新しいパスワードを入力（実際には表示されません）<br>
-	passwd (SYSTEM): passwd successfully changed for chinatsu      <br>
-	chinatsu@nile[2]%     <br>
-	</blockquote>
-	<br>
-	nile のパスワードは以下の条件を満たしている必要があります。
-	（詳しくは、" man passwd "で確認してください。）<br>
-	<ul>
-        <li>1文字以上の数字または特殊文字を含む
-        <li>2文字以上の英字を含む（大文字、小文字は区別されます）
-        <li>新しいパスワードと古いパスワードでは文字が3文字以上異なっている
-        <li>6文字以上8文字以内の文字列
-	</ul>
-	<p>
-	なお、nile でパスワードをつけるときには以下の点を守って下さい。<br>
-	<ul>
-	<li>辞書にあるような単語は使用しない。
-	<li>以前に使用したパスワードは使用しない。
-	<li>以前に使用したパスワードと類似したものは使用しない。
-	</ul>
-	<br>
-	注1） 1999年10月以前は cosmo と同じパスワードが使えるようになっていましたが、
-	現在は共有していません。<br>
-	　　　それぞれのマシンでパスワードを変更するようにしてください。<br>
-<br>
-<A NAME="font">
-<h3>
-<li> フォントについて</a><br>
-</h3>
-	nile は ポート7100でフォントサーバを動かしています。<br>
-	<br>
-	<ul>
-	<li>Astec-X フォントの設定<br>
-	以下の設定をすることで、Astec-Xからnile にログインした場合にフォントがきれいに表示されます。
-	<ol>
+パスワードを変更するには　nile にログインし、<kbd>passwd</kbd> コマンドを使います。
+</p>
+
+<pre>
+(例）
+chinatsu@nile[1]% passwd
+passwd:  Changing password for chinatsu
+Enter login password:********   ←　今までのパスワードを入れる（実際には表示されません）
+New password:******** ←　新しいパスワードを入力（実際には表示されません）
+Re-enter new password:******** ←　もう一度新しいパスワードを入力（実際には表示されません）
+passwd (SYSTEM): passwd successfully changed for chinatsu
+chinatsu@nile[2]%
+</pre>
+<p>
+nile のパスワードは以下の条件を満たしている必要があります。
+（詳しくは、" man passwd "で確認してください。）
+</p>
+<ul>
+  <li>1文字以上の数字または特殊文字を含む
+  <li>2文字以上の英字を含む（大文字、小文字は区別されます）
+  <li>新しいパスワードと古いパスワードでは文字が3文字以上異なっている
+  <li>6文字以上8文字以内の文字列
+</ul>
+<p>
+なお、nile でパスワードをつけるときには以下の点を守って下さい。
+</p>
+<ul>
+  <li>辞書にあるような単語は使用しない。
+  <li>以前に使用したパスワードは使用しない。
+  <li>以前に使用したパスワードと類似したものは使用しない。
+</ul>
+<p>
+注1） 1999年10月以前は cosmo と同じパスワードが使えるようになっていましたが、
+現在は共有していません。
+それぞれのマシンでパスワードを変更するようにしてください。
+</p>
+
+<hr>
+<h2><a name="font">フォントについて</a></h2>
+nile は ポート7100でフォントサーバを動かしています。<br>
+
+<ul>
+  <li>Astec-X フォントの設定<br>
+      以下の設定をすることで、Astec-Xからnile にログインした場合にフォントがきれいに表示されます。
+      <ol>
 	<li>代替フォントの設定で "Solaris2.x/SunOS4.x" を選択。
 	<li>新しいフォントディレクトリに "tcp/nile:7100" を追加。
-	</ol>
-	</ul>
-<br>
-<br>
-<A NAME="keybind">
-<h3>
-<li>dream のX端末から日本語を入力するには </A>
-</h3>
-	dream のX端末から日本語を入力する場合、mule を使う場合には特に問題はありません。<br>
-	vi を使う場合、netscape を使う場合には日本語入力ができません。
-	そこで以下の設定をしてください。<br>
-	<blockquote>
+      </ol>
+</ul>
+
+<hr>
+<h2><a name="keybind">dream のX端末から日本語を入力するには</a></h2>
+
+dream のX端末から日本語を入力する場合、mule を使う場合には特に問題はありません。<br>
+vi を使う場合、netscape を使う場合には日本語入力ができません。
+そこで以下の設定をしてください。<br>
+<blockquote>
 chinatsu@nile[15]% xmodmap -e 'keycode 143 = Henkan_Mode'<br>
 この場合は、ログインする度に設定する必要があります。<br>
 毎回設定しなくて良いようにするためには、
 .xmodmaprcDream　というファイルを作成し、そこに<br>
 xmodmap -e 'keycode 143 = Henkan_Mode'
 と書いてください。そして、.cshrc に<br>
- source ~/.xmodmaprcDream<br>
+source ~/.xmodmaprcDream<br>
 と書いてください。
-	</blockquote>
+</blockquote>
+
+
+<hr>
+<h2><a name="display">自分の今使っている端末に、nile の画面を出すには</a></h2>
+ex) leto でnile の画面を出したい場合。
+<blockquote>
+leto% xhost +  <br>
+access control disabled, clients can connect from any host	<br>
+leto%
+</blockquote>
+次に、他のターミナルで自分の端末で動かしたいプログラムのあるマシンにログインします。
+<blockquote>
+leto% rlogin nile  <br>
+Password:   <br>
+Last login: Wed Dec  2 22:36:53 from dream.ipc.ulis.ac.jp     <br>
+Sun Microsystems Inc.   SunOS 5.6       Generic August 1997   <br>
+chinatsu@nile[1]% setenv DISPLAY leto(マシン名）:0.0      <br>
+chinatsu@nile[2]% 動かしたいプログラム  
+</blockquote>
+
+これで、今いる端末にnile のX の画面を呼び出すことができます。 <br> 
+
+dream はDHCP に対応しているため、DISPLAY の値が変わります。そのため、<br>
+% setenv DISPLAY を行う前に、<br>
+% echo $DISPLAY で確かめてください。
 <br>
-<br>
-<A NAME="display">
-<h3>
-<li>自分の今使っている端末に、nile の画面を出すには</a><br>
-</h3>
-	ex) leto でnile の画面を出したい場合。
-	<blockquote>
-	leto% xhost +  <br>
-	access control disabled, clients can connect from any host	<br>
-	leto%
-	</blockquote>
-	次に、他のターミナルで自分の端末で動かしたいプログラムのあるマシンにログインします。
-	<blockquote>
-	leto% rlogin nile  <br>
-	Password:   <br>
-	Last login: Wed Dec  2 22:36:53 from dream.ipc.ulis.ac.jp     <br>
-	Sun Microsystems Inc.   SunOS 5.6       Generic August 1997   <br>
-	chinatsu@nile[1]% setenv DISPLAY leto(マシン名）:0.0      <br>
-	chinatsu@nile[2]% 動かしたいプログラム  
-	</blockquote>
-	
-	これで、今いる端末にnile のX の画面を呼び出すことができます。 <br> 
-	
-	dream はDHCP に対応しているため、DISPLAY の値が変わります。そのため、<br>
-	% setenv DISPLAY を行う前に、<br>
-	% echo $DISPLAY で確かめてください。
-	<br>
-	ex)
-	<blockquote>
-	hitomi@dream% echo $DISPLAY 
-	dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
-	</blockquote>
-	
-<br>
-<A NAME="printer">
-<h3>
-<li>印刷について</a><br>
-</h3>
+ex)
+<blockquote>
+hitomi@dream% echo $DISPLAY 
+dhcp26-198.ipc.ulis.ac.jp:0.0 <br>
+</blockquote>
+
+<hr>
+<h2><a name="printer">印刷について</a></h2>
+
 現在、利用できるプリンタは、2koups (2講共同）、600ps (2講共同）、kiki(機器室）、1040ps(院生室1-D)です。
-	<ul>
-	<li>プレインテキストの印刷<br>
-       	 	a2ps テキスト名 | lp -d プリンタ名
-	<li>ポストスクリプトの印刷<br>
-		lp -d プリンタ名 ファイル名
-	<li>キャンセルの仕方<br>
-		cancel リクエストID<br>
-		cancel -u ユーザ名<br>
-	<li>プリンタの状態を確かめる<br>
-		lpstat -p プリンタ名	
-	</ul>
-<br>
-<br>
-<A NAME="manuals">
-<h3>
-<li>マニュアルについて<br>
-</h3>
-	nile は冊子体のマニュアルを持っていません。
-	AnswerBook2（オンライン上のマニュアル）を利用してください。<br>
-	AnswerBook2 の起動方法<br>
-	　　　　　　ワークスペースメニュー → ヘルプ → AnswerBook2 <br>
-	　　　　　または、<br>
-	　　　　　　ウェブブラウザから
-	<a href="http://nile:8888">http://nile:8888</a>   にアクセスしてください。
-	<br>
-<br>
-<br>
-<A NAME="www">
-<h3>
-<li>個人のホームページ作成について<br>
-</h3>
-	<ul>
-	<li>ホームディレクトリの下に public_html　を作成し、
-             ~/public_html以下にファイルを作成してください。
-	<li>個人のホームページのURL は、http://nile.ulis.ac.jp/~アカウント名 となります。
-	<li>ファイル名を省略したアクセスに対してはindex.html, index.shtml の順にファイルを探します。<br>
-	これらのファイルがない場合はディレクトリ内の全ファイル名，ファイルのサイズ，
-	作成日時の一覧を表示します。<br>
-	<br>
+<ul>
+  <li>プレインテキストの印刷<br>
+      a2ps テキスト名 | lp -d プリンタ名
+  <li>ポストスクリプトの印刷<br>
+      lp -d プリンタ名 ファイル名
+  <li>キャンセルの仕方<br>
+      cancel リクエストID<br>
+      cancel -u ユーザ名<br>
+  <li>プリンタの状態を確かめる<br>
+      lpstat -p プリンタ名	
+</ul>
 
-<A NAME="www_access">
-	<li><h4>アクセス制限について</h4><br>
-		<ul>
-		<li> <b>学内のみに公開する</b><br>
-		学内のみ公開のWebページを作成するには、学内のみに公開したいディレクトリに<br>
-		以下の内容を書いた .htaccess というファイルを作成してください。 <br>
-		<br>
-		<div style="border:thin solid">
-       	Order deny,allow<br>
-       	deny from all<br>
-       	allow from .ulis.ac.jp<br>
-       	allow from 133.51.<br>
-		</div>
-		<br>
-	
-		<li><b>パスワードにより制限する</b><br>
-			<p>
-			<ol>
-			<li>パスワードを使って制限したいディレクトリに、以下の内容を書いた
-			.htaccess というファイルを作成してください。<br>
 
-			<p>
-			例）/home/chinatsu/public_html/test に ユーザ名 guest でアクセス制限をする。<br>
-			パスワードファイル名を testpass とし、/home/chinatsu/cryにおく。<br>
-			<br>
-			<div style="border:thin solid">
-			#パスワードファイルの指定。絶対パスで書く。<br>
-			AuthUserFile /home/chinatsu/cry/testpass<br>
-			AuthGroupFile /dev/null<br>
-			<br>
-			#単純なパスワードによる認証<br>
-			AuthType Basic<br>
-			<br>
-			#ユーザ認証ウィンドウに表示されるタイトル<br>
-			AuthName "please type your password"<br>
-	
-			#認証したいユーザ名を記入。複数人の場合はスペースで区切る。<br>
-			require user guest<br>
-			</div><br>
-			パスワードファイルの名前は自由です。一般には".htpasswd"が使われているようです。<br>
-			<br>
-		
-			<li> 制限をかけるディレクトリでhtpasswd コマンドを実行します。
-			初めてパスワードファイルを作成する時は"-c"オプションをつけてください。<br>
-			2回目からは必要ありません。<br>
-			<br>
-			<div style="border:thin solid">
-			% cd /home/chinatsu/public_html/test<br>
-			% /usr/local/apache/bin/htpasswd -c .htpasswd guest<br>
-			New password: ********（実際は何も表示されません）<br>
-			Re-type new password:******** <br>
-			Adding password for user guest<br>
-			</div><br>
-			<br>
-			htpasswd で作成されたファイルには「ユーザ名:暗号化されたパスワード」が書かれています。<br>
-			<div style="border:thin solid">
-			guest:sheP2GRfXbgi.
-			</div><br>
-			</ol>
-			<ul>
-			<li>ユーザを削除するとき<br>
-				パスワードファイルから該当ユーザの行を消してください。<br>
-				<br>
+<hr>
+<h2><a name="manuals">マニュアルについて</a></h2>
 
-			<li>セキュリティを確保するために<br>
-			<font color="red">
-			nile や他のホストなどで使用しているパスワード（パスフレーズ）は使わないでください。<br>
-			</font>
-			パスワードファイルの作成場所ですが、~/public_html ディレクトリ以下に
-			作るのを避けた方が良いようです。<br>
-			</ul>
-			<br>
-	</ul>
-	アクセス制限については、他にもいろいろな方法があります。調べてみてください。<br>
-	<ul>
-	参考URL:
-	<a href="http://www.mikeneko.ne.jp/~lab/cgi/htaccess/">
-	ミケネコの htaccess リファレンス</a>
-		(http://www.mikeneko.ne.jp/~lab/cgi/htaccess/)<br>
-	</ul>
-	
-	
-	</ul>
-</OL>
+nile は冊子体のマニュアルを持っていません。
+AnswerBook2（オンライン上のマニュアル）を利用してください。<br>
+AnswerBook2 の起動方法<br>
+　　　　　　ワークスペースメニュー → ヘルプ → AnswerBook2 <br>
+　　　　　または、<br>
+　　　　　　ウェブブラウザから
+<a href="http://nile:8888">http://nile:8888</a>   にアクセスしてください。
+
+
+<hr>
+<h2><a name="www">個人のホームページ作成について</a></h2>
+<ul>
+  <li>ホームディレクトリの下に public_html　を作成し、
+      ~/public_html以下にファイルを作成してください。
+  <li>個人のホームページのURL は、http://nile.ulis.ac.jp/~アカウント名 となります。
+  <li>ファイル名を省略したアクセスに対してはindex.html, index.shtml の順にファイルを探します。<br>
+      これらのファイルがない場合はディレクトリ内の全ファイル名，ファイルのサイズ，
+      作成日時の一覧を表示します。<br>
+
+      <h4><a name="www_access">アクセス制限について</a></h4>
+      <ul>
+	<li> <b>学内のみに公開する</b><br>
+	    学内のみ公開のWebページを作成するには、学内のみに公開したいディレクトリに<br>
+	    以下の内容を書いた .htaccess というファイルを作成してください。 <br>
+	    <br>
+	    <pre>
+	    Order deny,allow
+	    deny from all
+	    allow from .ulis.ac.jp
+	    allow from 133.51.
+	    </pre>
+	    <br>
+	    
+	<li><b>パスワードにより制限する</b><br>
+	    <ol>
+	      <li>パスワードを使って制限したいディレクトリに、以下の内容を書いた
+		  .htaccess というファイルを作成してください。<br>
+
+		  <p>
+		  例）/home/chinatsu/public_html/test に ユーザ名 guest でアクセス制限をする。<br>
+		  パスワードファイル名を testpass とし、/home/chinatsu/cryにおく。<br>
+		  <br>
+		  <pre>
+		  #パスワードファイルの指定。絶対パスで書く。
+		  AuthUserFile /home/chinatsu/cry/testpass
+		  AuthGroupFile /dev/null
+
+		  #単純なパスワードによる認証
+		  AuthType Basic
+
+		  #ユーザ認証ウィンドウに表示されるタイトル
+		  AuthName "please type your password"
+
+		  #認証したいユーザ名を記入。複数人の場合はスペースで区切る。
+		  require user guest
+		  </pre>
+		  パスワードファイルの名前は自由です。一般には".htpasswd"が使われているようです。<br>
+		  <br>
+		  
+	      <li> 制限をかけるディレクトリでhtpasswd コマンドを実行します。
+		  初めてパスワードファイルを作成する時は"-c"オプションをつけてください。<br>
+		  2回目からは必要ありません。<br>
+		  <br>
+		  <pre>
+		  % cd /home/chinatsu/public_html/test
+		  % /usr/local/apache/bin/htpasswd -c .htpasswd guest
+		  New password: ********（実際は何も表示されません）
+		  Re-type new password:********
+		  Adding password for user guest
+		  </pre>
+		  <br>
+		  htpasswd で作成されたファイルには「ユーザ名:暗号化されたパスワード」が書かれています。<br>
+		  <pre>
+		  guest:sheP2GRfXbgi.
+		  </pre><br>
+	    </ol>
+	    <ul>
+	      <li>ユーザを削除するとき<br>
+		  パスワードファイルから該当ユーザの行を消してください。<br>
+		  <br>
+
+	      <li>セキュリティを確保するために<br>
+		  <strong class="red">
+		  nile や他のホストなどで使用しているパスワード（パスフレーズ）は絶対使わないでください。<br>
+		  </strong>
+		  パスワードファイルの作成場所ですが、~/public_html ディレクトリ以下に
+		  作るのを避けた方が良いようです。<br>
+	    </ul>
+	    <br>
+      </ul>
+      アクセス制限については、他にもいろいろな方法があります。調べてみてください。<br>
+
+      <ul>
+	<li>参考URL:<br>
+	    <a href="http://www.mikeneko.ne.jp/~lab/cgi/htaccess/">
+	    ミケネコの htaccess リファレンス</a>
+	    (http://www.mikeneko.ne.jp/~lab/cgi/htaccess/)<br>
+      </ul>
+      
+      
+</ul>
 
 <hr>
 <a href="http://nile.ulis.ac.jp/nile/index.html">nile の使い方 目次へ</a><br>
