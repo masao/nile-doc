@@ -4,5 +4,6 @@ code, pre, tt, kbd, samp { color: navy; }
 pre {
   border: thin solid;
   padding: 4px;
+  white-space: pre;
 }
 .red { color: red; }
