@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Wed May 29 00:12:17 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Wed May 29 03:44:56 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -115,30 +115,35 @@
 GS="/usr/local/bin/gs"
 
 SIZE=a4
-DEV=lp8100
 RES=600
+DUPLEX="-dDuplex"	# デフォルトは両面印刷
 
 ARG="-q -dNOPAUSE -dSAFER -dBATCH"
 ARG="$ARG -sPAPERSIZE=$SIZE -sOUTPUTFILE=- -r$RES"
 
-case $0 in
-  *both.sh) ARG="$ARG -dDuplex";;
-  *flip.sh) ARG="$ARG -dDuplex -DTumble";;
-esac
-
-if [ "$1" = "-T" ]; then
-  case $2 in
-    *lp8100) DEV=lp8100;;
-    *lp9400) DEV=lp9400;;
-  esac
+# オプション解析
+set -- `getopt T:sf $*`
+if [ $? != 0 ]; then
+  exit 2
 fi
 
-ARG="$ARG -sDEVICE=$DEV -"
+for i in $*; do
+  case $i in
+    -T)
+      case $2 in
+	*lp8100) DEV=lp8100;;
+	*lp9400) DEV=lp9400;;
+      esac;
+      shift 2;;
+    -f) DUPLEX="-dDuplex -DTumble";;
+    -s) DUPLEX= ;;
+  esac
+done
+
+ARG="$ARG $DUPLEX -sDEVICE=$DEV -"
 
 $GS $ARG
 	    % sudo chmod 755 gsfilter.sh
-	    % sudo ln -s gsfilter.sh gsfilter-both.sh
-	    % sudo ln -s gsfilter.sh gsfilter-flip.sh
 	    </pre>
 	<li>フィルタの登録
 	    <p>
@@ -146,23 +151,24 @@ $GS $ARG
 	    </p>
 	    <pre>
 	    % cd /etc/lp/fd
-	    % sudo vi postraster.fd
-	    % cat postraster.fd
-# postraster.fd
+	    % sudo vi postepson.fd
+	    % cat postepson.fd
+# postepson.fd
 # filter description for non-PS Printer(s) to print PS files.
-
 Input types: postscript
 Output types: any
 Printer types: epson-lp8100
 Printers: any
 Filter type: slow
-Command: /usr/local/libexec/gsfilter-both.sh
+Command: /usr/local/libexec/gsfilter.sh
 Options: TERM * = -T *
-	    % sudo lpfilter -f postraster -F postraster.fd
+Options: MODES flip = -f
+Options: MODES single = -s
+	    % sudo lpfilter -f postepson -F postepson.fd
 	    </pre>
 	<li>ネットワーク・インターフェースを設定する
 	    <p>
-	    バナーはいらないので、デフォルトで付けないように設定する。
+	    バナーはいらないので、デフォルトで付けないようにしておく。
 	    </p>
 	    <pre>
 	    % cd /etc/lp/model
