@@ -1,5 +1,7 @@
 <html lang="ja">
 <head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rev="made" href="mailto:admin@nile.ulis.ac.jp">
 <meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
 <title>
 soft list
@@ -97,6 +99,14 @@ MATLAB は　グラフィックス、画像処理ができる総合的な数値解析ソフトウェアです。４�
 	<a href="http://www.mathworks.com/access/helpdesk/help/toolbox/webserver/webserver.shtml">
 	Mathworksのホームページにあるマニュアル</a>を見てください。
 	</p>
+    <p>
+    <strong>注意:</strong>
+    サーバの再起動時に自動起動する設定になっていませんので、
+    Matlab Webserverが動いていない場合は、以下のコマンドを実行してください。
+    （<a href="adm_memo.html#matlab_boot">管理者向けメモ</a>）
+    </p>
+    <pre>% sudo /etc/init.d/webserver start</pre>
+
 
 	<ul>
 	<li><h4>jpegファイル作成ディレクトリのパーミッションの変更</h4>
