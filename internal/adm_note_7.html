@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Sun May 26 23:04:38 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Mon May 27 22:27:15 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -18,6 +18,7 @@
 <hr>
 
 <ul>
+  <li><a href="#20020527.etchosts"><code>/etc/hosts</code>の内容を修正</a>
   <li><a href="#20020526">Matlab Webserverの自動起動を無効化</a>
   <li><a href="#20020525">Apacheのアクセスログが2重に記録していたのを修正</a>
   <li><a href="#20020522"><code>/usr/local/man/windex</code>を一日に一回作成しなおすよう設定</a>
@@ -68,6 +69,45 @@
 </ul>
 
 <hr>
+<h2>2002年5月27日</h2>
+<dl>
+  <dt><a name="20020527.etchosts"><code>/etc/hosts</code>の内容を修正</a>
+  <dd><p>
+      旧メインシステムのサーバのエントリなどが残っていたので削除した。
+      </p>
+      <pre>
+      % cd /etc/inet
+      % sudo cp hosts hosts.20020527
+      % sudo vi hosts
+      % diff -u hosts.20020527 hosts
+--- hosts.20020527	Mon May 27 21:57:49 2002
++++ hosts	Mon May 27 21:59:06 2002
+@@ -2,15 +2,11 @@
+ # Internet host table
+ #
+ 127.0.0.1	localhost	
+-#133.51.20.13	nile	loghost
+-#add by Hitomi Saito 1999-09-26
+-133.51.14.8		nile	loghost nile nile.ulis.ac.jp www-student
+-133.51.168.11   dream
+-133.51.5.11   cosmo
++133.51.14.8	nile loghost nile.ulis.ac.jp www-student
++#
++# printer servers:
+ #
+-#printer server
+ 133.51.5.22	s-2koups
+-133.51.4.40	kiki
+-
+-#NTP server
++#
++# NTP server:
+ 133.51.15.15	ulistime.ulis.ac.jp ulistime
+      </pre>
+
+
+</dl>
+
 
 <h2>2002年5月26日</h2>
 <dl>
