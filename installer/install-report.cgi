@@ -88,7 +88,7 @@ if ($query->param("submit")) {	# ÅÐÏ¿¤·¤¿¡£
     open(SENDMAIL, "| /usr/local/bin/nkf | /usr/lib/sendmail -oi -t") ||
 	die "sendmail open failed: $!";
     print SENDMAIL <<EOF;
-From: "Installer" <masao\@ulis.ac.jp>
+From: "Installer" <$my_address>
 To: "Nile Administrators" <$my_address>
 Subject: [nile-install] $subject
 
