@@ -8,7 +8,7 @@
 </head>
 <body>
 <!-- hhmts start -->
-<div class="last-update">最終更新日: <strong>Wed May 22 00:39:08 2002</strong></div>
+<div class="last-update">最終更新日: <strong>Wed May 22 11:08:05 2002</strong></div>
 <!-- hhmts end -->
 <hr>
 <h1>nile管理ノート(1999年12月5日〜）</h1>
@@ -19,6 +19,7 @@
 
 <ul>
   <li><a href="#20020522"><code>/usr/local/man/windex</code>を一日に一回作成しなおすよう設定</a>
+  <li><a href="#20020522.1"><code>combine</code>コマンドを消去</a>
   <li><a href="#20020514">標準の $PATH を変更</a>
   <li><a href="#20020507">CacheFS daemonを無効化</a>
   <li><a href="#20020429">Apacheバージョンアップ</a>
@@ -77,6 +78,14 @@
       </p>
       <p><code>sudo crontab -e</code>として、以下のエントリを追加した。</p>
       <pre>0 0 * * *	/bin/catman -w -M /usr/local/man</pre>
+
+  <dt><a name="20020522.1"><code>combine</code>コマンドを消去</a>
+  <dd><p>
+      ImageMagick のバージョンを上げたが、
+      新しいバージョンでは、<code>combine</code>コマンドはobsoleteになった。
+      古いバージョンのコマンドが残っているとまぎらわしいので、削除した。
+      </p>
+      <pre>sudo rm /usr/local/bin/combine /usr/local/man/{cat,man}1/combine.1</pre>
 </dl>
 
 <h2>2002年5月14日</h2>
